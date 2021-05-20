@@ -1,17 +1,23 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
+/**
+ * Выводит список разделов и групп
+ */
 public class TestShowChapterInfo {
     public static void main(String[] args) {
-        int sampleChapter = 17;
-        String fileName = "dic/hs_chapters.txt";
+
+        String fileNameSections = "dic/hs_chapters.txt";
         String fileNameGroups = "dic/hs_groups.txt";
-        System.out.print("РАЗДЕЛ " + sampleChapter + ": ");
-        HsChapter sample = new HsChapter(fileName);
-        FileToArrayList groups = new FileToArrayList(fileNameGroups);
-        for(int n = 1; n <= sample.maxIndex(); n++){
-            System.out.println(sample.getDescription(n));
-            for (int i = sample.getBegin(n); i <= sample.getEnd(n); i++) {
-                System.out.println("\t" + i +  "-- -- --- - \t " + groups.getTopic(i));
+        HsChapter section = new HsChapter(fileNameSections);
+        HsChapter group = new HsChapter(fileNameGroups);
+
+        for(int sectionNumber = 1; sectionNumber <= section.maxIndex(); sectionNumber++){
+            System.out.println(sectionNumber + ". " + section.getDescription(sectionNumber));
+            for (int groupNumber = section.getBegin(sectionNumber); groupNumber <= section.getEnd(sectionNumber); groupNumber++) {
+                if(groupNumber < 10) // Для цифр 1-9 добавить лидирующий ноль
+                    System.out.println("\t" + "0" + groupNumber +  "-- -- --- - \t " + group.getDescription(groupNumber));
+                else
+                    System.out.println("\t" + groupNumber +  "-- -- --- - \t " + group.getDescription(groupNumber));
             }
         }
     }
