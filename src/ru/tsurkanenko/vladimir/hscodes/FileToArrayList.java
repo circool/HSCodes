@@ -9,31 +9,8 @@ import java.util.ArrayList;
  */
 public class FileToArrayList {
     private final ArrayList<String> arrayList;
-
     /**
-     * Возвращает весь список
-     * @return Массив со всеми строками
-     */
-    public ArrayList<String> getArrayList() {
-        return arrayList;
-    }
-
-    /**
-     * Возврашает элемент списка
-     * @param arg индекс возвращаемого элемента
-     * @return элемент списка
-     */
-    public String getTopic(int arg) {
-
-        int totalTopics = arrayList.size();
-        if((totalTopics >= arg) && (arg > 0))
-            return arrayList.get(arg - 1);
-        else
-            return "Out of range";
-    }
-
-    /**
-     * Создает ArrayList, читая строки из файла, определенного параметром fileName
+     * Конструктор создает ArrayList, читая строки из файла, определенного параметром fileName
      * @param fileName Имя файла для чтения
      */
     public FileToArrayList(String fileName) {
@@ -48,5 +25,25 @@ public class FileToArrayList {
             System.out.println("Ошибка чтения файла " + fileName);
             System.out.println("Попытка загрузить исходный файл");
         }
+    }
+    /**
+     * Возвращает весь список
+     * @return Массив со всеми строками
+     */
+    public ArrayList<String> getArrayList() {
+        return arrayList;
+    }
+
+    /**
+     * Возврашает элемент списка
+     * @param arg индекс возвращаемого элемента
+     * @return элемент списка
+     */
+    public String getTopic(int arg) {
+        int totalTopics = arrayList.size();
+        if((totalTopics >= arg) && (arg > 0))
+            return arrayList.get(arg - 1);
+        else
+            return "Out of range";
     }
 }
