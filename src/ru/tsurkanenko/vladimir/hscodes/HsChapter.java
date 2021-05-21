@@ -11,13 +11,13 @@ public class HsChapter {
     /**
      * Массивы для хранения информации о разделах и относящихся к ним подразделам
      */
-    private final String[] chapterDescription = new String[22];
-    private final int[] chaptersBegin = new int[22];
-    private final int[] chaptersEnd = new int[22];
+    private final String[] chapterDescription = new String[100];
+    private final int[] chaptersBegin = new int[100];
+    private final int[] chaptersEnd = new int[100];
     /**
      * В переменной total содержится индекс последней записи
      */
-    private final int total;
+    private int total;
 
     /**
      * Конструктор экземпляра класса
@@ -25,14 +25,20 @@ public class HsChapter {
      */
     public HsChapter(String fileName) {
         ArrayList<String> source = new FileToArrayList(fileName).getArrayList();
-        int i = 0;
+        total = 0;
         for(String singleLine:source){
-            chaptersBegin[i] = Integer.parseInt(singleLine.substring(0, 2));
-            chaptersEnd[i] = Integer.parseInt(singleLine.substring(3, 5));
-            chapterDescription[i] = singleLine.substring(6);
-            i++;
+            if(singleLine.length() > 6){
+                chaptersBegin[total] = Integer.parseInt(singleLine.substring(0, 2));
+                chaptersEnd[total] = Integer.parseInt(singleLine.substring(3, 5));
+                chapterDescription[total] = singleLine.substring(6);
+            }
+            else {
+                chaptersBegin[total] = 0;
+                chaptersEnd[total] = 0;
+                chapterDescription[total] = "";
+            }
+            total++;
         }
-        total = i;
     }
 
     /**
@@ -47,6 +53,7 @@ public class HsChapter {
         return -1;
     }
 
+
     /**
      * Возвращает номер последнего входящего в раздел подраздела
      * @param index Номер раздела, для которого требуется получить справку
@@ -58,6 +65,7 @@ public class HsChapter {
             return chaptersEnd[index];
         return -1;
     }
+
 
     /**
      * Возвращает описание раздела
