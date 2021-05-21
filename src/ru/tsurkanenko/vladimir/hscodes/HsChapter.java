@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @version 0.1
  * @author Vladimir Tsurkanenko
  * Объект инкапсулирует информацию о разделе, группе или подгруппе ТНВЭД и номерах относящмхся к ним подразделов
+ * @deprecated Заменяется классом HsGroup
  */
 public class HsChapter {
     /**

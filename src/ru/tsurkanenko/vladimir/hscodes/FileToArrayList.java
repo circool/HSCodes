@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @version 0.1
  * @author Vladimir Tsurkanenko
  * Читает строки из файла и заносит их в список AttayList
+ * @deprecated
  */
 public class FileToArrayList {
     private final ArrayList<String> arrayList;
