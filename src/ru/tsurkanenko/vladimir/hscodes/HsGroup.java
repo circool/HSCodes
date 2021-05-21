@@ -79,6 +79,27 @@ public class HsGroup {
     }
 
     /**
+     * Возвращает весь массив с описаниями разделов, групп или подгрупп
+     * @return Массив с описаниями разделов, групп или подгрупп
+     */
+    public String[] getDescription() {
+        return description;
+    }
+
+    /**
+     * Возвращает массив с описаниями в диапазоне от первого аргумента до второго
+     * @param first Начальная позиция диаразона
+     * @param last Конечная позиция диапазона
+     * @return Масссив заполненый значениями
+     */
+    public String[] getScope(int first, int last){
+        String[] scope = new String[last - first+1];
+        for(int i=0; i <= (last - first); i++)
+            scope[i] = this.getDescription(i+first-1);
+        return scope;
+    }
+
+    /**
      * Возвращает описание (наименование) запрошенного раздела
      * @param index Номер запрашиваемого раздела
      * @return Текстовое описание
