@@ -1,5 +1,8 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
+/**
+ * @deprecated
+ */
 public class TestHsChapter {
     public static void main(String[] args) {
         HsChapter sample = new HsChapter("dic/hs_chapters.txt");

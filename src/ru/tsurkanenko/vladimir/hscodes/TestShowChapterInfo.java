@@ -1,19 +1,22 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
+import java.io.IOException;
+
 /**
  * Выводит список разделов и групп
  */
+
 public class TestShowChapterInfo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String fileNameSections = "dic/hs_chapters.txt";
         String fileNameGroups = "dic/hs_groups.txt";
-        HsChapter section = new HsChapter(fileNameSections);
-        HsChapter group = new HsChapter(fileNameGroups);
+        HsGroup section = new HsGroup(fileNameSections);
+        HsGroup group = new HsGroup(fileNameGroups);
 
-        for(int sectionNumber = 1; sectionNumber <= section.maxIndex(); sectionNumber++){
+        for(int sectionNumber = 1; sectionNumber <= section.getSize() ; sectionNumber++){
             System.out.println(sectionNumber + ". " + section.getDescription(sectionNumber));
-            for (int groupNumber = section.getBegin(sectionNumber); groupNumber <= section.getEnd(sectionNumber); groupNumber++) {
+            for (int groupNumber = section.getFirstChild(sectionNumber); groupNumber <= section.getLastChild(sectionNumber); groupNumber++) {
                 if(groupNumber < 10) // Для цифр 1-9 добавить лидирующий ноль
                     System.out.println("\t" + "0" + groupNumber +  "-- -- --- - \t " + group.getDescription(groupNumber));
                 else

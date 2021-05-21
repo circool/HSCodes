@@ -2,6 +2,7 @@ package ru.tsurkanenko.vladimir.hscodes;
 import java.util.ArrayList;
 /**
  * Тестирование класса FileToArrayList
+ * @deprecated
  */
 public class TestFileToArrayList {
     public static void main(String[] args) {

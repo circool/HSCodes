@@ -39,9 +39,25 @@ public class HsGroup {
             String singleLine;
             BufferedReader sourceFile =
                     new BufferedReader(new FileReader(fileName));
+            int index = 0;
+            while ((singleLine = sourceFile.readLine()) != null){
+                if(!singleLine.matches("(#|/).*") ){
+                    if(singleLine.length() > 6){
+                        firstChild[index] = Integer.parseInt(singleLine.substring(0, 2));
+                        lastChild[index] = Integer.parseInt(singleLine.substring(3, 5));
+                        description[index] = singleLine.substring(6);
+                    } else {
+                        firstChild[index] = 0;
+                        lastChild[index] = 0;
+                        description[index] = "";
+                    }
+                    index++;
+                }
+            }
+            /*
             for(int i=0; i < arraySize; i++){
                 singleLine = sourceFile.readLine();
-                if(singleLine.length() > 6){
+                if((singleLine.length() > 6) & !singleLine.startsWith("#")){
                     firstChild[i] = Integer.parseInt(singleLine.substring(0, 2));
                     lastChild[i] = Integer.parseInt(singleLine.substring(3, 5));
                     description[i] = singleLine.substring(6);
@@ -50,7 +66,7 @@ public class HsGroup {
                     lastChild[i] = 0;
                     description[i] = "";
                 }
-            }
+            }*/
         } else System.err.println("File " + fileName + " not found.");
     }
 

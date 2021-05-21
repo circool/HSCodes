@@ -17,8 +17,9 @@ class FileCheck {
         int lineCounter = 0;
         try (BufferedReader sourceFile =
                      new BufferedReader(new FileReader(fileName))) {
-            while (sourceFile.readLine() != null)
-                lineCounter++;
+            String singleLine;
+            while ((singleLine = sourceFile.readLine()) != null)
+                    if(!singleLine.startsWith("#")) lineCounter++;
         } catch (IOException exception) {
             System.out.println("Ошибка чтения файла " + fileName);
         }
