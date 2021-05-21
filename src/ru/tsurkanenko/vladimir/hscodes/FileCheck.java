@@ -19,7 +19,7 @@ class FileCheck {
                      new BufferedReader(new FileReader(fileName))) {
             String singleLine;
             while ((singleLine = sourceFile.readLine()) != null)
-                    if(!singleLine.startsWith("#")) lineCounter++;
+                    if(!singleLine.matches("(#|/).*")) lineCounter++;
         } catch (IOException exception) {
             System.out.println("Ошибка чтения файла " + fileName);
         }
