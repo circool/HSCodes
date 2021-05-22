@@ -30,7 +30,7 @@ public class WindowHsSelect extends Application {
 
         Label sectionDescription = new Label("Раздел ТНВЭД");
         sectionDescription.setWrapText(true);
-        sectionDescription.setMaxWidth(1000);
+        sectionDescription.setMaxWidth(1190);
 
         ObservableList<String> hsSection = FXCollections.observableArrayList(hs.getSection().getDescription());
         ComboBox<String> hsSectionComboBox = new ComboBox<>(hsSection);

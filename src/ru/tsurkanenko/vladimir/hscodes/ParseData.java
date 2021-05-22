@@ -107,7 +107,12 @@ public class ParseData {
                 if(singleLine.matches(lineRegex)) {
                     code[i] = singleLine.replaceAll(clearCode, "").replaceAll("\\|","");
                     description[i] = singleLine.replaceAll(clearDescription, "").replaceAll("^\\|","").replaceAll("\\|.*$","");
-                    note[i]=singleLine.replaceAll(clearDescription, "").replaceAll("^\\|","").replaceAll("^.+?\\|","").replaceAll("\\|","");
+                    note[i]=singleLine.replaceAll(clearDescription, "").
+                            replaceAll("^\\|","").
+                            replaceAll("^.+?\\|","").
+                            replaceAll("\\|","").
+                            replaceAll("(\\.)(\\s+)(\\d\\.)","$1\n$3" ).
+                            replaceAll("(;|:)\\s+(\\([А-Яа-я]\\))","$1\n\t$2");
                     i++;
                 }
             }
