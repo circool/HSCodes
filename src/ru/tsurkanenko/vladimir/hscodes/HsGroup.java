@@ -9,6 +9,7 @@ import java.io.IOException;
  * @author Vladimir Tsurkanenko
  * Объект инкапсулирующий данные о разделах, группах или подгруппах:
  * описание раздела и диапазон его подразделов
+ * @deprecated
  */
 public class HsGroup {
     /**

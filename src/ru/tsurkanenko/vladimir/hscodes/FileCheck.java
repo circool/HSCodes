@@ -6,6 +6,7 @@ import java.io.IOException;
 
 /**
  * Класс для проверки наличия внешнего файла и его размера
+ * @deprecated
  */
 class FileCheck {
     /**
