@@ -67,6 +67,15 @@ public class ParseData {
         return note[index];
     }
 
+    public int getIndex(String searhcString){
+        int i=0;
+        for(String item:description) {
+            if (item.equals(searhcString)) return i;
+            i++;
+        }
+        return -1;
+    }
+
     /**
      * Создает объект получая данные из файла, имя которого передается ему в качестве аргумента
      * @param fileName Имя файла из которого следует получить данные

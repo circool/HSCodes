@@ -28,7 +28,10 @@ public class WindowHsSelect extends Application {
         primaryStage.setScene(new Scene(root, 1200, 600));
         HSBase hs = new HSBase();
 
-        Label sectioinDescr = new Label("Раздел ТНВЭД");
+        Label sectionDescription = new Label("Раздел ТНВЭД");
+        sectionDescription.setWrapText(true);
+        sectionDescription.setMaxWidth(1000);
+
         ObservableList<String> hsSection = FXCollections.observableArrayList(hs.getSection().getDescription());
         ComboBox<String> hsSectionComboBox = new ComboBox<>(hsSection);
 
@@ -36,12 +39,13 @@ public class WindowHsSelect extends Application {
         hsSectionComboBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                //sectioinDescr.setText();
+                //int a = hs.getSection().getIndex(hsSectionComboBox.getValue())
+                sectionDescription.setText(hs.getSection().getNotes(hs.getSection().getIndex(hsSectionComboBox.getValue())));
+                //sectionDescription.setText(hs.getSection().getNotes(1));
             }
         });
 
-        root.getChildren().addAll(sectioinDescr,hsSectionComboBox);
+        root.getChildren().addAll(hsSectionComboBox,sectionDescription);
         primaryStage.show();
     }
 
