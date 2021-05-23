@@ -55,7 +55,7 @@ public class HSGroup {
                             replaceAll("^.+?\\|","").
                             replaceAll("\\|","").
                             replaceAll("(\\.)(\\s+)(\\d\\.)","$1\n$3" ).
-                            replaceAll("(;|:)\\s+(\\([А-Яа-я]\\))","$1\n\t$2");
+                            replaceAll("([;:])\\s+(\\([А-Яа-я]\\))","$1\n\t$2");
                     i++;
                 }
             }
@@ -79,13 +79,13 @@ public class HSGroup {
         } else {
             int totalFound = 0;
             for (int i = 0; i < size; i++) {
-                if (code[i].substring(0, arg.length()).equals(arg))
+                if (code[i].startsWith(arg))
                     totalFound++;
             }
             result = new String[totalFound];
             int n = 0;
             for (int i = 0; i < size; i++)
-                if (code[i].substring(0, arg.length()).equals(arg)) {
+                if (code[i].startsWith(arg)) {
                     result[n] = code[i] + " " + description[i];
                     n++;
                 }
@@ -101,19 +101,17 @@ public class HSGroup {
         String[] result;
         if (arg.length() == 1) arg = "0" + arg;
         if (arg.length() == 0 ) {
-            result = new String[size];
-            for (int i = 0; i < size; i++)
-                result[i] = note[i];
+            return note;
         } else {
             int totalFound = 0;
             for (int i = 0; i < size; i++) {
-                if (code[i].substring(0, arg.length()).equals(arg))
+                if (code[i].startsWith(arg))
                     totalFound++;
             }
             result = new String[totalFound];
             int n = 0;
             for (int i = 0; i < size; i++)
-                if (code[i].substring(0, arg.length()).equals(arg)) {
+                if (code[i].startsWith(arg)) {
                     result[n] = note[i];
                     n++;
                 }
