@@ -16,20 +16,7 @@ public class HSBase {
     public HSGroup getSection() {
         return section;
     }
-/*
-    /**
-     * @deprecated
-     * @return
-     */
 
- /*
-    public String[] getSectionList(){
-        String[] list = new String[section.getSize()];
-        for(int n=0; n < list.length; n++)
-            list[n] = section.getCode(n) + " " + section.getDescription(n);
-        return list;
-    }
-*/
     public HSGroup getGroup() {
         return group;
     }

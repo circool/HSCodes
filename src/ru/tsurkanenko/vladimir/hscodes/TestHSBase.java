@@ -10,7 +10,7 @@ public class TestHSBase {
         System.out.println("РАЗДЕЛ" + ":" + sample.length);
         for(int i = 0; i < sample.length; i++)
             System.out.println(sample[i] + "\n" + note[i]);
-/*
+
         System.out.println("ГРУППА");
         sample = demo.getGroup().getList(sect);
         note = demo.getGroup().getNote(sect);
@@ -25,9 +25,6 @@ public class TestHSBase {
         sample = demo.getItem().getList(sect);
         for(String line:sample)
             System.out.println(line);
-*/
+
     }
-
-
-
 }

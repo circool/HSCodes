@@ -14,7 +14,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class WindowHsSelect extends Application {
-    static ObservableList<String> hsGroup;
+
     @Override
 
     public void start(Stage primaryStage) {
@@ -28,50 +28,33 @@ public class WindowHsSelect extends Application {
         sectionDescription.setWrapText(true);
         sectionDescription.setMaxWidth(1100);
 
+        Label groupDescription = new Label("Примечания к группе");
+        groupDescription.setWrapText(true);
+        groupDescription.setMaxWidth(1100);
 
         // Выпадающий список Раздел
 
-        ObservableList<String> hsSection = FXCollections.observableArrayList(hs.getSectionList());
+        ObservableList<String> hsSection = FXCollections.observableArrayList(hs.getSection().getList(""));
         ComboBox<String> sectionCB = new ComboBox<>(hsSection);
         sectionCB.setMaxWidth(1100);
 
-
-
-        /*
         // Выпадающий список групп
-        hsGroup = FXCollections.observableArrayList(hs.getGroup().getList("01"));
+        ObservableList<String> hsGroup = FXCollections.observableArrayList(hs.getGroup().getList(""));
         ComboBox<String> groupCB = new ComboBox<>(hsGroup);
-        groupCB.setMinWidth(1100);
-        */
+        groupCB.setMaxWidth(1100);
 
-/*
-        //Выпадающий список подгрупп
-        ObservableList<String> hsSubGroup = FXCollections.emptyObservableList();
-        ComboBox<String> subGroupCB = new ComboBox<>(hsSubGroup);
-        subGroupCB.setMinWidth(1100);
-
-        //Выпадающий список товарнве позиции
-        ObservableList<String> hsItem = FXCollections.emptyObservableList();
-        ComboBox<String> itemCB = new ComboBox<>(hsItem);
-        itemCB.setMinWidth(1100);
-*/
 
         sectionCB.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // Отобразить примечание к разделу
                 sectionDescription.setText(hs.getSection().getNote(sectionCB.getValue().substring(0, 2))[0]);
-
-                
-                    //sectionCB.getSelectionModel().getSelectedIndex()));
-                //String a = sectionCB.getValue().replaceAll("(^\\d+)(.*)", "$1");
-                //hsGroup = FXCollections.observableArrayList(hs.getGroup().getList(a));
             }
         });
+        groupCB.setOnAction(event -> groupDescription.setText(hs.getGroup().getNote(groupCB.getValue().substring(0, 4))[0]));
 
 
-
-        root.getChildren().addAll(sectionCB,sectionDescription);
+        root.getChildren().addAll(sectionCB,sectionDescription,groupCB,groupDescription);
         primaryStage.show();
     }
 
