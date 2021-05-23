@@ -1,10 +1,10 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
 public class HSBase {
-    private ParseData section;
-    private ParseData group;
-    private ParseData subgroup;
-    private ParseData subsubgroup;
+    private final ParseData section;
+    private final ParseData group;
+    private final ParseData subgroup;
+    private final ParseData subsubgroup;
 
     public HSBase() {
         section = new ParseData("dic/TNVED1.TXT");
@@ -15,6 +15,12 @@ public class HSBase {
 
     public ParseData getSection() {
         return section;
+    }
+    public String[] getSectionList(){
+        String[] list = new String[section.getSize()];
+        for(int n=0; n < list.length; n++)
+            list[n] = section.getCode(n) + " " + section.getDescription(n);
+        return list;
     }
 
     public ParseData getGroup() {

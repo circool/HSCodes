@@ -3,6 +3,8 @@ package ru.tsurkanenko.vladimir.hscodes;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+
 /**
  * @version 0.1
  * @author Vladimir Tsurkanenko
@@ -14,9 +16,9 @@ public class ParseData {
     private String[] description;
     private String[] note;
     private int lineCounter;
-    String lineRegex = "^\\d\\d\\|(.+)\\|.*\\|\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d\\|\\|$";
-    String clearCode = "(\\|)([А-Яа-яA-Za-z\\-].*)$";
-    String clearDescription = "(\\|\\d{2}.\\d{2}\\.\\d{4})|(\\|\\d{2}\\|\\d{6})|(^\\d+)|(\\|\\d{2}\\|)";
+    final String lineRegex = "^\\d\\d\\|(.+)\\|.*\\|\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d\\|\\|$";
+    final String clearCode = "(\\|)([А-Яа-яA-Za-z\\-].*)$";
+    final String clearDescription = "(\\|\\d{2}.\\d{2}\\.\\d{4})|(\\|\\d{2}\\|\\d{6})|(^\\d+)|(\\|\\d{2}\\|)";
 
     /**
      * Возвращает массив с кодами
@@ -67,15 +69,39 @@ public class ParseData {
         return note[index];
     }
 
-    public int getIndex(String searhcString){
+    /**
+     * Возвращает положение в массиве кодов
+     * @param codeToFind Искомый код в текстовом формате
+     * @return Индекс в массиве
+     */
+    public int findCodeIndex(String codeToFind){
+        int i=0;
+        for(String item:code) {
+            if (item.equals(codeToFind)) return i;
+            i++;
+        }
+        return -1;
+}
+    /**
+     * Возвращает положение в массиве кодов
+     * @param descriptionToFind Искомый код в текстовом формате
+     * @return Индекс в массиве
+     */
+    public int findDescriptionIndex(String descriptionToFind){
         int i=0;
         for(String item:description) {
-            if (item.equals(searhcString)) return i;
+            if (item.equals(descriptionToFind)) return i;
             i++;
         }
         return -1;
     }
-
+    /**
+     * Возвращает количество строк, содержащих действительные данные
+     * @return Количество строк с данными
+     */
+    public int getSize(){
+        return lineCounter;
+    }
     /**
      * Создает объект получая данные из файла, имя которого передается ему в качестве аргумента
      * @param fileName Имя файла из которого следует получить данные
@@ -121,11 +147,5 @@ public class ParseData {
         }
     }
 
-    /**
-     * Возвращает количество строк, содержащих действительные данные
-     * @return Количество строк с данными
-     */
-    public int getSize(){
-        return lineCounter;
-    }
+
 }
