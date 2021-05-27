@@ -10,12 +10,13 @@ import javafx.scene.input.MouseEvent;
 public class Controller {
 
     public void hideWindow(ActionEvent event){
+        System.out.println("OK");
 
     }
     public void showSectionNotes(MouseEvent mouseEvent) {
-
+        System.out.println("OK");
     }
     public void showGroupNotes(MouseEvent mouseEvent) {
-
+        System.out.println("OK");
     }
 }

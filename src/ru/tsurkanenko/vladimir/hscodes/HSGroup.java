@@ -63,7 +63,13 @@ public class HSGroup {
             System.err.println("Ошибка чтения файла " + fileName);
         }
     }
-
+    /**
+     * Возвращает строковый массив, в формате CODE DESCRIPTION
+     * @return Все строки массива
+     */
+    public String[] getList() {
+        return this.getList("");
+    }
     /**
      * Возвращает строковый массив, в формате CODE DESCRIPTION
      * @param arg Строковый параметр в формате "09234..." или "".
