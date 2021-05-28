@@ -1,5 +1,8 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
+/**
+ * @deprecated
+ */
 public class TestHSBase {
     public static void main(String[] args) {
         HSBase demo = new HSBase();

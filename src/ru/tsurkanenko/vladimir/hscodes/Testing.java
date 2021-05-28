@@ -12,14 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+/**
+ * @deprecated
+ */
 public class Testing extends Application {
-    ObservableList<String> listGroup;
-    ObservableList<String> listSubGroup;
-    ObservableList<String> listItem;
+    ObservableList<String> listGroup,listSubGroup,listItem;
     ComboBox<String> cboxSection,cboxGroup, cboxSubGroup, cboxItem;
 
     @Override
-
     public void start(Stage primaryStage) {
         HSBase hs = new HSBase();
         String searchPrompt = "Поиск по коду";
@@ -132,7 +132,6 @@ public class Testing extends Application {
         });
 
         // Действия при выборе товарной позиции
-
         cboxItem.setOnAction(event -> {
             if(cboxItem.getValue()!=null && cboxSubGroup.getValue()!=null){
                 lblFinalDescr.setText(
@@ -145,7 +144,9 @@ public class Testing extends Application {
         });
     }
 
-
+    /**
+     * @deprecated
+     */
     public static void main(String[] args) {
         launch(args);
     }
