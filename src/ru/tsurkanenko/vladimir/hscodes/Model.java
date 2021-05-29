@@ -5,6 +5,8 @@ import java.util.Arrays;
 /**
  * Модель (Model) Model-View-Controller
  * Модель хранит свое состояние и предоставляет данные Представлению (View) реагируя на команды Контроллера (Controller)
+ * @author Vladimir Tsurkanenko
+ * @version 1.0
  */
 public class Model {
     /**

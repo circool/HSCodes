@@ -12,6 +12,8 @@ import java.util.ResourceBundle;
 /**
  * Контроллер (Controller) Model-View-Controller
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
+ * @author Vladimir Tsurkanenko
+ * @version 1.0
  */
 public class Controller implements Initializable {
     @FXML private ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxSubGroup,comboBoxItem;

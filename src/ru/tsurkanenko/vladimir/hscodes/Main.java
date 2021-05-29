@@ -10,6 +10,8 @@ import java.util.Objects;
 
 /**
  * Основной класс приложения, запускающий модель MVC FXML
+ * @author vladimir
+ * @version 1.0
  */
 public class Main extends Application {
     @Override
