@@ -6,13 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 /**
  * Основной класс приложения, запускающий модель MVC FXML
+ * @author vladimir
+ * @version 1.0
  */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("basicapp.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainscene.fxml")));
         primaryStage.setTitle("Справочник ТНВЭД");
         primaryStage.setScene(new Scene(root, 1020, 700));
         primaryStage.show();

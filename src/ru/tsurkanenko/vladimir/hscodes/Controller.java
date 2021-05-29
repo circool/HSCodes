@@ -1,89 +1,87 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 /**
  * Контроллер (Controller) Model-View-Controller
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
+ * @author Vladimir Tsurkanenko
+ * @version 1.0
  */
-public class Controller extends View implements Initializable  {
-    public HSBase hs = new HSBase();
-    @FXML
-    ObservableList<String> listSection, listGroup, listSubGroup, listItem;
-    @FXML
-    private ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxSubGroup,comboBoxItem;
+public class Controller implements Initializable {
+    @FXML private ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxSubGroup,comboBoxItem;
+    @FXML private Label labelSectionNote, labelGroupNote, labelItemDescription;
+    private final Model model = new Model();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        model.getSectionList();
+        comboBoxSection.getItems().setAll(model.sectionList);
+        comboBoxSection.setValue(model.getSelectedSection());
+        labelSectionNote.setText(model.getSectionNote());
+
+        comboBoxGroup.getItems().setAll(model.groupList);
+        comboBoxGroup.setValue(model.getSelectedGroup());
+        labelGroupNote.setText(model.getGroupNote());
+
+        comboBoxSubGroup.getItems().setAll(model.subGroupList);
+        comboBoxSubGroup.setValue(model.getSelectedSubGroup());
+
+        comboBoxItem.getItems().setAll(model.itemList);
+        comboBoxItem.setValue(model.getSelectedItem());
+        labelItemDescription.setText(model.getItemDescription());
+
+
+
+    }
 
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Разделы
      */
-    private void comboBoxSectionChanged(){
-        listGroup.clear();
-        listGroup.addAll(hs.getGroup().getList(getComboBoxSection()));
-        setViewComboBoxGroup(listGroup);
-        setViewLabelSectionDescr(hs.getSection().getNote(getComboBoxSection())[0]);
+    @FXML public void onActionComboBoxSection(){
+        model.setSelectedSection(comboBoxSection.getValue());
+        labelSectionNote.setText(model.getSectionNote());
+
+        comboBoxGroup.getItems().setAll(model.getGroupList());
+        comboBoxGroup.setValue(model.getSelectedGroup());
     }
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Группы
      */
-    private void comboBoxGroupChanged(){
-        listSubGroup.clear();
-        listSubGroup.addAll(hs.getSubGroup().getList(getComboBoxGroup().substring(2)));
-        setViewComboBoxSubGroup(listSubGroup);
-        setViewLabelGroupDescr(hs.getGroup().getNote(getComboBoxGroup())[0]);
+    @FXML public void onActionComboBoxGroup(){
+        model.setSelectedGroup(comboBoxGroup.getValue());
+        labelGroupNote.setText(model.getGroupNote());
+
+        comboBoxSubGroup.getItems().setAll(model.getSubGroupList());
+        comboBoxSubGroup.setValue(model.getSelectedSubGroup());
     }
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Подгруппы
      */
-    private void comboBoxSubGroupChanged(){
-        listItem.clear();
-        listItem.addAll(hs.getItem().getList(getComboBoxSubGroup()));
-        setViewComboBoxItem(listItem);
+    @FXML public void onActionComboBoxSubGroup(){
+        model.setSelectedSubGroup(comboBoxSubGroup.getValue());
+
+        model.setItemList();
+        model.setSelectedItem(model.getSelectedItem());
+        comboBoxItem.getItems().setAll(model.getItemList());
+        comboBoxItem.setValue(model.getSelectedItem());
     }
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Товарные позиции
      */
-    private void comboBoxItemChanged(){
-        setViewLabelFinalDescr(
-                hs.getSection().getList(getComboBoxSection())[0].substring(3)
-                        + "\n\t" + hs.getGroup().getList(getComboBoxGroup())[0].substring(5)
-                        + "\n\t\t" + hs.getSubGroup().getList(getComboBoxSubGroup())[0].substring(5)
-                        + "\n\t\t\t" + hs.getItem().getList(getComboBoxItem())[0]
-        );
+    @FXML public void onActionComboBoxItem(){
+        model.setSelectedItem(comboBoxItem.getValue());
+        labelItemDescription.setText(model.getItemDescription());
     }
-    /**
-     *  Инициализация модели
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        listSection = FXCollections.observableArrayList(hs.getSection().getList());
-        setViewComboBoxSection(listSection);
-        setViewLabelSectionDescr(hs.getSection().getNote(getComboBoxSection())[0]);
-        listGroup = FXCollections.observableArrayList(hs.getGroup().getList(getComboBoxSection()));
-        setViewLabelGroupDescr(hs.getGroup().getNote(getComboBoxGroup())[0]);
 
-        setViewComboBoxGroup(listGroup);
-        listSubGroup = FXCollections.observableArrayList(hs.getSubGroup().getList(getComboBoxGroup().substring(2)));
-
-        setViewComboBoxSubGroup(listSubGroup);
-        listItem = FXCollections.observableArrayList(hs.getItem().getList(getComboBoxSubGroup()));
-
-        setViewComboBoxItem(listItem);
-        setViewLabelFinalDescr(
-                hs.getSection().getList(getComboBoxSection())[0].substring(3)
-                        + "\n\t" + hs.getGroup().getList(getComboBoxGroup())[0].substring(5)
-                        + "\n\t\t" + hs.getSubGroup().getList(getComboBoxSubGroup())[0].substring(5)
-                        + "\n\t\t\t" + hs.getItem().getList(getComboBoxItem())[0]
-        );
-        comboBoxSection.setOnAction(event -> comboBoxSectionChanged());
-        comboBoxGroup.setOnAction(event -> comboBoxGroupChanged());
-        comboBoxSubGroup.setOnAction(event -> comboBoxSubGroupChanged());
-        comboBoxItem.setOnAction(event -> comboBoxItemChanged());
-        System.out.println();
+    @FXML public void onActionButtonClose(){
+        System.exit(0);
     }
 }
