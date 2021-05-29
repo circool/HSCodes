@@ -5,7 +5,6 @@
  Описывает положение элементов управления и их связь с контроллером.
  -->
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.input.*?>
 <?import javafx.scene.control.*?>
