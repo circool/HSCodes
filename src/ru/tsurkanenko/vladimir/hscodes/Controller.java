@@ -1,7 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
-
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
