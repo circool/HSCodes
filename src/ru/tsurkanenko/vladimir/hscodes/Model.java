@@ -12,7 +12,7 @@ public class Model {
     /**
      * Комментарий к выбранному разделу
      */
-    String sectionNote, /**
+    private String sectionNote, /**
      * Комментарий к выбранной группе
      */
     groupNote, /**
@@ -22,7 +22,7 @@ public class Model {
     /**
      * Список разделов
      */
-    String[] sectionList, /**
+    private String[] sectionList, /**
      * Список группп
      */
     groupList, /**
@@ -35,7 +35,7 @@ public class Model {
     /**
      * Выбранный раздел
      */
-    int selectedSection, /**
+    private int selectedSection, /**
      * Выбранная группа
      */
     selectedGroup, /**
@@ -45,7 +45,7 @@ public class Model {
      * Выбранная товарная позиция
      */
     selectedItem;
-    HSBase hs;
+    private HSBase hs;
 
     /**
      * Создание новой модели.
@@ -65,9 +65,9 @@ public class Model {
         setItemDescription();
     }
     /**
-     * Получить выбранный раздела
+     * Получить выбранный раздел
      *
-     * @return выбранный раздела
+     * @return выбранный раздел
      */
     public String getSelectedSection() {
         return sectionList[selectedSection];
@@ -127,7 +127,7 @@ public class Model {
     }
 
     /**
-     * Получить индекс выбранную товарную позицию
+     * Получить выбранную товарную позицию
      *
      * @return выбранная товарная позиция
      */
@@ -146,8 +146,6 @@ public class Model {
         this.setItemDescription();
     }
 
-
-
     /**
      * Получить примечание к выбранному разделу.
      *
@@ -158,7 +156,7 @@ public class Model {
     }
 
     /**
-     * Установить примечание к выбранному разделу
+     * Сформировать примечание к выбранному разделу
      *
      */
     public void setSectionNote() {
@@ -205,12 +203,12 @@ public class Model {
      * Получить список разделов [ ].
      *
      */
-    public void getSectionList() {
-        this.sectionList = hs.getSection().getList();
+    public String[] getSectionList() {
+        return this.sectionList;
     }
 
     /**
-     * Свормировать список разделов.
+     * Сформировать список разделов.
      *
      */
     public void setSectionList() {

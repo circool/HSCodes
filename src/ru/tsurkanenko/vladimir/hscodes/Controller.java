@@ -22,24 +22,18 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model.getSectionList();
-        comboBoxSection.getItems().setAll(model.sectionList);
+        model.setSectionList();
+        comboBoxSection.getItems().setAll(model.getSectionList());
         comboBoxSection.setValue(model.getSelectedSection());
         labelSectionNote.setText(model.getSectionNote());
-
-        comboBoxGroup.getItems().setAll(model.groupList);
+        comboBoxGroup.getItems().setAll(model.getGroupList());
         comboBoxGroup.setValue(model.getSelectedGroup());
         labelGroupNote.setText(model.getGroupNote());
-
-        comboBoxSubGroup.getItems().setAll(model.subGroupList);
+        comboBoxSubGroup.getItems().setAll(model.getSubGroupList());
         comboBoxSubGroup.setValue(model.getSelectedSubGroup());
-
-        comboBoxItem.getItems().setAll(model.itemList);
+        comboBoxItem.getItems().setAll(model.getItemList());
         comboBoxItem.setValue(model.getSelectedItem());
         labelItemDescription.setText(model.getItemDescription());
-
-
-
     }
 
     /**
@@ -48,7 +42,6 @@ public class Controller implements Initializable {
     @FXML public void onActionComboBoxSection(){
         model.setSelectedSection(comboBoxSection.getValue());
         labelSectionNote.setText(model.getSectionNote());
-
         comboBoxGroup.getItems().setAll(model.getGroupList());
         comboBoxGroup.setValue(model.getSelectedGroup());
     }
@@ -58,7 +51,6 @@ public class Controller implements Initializable {
     @FXML public void onActionComboBoxGroup(){
         model.setSelectedGroup(comboBoxGroup.getValue());
         labelGroupNote.setText(model.getGroupNote());
-
         comboBoxSubGroup.getItems().setAll(model.getSubGroupList());
         comboBoxSubGroup.setValue(model.getSelectedSubGroup());
     }
@@ -67,7 +59,6 @@ public class Controller implements Initializable {
      */
     @FXML public void onActionComboBoxSubGroup(){
         model.setSelectedSubGroup(comboBoxSubGroup.getValue());
-
         model.setItemList();
         model.setSelectedItem(model.getSelectedItem());
         comboBoxItem.getItems().setAll(model.getItemList());
