@@ -18,6 +18,7 @@ public class Controller implements Initializable {
     @FXML private Label labelSectionNote, labelGroupNote, labelItemDescription;
     private final Model model = new Model();
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model.setSectionList();
@@ -67,8 +68,10 @@ public class Controller implements Initializable {
         model.setSelectedItem(comboBoxItem.getValue());
         labelItemDescription.setText(model.getItemDescription());
     }
-
     @FXML public void onActionButtonClose(){
         System.exit(0);
     }
+
 }
+
+

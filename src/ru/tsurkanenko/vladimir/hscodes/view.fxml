@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Представление (View) Model-View-Controller
+ Описывает положение элементов управления и их связь с контроллером.
+ -->
+
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="700.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tsurkanenko.vladimir.hscodes.Controller2">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem disable="true" mnemonicParsing="false" text="New" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Open…" />
+            <Menu disable="true" mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem disable="true" mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#onActionButtonClose" text="Close" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Save" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Save As…" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#onActionButtonClose" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem disable="true" mnemonicParsing="false" text="Undo" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem disable="true" mnemonicParsing="false" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Cut" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Copy" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Paste" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Select All" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem disable="true" mnemonicParsing="false" text="About HSCode">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="COMMA" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane minWidth="1000.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Pane layoutX="5.0" layoutY="5.0" minWidth="500.0" prefWidth="500.0">
+               <children>
+                  <FlowPane prefHeight="27.0" prefWidth="495.0">
+                     <children>
+                        <ComboBox fx:id="comboBoxSections" minWidth="-Infinity" onAction="#onActionComboBoxSections" prefHeight="27.0" prefWidth="385.0">
+                           <FlowPane.margin>
+                              <Insets right="5.0" />
+                           </FlowPane.margin>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </ComboBox>
+                        <Button fx:id="buttonSectionMote" mnemonicParsing="false" onAction="#onActionButtonSectionNote" prefHeight="27.0" prefWidth="100.0" text="Button">
+                           <FlowPane.margin>
+                              <Insets left="5.0" />
+                           </FlowPane.margin>
+                        </Button>
+                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="495.0" prefWidth="495.0">
+                           <content>
+                              <Label fx:id="labelShortSectionNote" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="485.0" text="Label" wrapText="true">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                           </content>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </ScrollPane>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </FlowPane>
+               </children>
+            </Pane>
+            <Pane layoutX="520.0" layoutY="5.0" minWidth="500.0" prefWidth="500.0">
+               <children>
+                  <FlowPane prefHeight="27.0" prefWidth="495.0">
+                     <children>
+                        <ComboBox fx:id="comboBoxGroups" minWidth="-Infinity" onAction="#onActionComboBoxGroups" prefHeight="27.0" prefWidth="385.0">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="5.0" />
+                           </FlowPane.margin>
+                        </ComboBox>
+                        <Button fx:id="buttonGroupNote" mnemonicParsing="false" onAction="#onActionButtonGroupNote" prefHeight="27.0" prefWidth="100.0" text="Button">
+                           <FlowPane.margin>
+                              <Insets left="5.0" />
+                           </FlowPane.margin>
+                        </Button>
+                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="495.0" prefWidth="495.0">
+                           <content>
+                              <Label fx:id="labelShortGroupNote" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="485.0" text="Label" wrapText="true">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                           </content>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </ScrollPane>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </FlowPane>
+               </children>
+            </Pane>
+            <Separator layoutX="5.0" layoutY="160.0" prefWidth="1010.0" />
+            <HBox layoutY="170.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="37.0" prefHeight="37.0" prefWidth="1000.0">
+               <children>
+                  <ComboBox fx:id="comboBoxLevel1" maxWidth="1.7976931348623157E308" minWidth="236.0" onAction="#onActionComboBoxLevel1">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="comboBoxLevel2" maxWidth="1.7976931348623157E308" minWidth="236.0" onAction="#onActionComboBoxLevel2">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="comboBoxLevel3" maxWidth="1.7976931348623157E308" minWidth="236.0" onAction="#onActionComboBoxLevel3">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="comboBoxLevel4" maxWidth="1.7976931348623157E308" minWidth="236.0" onAction="#onActionComboBoxLevel4">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+      </children>
+    </AnchorPane>
+      <Label fx:id="labelFullCodeDesctiption" alignment="TOP_LEFT" contentDisplay="TOP" minWidth="1000.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="1000.0" text="Label">
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin>
+      </Label>
+
+      <Button mnemonicParsing="false" onAction="#onActionButtonClose" text="Close">
+         <VBox.margin>
+            <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+         </VBox.margin>
+      </Button>
+  </children>
+</VBox>

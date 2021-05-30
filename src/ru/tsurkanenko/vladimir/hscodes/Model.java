@@ -258,6 +258,11 @@ public class Model {
      * Установить список товарных позиций.
      */
     public void setItemList() {
-        this.itemList = hs.getItem().getList(subGroupList[selectedSubGroup].substring(0,4));
+        String[] result;
+        result = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),0);
+        if(result.length == 0)
+            this.itemList = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),0);
+        else
+            this.itemList = result;
     }
 }

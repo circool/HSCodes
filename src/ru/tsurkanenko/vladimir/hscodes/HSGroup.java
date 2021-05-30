@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 /**
- * @version 0.1
+ * @version 0.2
  * @author Vladimir Tsurkanenko
  * Объект инкапсулирующий данные о разделах, группах или подгруппах:
  * код, описание и примечания
@@ -17,8 +17,10 @@ public class HSGroup {
     private String[] note;
     private int size;
     final String lineRegex = "^\\d\\d\\|(.+)\\|.*\\|\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d\\|\\|$";
-    final String  clearCode = "(\\|)([А-Яа-яA-Za-z\\-].*)$";
+    final String clearCode = "(\\|)([А-Яа-яA-Za-z\\-].*)$";
     final String clearDescription = "(\\|\\d{2}.\\d{2}\\.\\d{4})|(\\|\\d{2}\\|\\d{6})|(^\\d+)|(\\|\\d{2}\\|)";
+    final String regexNotes = "^(\\d+\\|)+(.*)\\|(.*)\\|(\\d\\d\\.\\d\\d\\.\\d{4}\\|+)";
+
     /**
      * Создает объект получая данные из файла, имя которого передается ему в качестве аргумента
      * @param fileName Имя файла из которого следует получить данные
@@ -50,12 +52,8 @@ public class HSGroup {
                 if(singleLine.matches(lineRegex)) {
                     code[i] = singleLine.replaceAll(clearCode, "").replaceAll("\\|","");
                     description[i] = singleLine.replaceAll(clearDescription, "").replaceAll("^\\|","").replaceAll("\\|.*$","");
-                    note[i]=singleLine.replaceAll(clearDescription, "").
-                            replaceAll("^\\|","").
-                            replaceAll("^.+?\\|","").
-                            replaceAll("\\|","").
-                            replaceAll("(\\.)(\\s+)(\\d\\.)","$1\n$3" ).
-                            replaceAll("([;:])\\s+(\\([А-Яа-я]\\))","$1\n\t$2");
+                    note[i] = singleLine.replaceAll(regexNotes,"$3").replaceAll("[;:]", "\n").replaceAll(" Н ", " ").replaceAll("(\\.\\s*)(\\d+\\.)","$1\n$2");
+
                     i++;
                 }
             }
@@ -121,6 +119,35 @@ public class HSGroup {
                     result[n] = note[i];
                     n++;
                 }
+        }
+        return result;
+    }
+    /**
+     * Возвражает список субпозиций с учетом уровня вложенности
+     * @arg level уровень вложенности
+     * @return список субпозиций
+     */
+    public String[] getSubList(String arg, int level){
+        String prefix="";
+        for(int i = 0; i < level; i++){
+            prefix += (char)45;
+            prefix += (char)160;
+        }
+
+
+
+        int totalFound = 0;
+        for (int i = 0; i < size; i++) {
+            if (code[i].startsWith(arg) && description[i].startsWith(prefix) && (description[i].lastIndexOf(45)==(prefix.length())))
+                totalFound++;
+        }
+        String[] result = new String[totalFound];
+        totalFound = 0;
+        for (int i = 0; i < size; i++) {
+            if (code[i].startsWith(arg) && description[i].startsWith(prefix) && (description[i].lastIndexOf(45)==(prefix.length()))){
+                result[totalFound] = description[i];
+                totalFound++;
+            }
         }
         return result;
     }
