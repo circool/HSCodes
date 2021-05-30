@@ -57,8 +57,6 @@ public class Controller implements Initializable {
      */
     @FXML public void onActionComboBoxSubGroup(){
         model.setSelectedSubGroup(comboBoxSubGroup.getValue());
-        model.setItemList();
-        model.setSelectedItem(model.getSelectedItem());
         comboBoxItem.getItems().setAll(model.getItemList());
         comboBoxItem.setValue(model.getSelectedItem());
     }
