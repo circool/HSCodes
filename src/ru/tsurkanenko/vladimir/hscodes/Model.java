@@ -52,10 +52,6 @@ public class Model {
      */
     public Model() {
         hs = new HSBase();
-        selectedSection = 0;
-        selectedGroup = 0;
-        selectedSubGroup = 0;
-        selectedItem = 0;
         setSectionList();
         setGroupList();
         setSubGroupList();
