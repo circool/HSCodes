@@ -12,6 +12,7 @@ public class HSBase {
     private final HSGroup group;
     private final HSGroup subgroup;
     private final HSGroup item;
+    private final HSChapter chapter;
 
     /**
      * Конструктор создает 4 объекта HSGroup, для каждого из файлов справочника
@@ -21,6 +22,7 @@ public class HSBase {
         group = new HSGroup("dic/TNVED2.TXT");
         subgroup = new HSGroup("dic/TNVED3.TXT");
         item = new HSGroup("dic/TNVED4.TXT");
+        chapter = new HSChapter("dic/TNVED4.TXT");
     }
 
     /**
@@ -51,4 +53,6 @@ public class HSBase {
     public HSGroup getItem() {
         return item;
     }
+
+    public HSChapter getChapter() {return chapter;};
 }

@@ -29,31 +29,21 @@ public class Controller2 implements Initializable {
         comboBoxGroups.getItems().setAll(model.getGroupList());
         comboBoxGroups.setValue(model.getSelectedGroup());
         labelShortGroupNote.setText(model.getGroupNote());
-        //comboBoxSubGroup.getItems().setAll(model.getSubGroupList());
-        //comboBoxSubGroup.setValue(model.getSelectedSubGroup());
-        //comboBoxItem.getItems().setAll(model.getItemList());
-        //comboBoxItem.setValue(model.getSelectedItem());
+        comboBoxLevel1.getItems().setAll(model.getSubGroupList());
+        comboBoxLevel1.setValue(model.getSelectedSubGroup());
+        comboBoxLevel2.getItems().setAll(model.getItemList());
+        comboBoxLevel2.setValue(model.getSelectedItem());
         //labelItemDescription.setText(model.getItemDescription());
     }
 
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Разделы
      */
-    @FXML public void onActionComboBoxSection(){
-        model.setSelectedSection(comboBoxSection.getValue());
-        labelShortSectionNote.setText(model.getSectionNote());
-        comboBoxGroups.getItems().setAll(model.getGroupList());
-        comboBoxGroups.setValue(model.getSelectedGroup());
-    }
+
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Группы
      */
-    @FXML public void onActionComboBoxGroup(){
-        model.setSelectedGroup(comboBoxGroup.getValue());
-        labelShortGroupNote.setText(model.getGroupNote());
-        comboBoxSubGroup.getItems().setAll(model.getSubGroupList());
-        comboBoxSubGroup.setValue(model.getSelectedSubGroup());
-    }
+
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Подгруппы
      */

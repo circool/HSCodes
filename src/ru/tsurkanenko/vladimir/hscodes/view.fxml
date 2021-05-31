@@ -5,8 +5,7 @@
  Описывает положение элементов управления и их связь с контроллером.
  -->
 
-
-
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.input.*?>
 <?import javafx.scene.control.*?>
@@ -60,7 +59,7 @@
       <children>
             <Pane layoutX="5.0" layoutY="5.0" minWidth="500.0" prefWidth="500.0">
                <children>
-                  <FlowPane prefHeight="27.0" prefWidth="495.0">
+                  <FlowPane maxHeight="147.0" prefHeight="27.0" prefWidth="495.0">
                      <children>
                         <ComboBox fx:id="comboBoxSections" minWidth="-Infinity" onAction="#onActionComboBoxSections" prefHeight="27.0" prefWidth="385.0">
                            <FlowPane.margin>
@@ -75,9 +74,9 @@
                               <Insets left="5.0" />
                            </FlowPane.margin>
                         </Button>
-                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="495.0" prefWidth="495.0">
+                        <ScrollPane maxHeight="100.0" maxWidth="490.0" minHeight="100.0" minWidth="490.0" prefHeight="100.0" prefWidth="490.0">
                            <content>
-                              <Label fx:id="labelShortSectionNote" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="485.0" text="Label" wrapText="true">
+                              <Label fx:id="labelShortSectionNote" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="460.0" minWidth="460.0" prefWidth="460.0" text="Label" wrapText="true">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -102,7 +101,7 @@
             </Pane>
             <Pane layoutX="520.0" layoutY="5.0" minWidth="500.0" prefWidth="500.0">
                <children>
-                  <FlowPane prefHeight="27.0" prefWidth="495.0">
+                  <FlowPane maxHeight="147.0" prefHeight="27.0" prefWidth="495.0">
                      <children>
                         <ComboBox fx:id="comboBoxGroups" minWidth="-Infinity" onAction="#onActionComboBoxGroups" prefHeight="27.0" prefWidth="385.0">
                            <padding>
@@ -117,9 +116,9 @@
                               <Insets left="5.0" />
                            </FlowPane.margin>
                         </Button>
-                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="495.0" prefWidth="495.0">
+                        <ScrollPane maxHeight="100.0" maxWidth="490.0" minHeight="100.0" minWidth="490.0" prefHeight="100.0" prefWidth="490.0">
                            <content>
-                              <Label fx:id="labelShortGroupNote" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="485.0" text="Label" wrapText="true">
+                              <Label fx:id="labelShortGroupNote" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="460.0" minWidth="460.0" prefWidth="460.0" text="Label" wrapText="true">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>

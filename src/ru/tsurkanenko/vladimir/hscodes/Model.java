@@ -78,6 +78,7 @@ public class Model {
         this.setGroupList();
         this.selectedGroup = 0;
         this.setGroupNote();
+        this.setSectionNote();
     }
 
     /**
@@ -259,7 +260,7 @@ public class Model {
      */
     public void setItemList() {
         String[] result;
-        result = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),0);
+        result = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),1);
         if(result.length == 0)
             this.itemList = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),0);
         else
