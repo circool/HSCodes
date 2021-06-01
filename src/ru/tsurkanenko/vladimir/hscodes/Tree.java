@@ -11,9 +11,9 @@ import java.util.Objects;
 public class Tree extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("tableTree.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("tree.fxml")));
         primaryStage.setTitle("Справочник ТНВЭД");
-        primaryStage.setScene(new Scene(root, 1020, 700));
+        primaryStage.setScene(new Scene(root, 1000,800));
         primaryStage.show();
     }
 

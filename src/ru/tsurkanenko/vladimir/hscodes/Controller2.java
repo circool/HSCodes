@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  */
 public class Controller2 implements Initializable {
     @FXML private ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxSubGroup,comboBoxItem;
-    @FXML private Label labelShortSectionNote, labelShortGroupNote, labelFullCodeDesctiption;
+    @FXML private Label labelShortSectionNote, labelShortGroupNote, labelFullCodeDescription;
     private final Model model = new Model();
 
     @FXML private ComboBox<String> comboBoxSections,comboBoxGroups, comboBoxLevel1,comboBoxLevel2,comboBoxLevel3,comboBoxLevel4;
@@ -70,7 +70,7 @@ public class Controller2 implements Initializable {
     }
     @FXML public void onActionComboBoxLevel2(){
         model.setSelectedItem(comboBoxItem.getValue());
-        labelFullCodeDesctiption.setText(model.getItemDescription());
+        labelFullCodeDescription.setText(model.getItemDescription());
     }
     @FXML public void onActionComboBoxLevel3(){
 

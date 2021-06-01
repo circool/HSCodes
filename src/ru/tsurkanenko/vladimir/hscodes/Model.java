@@ -45,13 +45,12 @@ public class Model {
      * Выбранная товарная позиция
      */
     selectedItem;
-    private HSBase hs;
+    final HSBase hs = new HSBase();
 
     /**
      * Создание новой модели.
      */
     public Model() {
-        hs = new HSBase();
         setSectionList();
         setGroupList();
         setSubGroupList();

@@ -17,8 +17,8 @@ public class HSChapter {
 
     public HSChapter(String fileName){
         String singleLine;
-        ArrayList<String> actualCode = new ArrayList<String>();
-        ArrayList<String> actualDescription = new ArrayList<String>();
+        ArrayList<String> actualCode = new ArrayList<>();
+        ArrayList<String> actualDescription = new ArrayList<>();
         // Получить количество строк
         try {
             BufferedReader sourceFile =
