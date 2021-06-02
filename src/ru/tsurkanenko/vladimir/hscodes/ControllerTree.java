@@ -44,6 +44,7 @@ public class ControllerTree implements Initializable {
                         if(currentGroup.getCode().startsWith(currentSubSectionValue)) {
                             currentSubSectionTreeItem.getChildren().add(new TreeItem<>(currentGroup.getCode() + " " + currentGroup.getDescription()));
                         }
+                        //TODO Добавление товарных групп/позиций в древовидный список
                     }
                 }
             }

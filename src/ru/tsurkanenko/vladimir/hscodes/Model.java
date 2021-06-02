@@ -265,4 +265,35 @@ public class Model {
         else
             this.itemList = result;
     }
+    public String[] getSubSections(String code){
+        groupList = hs.getGroup().getList();
+        int totalFound = 0;
+
+        for (String subsection:groupList) {
+            if (subsection.substring(0,2).equals(code))
+                totalFound++;
+        }
+        String[] result = new String[totalFound];
+        totalFound = 0;
+        for (String subsection:groupList) {
+            if (subsection.substring(0, 2).equals(code)) {
+                result[totalFound] = subsection;
+                totalFound++;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Возвращает список позиций указанного уровня вложенности
+     * @param code для каких кодов выдать список
+     * @param nestlingLevel уровень вложенности
+     * @return список
+     */
+    String[] getSubPositions(String code, int nestlingLevel){
+        String[] result;
+        while((result = hs.getChapter().getList(code, nestlingLevel)).length == 0 || nestlingLevel < 10)
+            nestlingLevel++;
+        return result;
+    }
 }

@@ -1,6 +1,8 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
 /**
+ * @author Vladimir Tsurkanenko
+ * @version 1.0
  * Базовый справочника кодов ТНВЭД - отдельная группа
  *
  * @see ru.tsurkanenko.vladimir.hscodes.HarmItem
@@ -14,7 +16,7 @@ public class HarmGroup extends HarmItem{
     /**
      * Конструктор, создающий из сырой строки отдельные элементы - описание, код и примечание
      *
-     * @param rawData the raw data
+     * @param rawData строка с сырыми данными
      */
     public HarmGroup(String rawData) {
         super(rawData);
@@ -23,9 +25,9 @@ public class HarmGroup extends HarmItem{
     }
 
     /**
-     * Метод возвращает строку с примечанием группы
+     * Метод возвращает строку с примечанием группы/раздела
      *
-     * @return note
+     * @return примечание
      */
     public String getNote() {
         return note;

@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Vladimir Tsurkanenko
+ * @version 1.0
  * Представляет из себя объект, имплементирующий необработанные строки файла, в которых содержатся только актуальные данные.
  */
+@SuppressWarnings("rawtypes")
 public class RawLines extends ArrayList {
     private String[] rawData;
-    final String regexRawLine = "^[0-9\\|].*?\\|\\|";
-    final String regexClear = " | Н ";
+    final String regexRawLine = "^\\d+.*?\\|\\|";
+    final String regexGarbage = " | Н |\\s\\s+|\\s+\\||\\|\\s+";
 
     /**
      * Читает файл, имя которого получено в качестве аргумента и формирует массив, содержащий строки,
@@ -27,7 +30,7 @@ public class RawLines extends ArrayList {
             String singleLine;
             List<String> foundLines = new ArrayList<>();
             while((singleLine = sourceFile.readLine()) != null){
-                singleLine = singleLine.replaceAll(regexClear," ");
+                singleLine = singleLine.replaceAll(regexGarbage," "); //Удаление артефактов из текста
                 if(singleLine.matches(regexRawLine))
                     foundLines.add(singleLine);
             }

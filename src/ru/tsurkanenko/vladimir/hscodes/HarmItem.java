@@ -1,6 +1,8 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
 /**
+ * @author Vladimir Tsurkanenko
+ * @version 1.0
  * Базовый элемент справочника кодов ТНВЭД - отдельный код
  */
 public class HarmItem {
@@ -11,7 +13,7 @@ public class HarmItem {
 
     /**
      * Конструктор, создающий из сырой строки отдельные элементы - описание и товарный код
-     * @param rawData
+     * @param rawData неразобранная строка
      */
     public HarmItem(String rawData) {
         this.code = rawData.replaceAll(regexCode,"$1$2$3");
@@ -20,14 +22,14 @@ public class HarmItem {
 
     /**
      * Метод возвращает строку с кодом элемента
-     * @return
+     * @return код элемента
      */
     public String getCode() {
         return code;
     }
     /**
      * Метод возвращает строку с описанием элемента
-     * @return
+     * @return описание элемента
      */
     public String getDescription() {
         return description;

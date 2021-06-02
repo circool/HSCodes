@@ -73,4 +73,49 @@ public class HSChapter {
         }
         return result;
     }
+
+    String[] getList(String arg, int nestlingLevel){
+        String[] code = this.getList(arg);
+
+
+        String prefix="";
+        for(int i = 1; i <= nestlingLevel; i++){
+            prefix += (char)45;
+            prefix += (char)160;
+        }
+
+        int totalFound = 0;
+        for (int i = 0; i < size; i++) {
+            if(nestlingLevel==0){
+                if (code[i].startsWith(arg))
+                    totalFound++;
+            }
+            else {
+                if (code[i].startsWith(arg) &&
+                        description[i].startsWith(prefix) &&
+                        (description[i].lastIndexOf(45) < (prefix.length())))
+                    totalFound++;
+            }
+        }
+
+        String[] result = new String[totalFound];
+        totalFound = 0;
+        if(nestlingLevel==0){
+            for (int i = 0; i < size; i++) {
+                if (code[i].startsWith(arg)){
+                    result[totalFound] = code[i].substring(0,5) + " " + description[i];
+                    totalFound++;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < size; i++) {
+                if (code[i].startsWith(arg) && description[i].startsWith(prefix) && (description[i].lastIndexOf(45)<(prefix.length()))){
+                    result[totalFound] = code[i].substring(0,5) + " " + description[i];
+                    totalFound++;
+                }
+            }
+        }
+        return result;
+    }
 }
