@@ -1,6 +1,6 @@
 import ru.tsurkanenko.vladimir.hscodes.*;
 
-public class TestHarmBase {
+public class HarmBaseTest {
     public static void main(String[] args) {
         HarmBase demo = new HarmBase();
 

@@ -1,5 +1,8 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
+/**
+ * @deprecated
+ */
 public class HarmonisationCode {
     public String[] code;
     public String[] description;
@@ -7,6 +10,10 @@ public class HarmonisationCode {
     final String regexCode = "^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$";
     final String regexDescription = "^[0-9|]+(.*?)\\|.*";
 
+    /**
+     * deprecated
+     * @param fileName file name
+     */
     public HarmonisationCode(String fileName) {
         String[] rawData = new RawLines(fileName).getRawData();
         description = new String[rawData.length];

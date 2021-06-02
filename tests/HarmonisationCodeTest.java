@@ -2,7 +2,7 @@
 import ru.tsurkanenko.vladimir.hscodes.HarmonisationCode;
 
 
-public class TestHarmonisationCode {
+public class HarmonisationCodeTest {
     public static void main(String[] args) {
 
         HarmonisationCode codes = new HarmonisationCode("dic/TNVED1.TXT");

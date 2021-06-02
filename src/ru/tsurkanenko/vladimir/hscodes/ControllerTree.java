@@ -18,10 +18,10 @@ public class ControllerTree implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HarmBase hs = new HarmBase();
-        HarmGroup[] sections = hs.getSections().getGroupArray();
-        HarmGroup[] subsections = hs.getSubSections().getGroupArray();
-        HarmItem[] groups = hs.getGroups().getItemArray();
-        HarmItem[] items = hs.getItems().getItemArray();
+        HarmItem[] sections = hs.getSections().getArray();
+        HarmItem[] subsections = hs.getSubSections().getArray();
+        HarmItem[] groups = hs.getGroups().getArray();
+        HarmItem[] items = hs.getItems().getArray();
 
         int totalSections = sections.length;
         TreeItem<String> currentSubSectionTreeItem;
@@ -34,7 +34,7 @@ public class ControllerTree implements Initializable {
             root.getChildren().add(new TreeItem<>(sections[i].getCode() + " " + sections[i].getDescription()));
 
             // в каждый добавленый узел с разделом добавить подразделы ТНВЭД
-            for(HarmGroup currentSubSection:subsections){
+            for(HarmItem currentSubSection:subsections){
                 if(currentSubSection.getCode().startsWith(root.getChildren().get(i).getValue().substring(0, 2))) {
                     root.getChildren().get(i).getChildren().add(new TreeItem<>(currentSubSection.getCode() + " " + currentSubSection.getDescription()));
                     // в каждый их добавленных подразделов добавить подчиненные группы

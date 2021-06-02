@@ -1,6 +1,6 @@
 import ru.tsurkanenko.vladimir.hscodes.RawLines;
 
-public class TestRawLines {
+public class RawLinesTest {
     public static void main(String[] args) {
         RawLines demo = new RawLines("dic/TNVED1.TXT");
 

@@ -7,35 +7,36 @@ package ru.tsurkanenko.vladimir.hscodes;
  * Данные справочника получены из файлов dic/TNVED?.TXT
  * Справочник доступен по адресу https://www.nalog.gov.ru/rn77/program/5961290/
  */
+
 public class HarmBase {
-    private HarmGroupArray section, subsection;
-    private HarmItemArray group, item;
+    private HarmArray section, subsection, group, item;
     public HarmBase() {
-        section = new HarmGroupArray("dic/TNVED1.TXT");
-        subsection = new HarmGroupArray("dic/TNVED2.TXT");
-        group = new HarmItemArray("dic/TNVED3.TXT");
-        item = new HarmItemArray("dic/TNVED4.TXT");
+        section = new HarmArray("dic/TNVED1.TXT");
+        subsection = new HarmArray("dic/TNVED2.TXT");
+        group = new HarmArray("dic/TNVED3.TXT");
+        item = new HarmArray("dic/TNVED4.TXT");
     }
 
     /**
      * Возвращаем массив с разделами ТНВЭД
      * @return массив с разделами
      */
-    public HarmGroupArray getSections() {
+    public HarmArray getSections() {
         return section;
     }
     /**
      * Возвращаем массив с подразделами ТНВЭД
      * @return массив с подразделами
      */
-    public HarmGroupArray getSubSections() {
+    public HarmArray getSubSections() {
         return subsection;
     }
+
     /**
      * Возвращаем массив с товарными группами ТНВЭД
      * @return массив с с товарными группами
      */
-    public HarmItemArray getGroups() {
+    public HarmArray getGroups() {
         return group;
     }
 
@@ -43,24 +44,9 @@ public class HarmBase {
      * Возвращаем массив с товарными позициями ТНВЭД
      * @return массив с с товарными позициями
      */
-    public HarmItemArray getItems() {
-        return item;
-    }
-
-    /**
-     * Возвращаем массив разделов/подразделов ТНВЭД с совпадающими кодами
-     * @return отдельный раздел/подраздел
-     */
-    public HarmGroupArray getSections(String code) {
-        return null;
-        //TODO Написать логику метода
-    }
-    /**
-     * Возвращаем массив с товарными позициями ТНВЭД с совпадающими кодами
-     * @return массив с товарными позициями
-     */
-    public HarmItemArray getItems(String code) {
-        //TODO Написать логику метода
+    public HarmArray getItems() {
         return item;
     }
 }
+
+
