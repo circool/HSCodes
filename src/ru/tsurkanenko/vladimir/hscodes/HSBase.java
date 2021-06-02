@@ -54,5 +54,5 @@ public class HSBase {
         return item;
     }
 
-    public HSChapter getChapter() {return chapter;};
+    public HSChapter getChapter() {return chapter;}
 }
