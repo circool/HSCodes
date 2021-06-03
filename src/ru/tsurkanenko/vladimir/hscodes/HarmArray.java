@@ -98,5 +98,20 @@ public class HarmArray {
         return indexLastOne[Integer.parseInt(code.substring(0,1))];
     }
 
-    //TODO Метод должен возвращать примечание для конкретного индекса
+    public String[] getItemsView(){
+        int totalFound = this.itemsArray.length;
+        String[] result = new String[totalFound];
+        for(int i = 0; i < totalFound; i++)
+            result[i] = itemsArray[i].getCode() + " " + itemsArray[i].getDescription();
+        return result;
+    }
+
+    public String[] getItemsView(String code){
+        HarmItem[] subItems = this.getArray(code);
+        int totalFound = subItems.length;
+        String[] result = new String[totalFound];
+        for(int i = 0; i < totalFound; i++)
+            result[i]=subItems[i].getCode() + " " + subItems[i].getDescription();
+        return result;
+    }
 }
