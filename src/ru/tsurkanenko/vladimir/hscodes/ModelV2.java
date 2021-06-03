@@ -25,7 +25,7 @@ public class ModelV2 {
     private String[] sectionList, /**
      * Список группп
      */
-    groupList, /**
+    subSectionList, /**
      * Список подгрупп
      */
     subGroupList, /**
@@ -58,6 +58,7 @@ public class ModelV2 {
         setSectionNote();
         setGroupNote();
         setItemDescription();
+        HarmBase hs = new HarmBase();
     }
     /**
      * Получить выбранный раздел
@@ -86,7 +87,7 @@ public class ModelV2 {
      * @return выбранная группа
      */
     public String getSelectedGroup() {
-        return groupList[selectedGroup];
+        return subSectionList[selectedGroup];
     }
 
     /**
@@ -94,7 +95,7 @@ public class ModelV2 {
      *
      */
     public void setSelectedGroup(String item) {
-        this.selectedGroup = Arrays.asList(groupList).indexOf(item);
+        this.selectedGroup = Arrays.asList(subSectionList).indexOf(item);
         this.setGroupNote();
 
         this.setSubGroupList();
@@ -114,7 +115,7 @@ public class ModelV2 {
      * Выбрать подгруппу
      *
      */
-    public void setSelectedSubGroup(String item) {
+    public void setSelectedSubSection(String item) {
         this.selectedSubGroup = Arrays.asList(subGroupList).indexOf(item);
 
         this.setItemList();
@@ -192,7 +193,7 @@ public class ModelV2 {
     public void setItemDescription() {
         this.itemDescription =
                 sectionList[selectedSection] + "\n\t" +
-                        groupList[selectedGroup] + "\n\n" +
+                        subSectionList[selectedGroup] + "\n\n" +
                         subGroupList[selectedSubGroup] + "\n\t" +
                         itemList[selectedItem];
     }
@@ -218,8 +219,8 @@ public class ModelV2 {
      *
      * @return список групп [ ]
      */
-    public String[] getGroupList() {
-        return groupList;
+    public String[] getSubSectionList() {
+        return subSectionList;
     }
 
     /**
@@ -227,7 +228,7 @@ public class ModelV2 {
      *
      */
     public void setGroupList() {
-        this.groupList = hs.getGroups().getItemsView(sectionList[selectedSection].substring(0,2));
+        this.subSectionList = hs.getGroups().getItemsView(sectionList[selectedSection].substring(0,2));
     }
 
     /**
@@ -235,7 +236,7 @@ public class ModelV2 {
      *
      * @return список подгрупп [ ]
      */
-    public String[] getSubGroupList() {
+    public String[] getGroupList() {
         return subGroupList;
     }
 
@@ -244,7 +245,7 @@ public class ModelV2 {
      *
      */
     public void setSubGroupList() {
-        this.subGroupList = hs.getSubSections().getItemsView(groupList[selectedGroup].substring(2,4));
+        this.subGroupList = hs.getSubSections().getItemsView(subSectionList[selectedGroup].substring(2,4));
     }
 
     /**
@@ -267,17 +268,22 @@ public class ModelV2 {
         else
             this.itemList = result;
     }
+
+    public String[] getSubSectionsList(){
+        return
+    }
+
     public String[] getSubSections(String code){
-        groupList = hs.getSubSections().getItemsView();
+        subSectionList = hs.getSubSections().getItemsView();
         int totalFound = 0;
 
-        for (String subsection:groupList) {
+        for (String subsection: subSectionList) {
             if (subsection.substring(0,2).equals(code))
                 totalFound++;
         }
         String[] result = new String[totalFound];
         totalFound = 0;
-        for (String subsection:groupList) {
+        for (String subsection: subSectionList) {
             if (subsection.substring(0, 2).equals(code)) {
                 result[totalFound] = subsection;
                 totalFound++;
