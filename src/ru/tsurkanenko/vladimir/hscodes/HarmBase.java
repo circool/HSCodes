@@ -9,10 +9,11 @@ package ru.tsurkanenko.vladimir.hscodes;
  */
 
 public class HarmBase {
-    private HarmArray section, subsection, group, item;
+    private HarmGroupArray section, subsection;
+    private HarmArray group, item;
     public HarmBase() {
-        section = new HarmArray("dic/TNVED1.TXT");
-        subsection = new HarmArray("dic/TNVED2.TXT");
+        section = new HarmGroupArray("dic/TNVED1.TXT");
+        subsection = new HarmGroupArray("dic/TNVED2.TXT");
         group = new HarmArray("dic/TNVED3.TXT");
         item = new HarmArray("dic/TNVED4.TXT");
     }

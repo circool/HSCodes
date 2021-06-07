@@ -9,7 +9,7 @@ package ru.tsurkanenko.vladimir.hscodes;
  */
 public class HarmGroupArray extends HarmArray {
     private String[] notes;
-    private final String regexNote = "";
+    //private final String regexNote = "";
 
     /**
      * Создание нового раздела/подраздела.
@@ -18,7 +18,7 @@ public class HarmGroupArray extends HarmArray {
      */
     public HarmGroupArray(String fileName) {
         super(fileName);
-        notes = new String[itemsArray.length];
+        //notes = new String[itemsArray.length];
         //TODO Заполнить массив примечаниями
     }
     public String getNote(String code){

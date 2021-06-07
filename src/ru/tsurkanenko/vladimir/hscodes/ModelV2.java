@@ -6,42 +6,50 @@ import java.util.Arrays;
  * Модель (Model) Model-View-Controller
  * Модель хранит свое состояние и предоставляет данные Представлению (View) реагируя на команды Контроллера (Controller)
  * @author Vladimir Tsurkanenko
- * @version 1.0
+ * @version 0.2
  */
 public class ModelV2 {
     /**
      * Комментарий к выбранному разделу
      */
-    private String sectionNote, /**
+    private String sectionNote,
+    /**
      * Комментарий к выбранной группе
      */
-    groupNote, /**
+    groupNote,
+    /**
      * Полное описание выбранной товарной позиции
      */
     itemDescription;
     /**
      * Список разделов
      */
-    private String[] sectionList, /**
+    private String[] sectionList,
+    /**
      * Список группп
      */
-    subSectionList, /**
+    subSectionList,
+    /**
      * Список подгрупп
      */
-    subGroupList, /**
+    groupList,
+    /**
      * Список товарных позиций
      */
     itemList;
     /**
      * Выбранный раздел
      */
-    private int selectedSection, /**
-     * Выбранная группа
+    private int selectedSection,
+    /**
+     * Выбранный подраздел (группа)
      */
-    selectedGroup, /**
+    selectedSubSection,
+    /**
      * Выбранная подгруппа
      */
-    selectedSubGroup, /**
+    selectedGroup,
+    /**
      * Выбранная товарная позиция
      */
     selectedItem;
@@ -51,151 +59,21 @@ public class ModelV2 {
      * Создание новой модели.
      */
     public ModelV2() {
-        setSectionList();
-        setGroupList();
-        setSubGroupList();
-        setItemList();
-        setSectionNote();
-        setGroupNote();
-        setItemDescription();
-        HarmBase hs = new HarmBase();
-    }
-    /**
-     * Получить выбранный раздел
-     *
-     * @return выбранный раздел
-     */
-    public String getSelectedSection() {
-        return sectionList[selectedSection];
-    }
-
-    /**
-     * Выбрать раздел.
-     *
-     */
-    public void setSelectedSection(String item) {
-        this.selectedSection = Arrays.asList(sectionList).indexOf(item);
-        this.setGroupList();
+        //HarmBase hs = new HarmBase();
+        this.sectionList = hs.getSections().getItemsView();
+        this.selectedSection = 0;
+        this.subSectionList = hs.getSubSections().getItemsView(sectionList[selectedSection].substring(0,2));
+        this.selectedSubSection = 0;
+        this.groupList = hs.getGroups().getItemsView(subSectionList[selectedSubSection].substring(2,4));
         this.selectedGroup = 0;
-        this.setGroupNote();
-        this.setSectionNote();
-    }
+        this.itemList = hs.getItems().getItemsView(groupList[selectedGroup].substring(0,4));
+        selectedItem = 0;
 
-    /**
-     * Получить выбранную группу
-     *
-     * @return выбранная группа
-     */
-    public String getSelectedGroup() {
-        return subSectionList[selectedGroup];
-    }
+        //setItemList();
+        //setSectionNote();
+        //setGroupNote();
+        //setItemDescription();
 
-    /**
-     * Выбрать группу
-     *
-     */
-    public void setSelectedGroup(String item) {
-        this.selectedGroup = Arrays.asList(subSectionList).indexOf(item);
-        this.setGroupNote();
-
-        this.setSubGroupList();
-        this.selectedSubGroup = 0;
-    }
-
-    /**
-     * Получить выбранную подгруппу
-     *
-     * @return выбранная подгруппа
-     */
-    public String getSelectedSubGroup() {
-        return subGroupList[selectedSubGroup];
-    }
-
-    /**
-     * Выбрать подгруппу
-     *
-     */
-    public void setSelectedSubSection(String item) {
-        this.selectedSubGroup = Arrays.asList(subGroupList).indexOf(item);
-
-        this.setItemList();
-        this.selectedItem = 0;
-        this.setItemDescription();
-    }
-
-    /**
-     * Получить выбранную товарную позицию
-     *
-     * @return выбранная товарная позиция
-     */
-    public String getSelectedItem() {
-        if(selectedItem < itemList.length)
-            selectedItem = 0;
-        return itemList[selectedItem];
-    }
-
-    /**
-     * Выбрать товарную позицию.
-     *
-     */
-    public void setSelectedItem(String item) {
-        this.selectedItem = Arrays.asList(itemList).indexOf(item);
-        this.setItemDescription();
-    }
-
-    /**
-     * Получить примечание к выбранному разделу.
-     *
-     * @return примечание к разделу
-     */
-    public String getSectionNote() {
-        return sectionNote;
-    }
-
-    /**
-     * Сформировать примечание к выбранному разделу
-     *
-     */
-    public void setSectionNote() {
-        //TODO
-        //this.sectionNote = hs.getSection().getNote(sectionList[selectedSection].substring(0,2))[0];
-    }
-
-    /**
-     * Получить примечание к выбранной группе
-     *
-     * @return примечание к группе
-     */
-    public String getGroupNote() {
-        return groupNote;
-    }
-
-    /**
-     * Сформировать примечание к выбранной группе
-     */
-    public void setGroupNote() {
-        //TODO
-        //this.groupNote = hs.getGroup().getNote(groupList[selectedGroup].substring(0,4))[0];
-    }
-
-    /**
-     * Получить описание выбранной товарной позиции.
-     *
-     * @return описание товарной позиции
-     */
-    public String getItemDescription() {
-        return itemDescription;
-    }
-
-    /**
-     * Сформировать описание товарной позиции
-     */
-    public void setItemDescription() {
-        this.itemDescription =
-                sectionList[selectedSection] + "\n\t" +
-                        subSectionList[selectedGroup] + "\n\n" +
-                        subGroupList[selectedSubGroup] + "\n\t" +
-                        itemList[selectedItem];
     }
 
     /**
@@ -205,62 +83,247 @@ public class ModelV2 {
     public String[] getSectionList() {
         return this.sectionList;
     }
-
     /**
-     * Сформировать список разделов.
+     * Получить список подразделов(групп) [ ].
      *
-     */
-    public void setSectionList() {
-        sectionList =  hs.getSections().getItemsView();
-    }
-
-    /**
-     * Получить список групп [ ].
-     *
-     * @return список групп [ ]
+     * @return список подразделов
      */
     public String[] getSubSectionList() {
+        this.subSectionList = hs.getSubSections().getItemsView(sectionList[selectedSection].substring(0,2)); //getSubSections[selectedSection];
+        selectedSubSection = 0;
         return subSectionList;
     }
-
-    /**
-     * Сформировать список групп.
-     *
-     */
-    public void setGroupList() {
-        this.subSectionList = hs.getGroups().getItemsView(sectionList[selectedSection].substring(0,2));
-    }
-
     /**
      * Получить список подгрупп [ ].
      *
      * @return список подгрупп [ ]
      */
     public String[] getGroupList() {
-        return subGroupList;
+        this.groupList = hs.getGroups().getItemsView(subSectionList[selectedSubSection].substring(2,4));
+        selectedGroup = 0;
+        return groupList;
     }
-
-    /**
-     * Сформировать список подгрупп
-     *
-     */
-    public void setSubGroupList() {
-        this.subGroupList = hs.getSubSections().getItemsView(subSectionList[selectedGroup].substring(2,4));
-    }
-
     /**
      * Получить список товарных позиций [ ].
      *
      * @return список товарных позиций [ ]
      */
     public String[] getItemList() {
+        this.itemList = hs.getItems().getItemsView(groupList[selectedGroup].substring(0,4));
         return itemList;
     }
 
     /**
+     * Выбрать раздел.
+     *
+     */
+    public void selectSection(String item) {
+        this.selectedSection = Arrays.asList(sectionList).indexOf(item);
+        //this.setSectionNote();
+        this.getSubSectionList();
+    }
+    /**
+     * Выбрать подраздел (группу)
+     *
+     */
+    public void selectSubSection(String item) {
+        this.selectedSubSection = Arrays.asList(subSectionList).indexOf(item);
+        //this.setGroupNote();
+        this.getGroupList();
+        //this.selectedGroup = 0;
+    }
+    /**
+     * Выбрать группу
+     */
+    public void selectGroup(String item){
+        this.selectedGroup = Arrays.asList(groupList).indexOf(item);
+        //this.selectedItem = 0;
+    }
+
+    /**
+     * Выбрать товарную позицию.
+     *
+     */
+    public void selectItem(String item) {
+        this.selectedItem = Arrays.asList(itemList).indexOf(item);
+        //this.setItemDescription();
+    }
+
+
+
+
+    // Разделы
+// Список разделов
+    /**
+     * Сформировать список разделов.
+     *
+     */
+ /*   public void setSectionList() {
+        this.sectionList = hs.getSections().getItemsView();
+    }
+
+// Выбор текущего раздела
+
+    /**
+     * Получить выбранный раздел
+     *
+     * @return выбранный раздел
+     */
+/*    public String getSelectedSection() {
+        return sectionList[selectedSection];
+    }
+// Примечание
+    /**
+     * Сформировать примечание к выбранному разделу
+     *
+     */
+/*    public void setSectionNote() {
+        //TODO
+        this.sectionNote = hs.getSections()[0]   ;  //getSection().getNote(sectionList[selectedSection].substring(0,2))[0];
+    }
+    /**
+     * Получить примечание к выбранному разделу.
+     *
+     * @return примечание к разделу
+     */
+/*    public String getSectionNote() {
+        return sectionNote;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Получить примечание к выбранной группе
+     *
+     * @return примечание к группе
+     */
+ /*   public String getGroupNote() {
+        return groupNote;
+    }
+
+
+
+
+
+    /**
+     * Сформировать список подразделов.
+     *
+     */
+ /*   public void setSubSectionList() {
+        this.subSectionList = hs.getSubSections().getItemsView(sectionList[selectedSection].substring(0,2));
+        selectedSubSection = 0;
+    }
+
+
+
+
+
+
+
+
+    /**
+     * Получить выбранную группу
+     *
+     * @return выбранная группа
+     */
+ /*   public String getSelectedSubSection() {
+        return subSectionList[selectedSubSection];
+    }
+
+
+
+    /**
+     * Получить выбранную подгруппу
+     *
+     * @return выбранная подгруппа
+     */
+/*    public String getSelectedSubGroup() {
+        return subGroupList[selectedSubGroup];
+    }
+
+
+
+    /**
+     * Получить выбранную товарную позицию
+     *
+     * @return выбранная товарная позиция
+     */
+/*    public String getSelectedItem() {
+        if(selectedItem < itemList.length)
+            selectedItem = 0;
+        return itemList[selectedItem];
+    }
+
+
+
+
+
+    /**
+     * Сформировать примечание к выбранной группе
+     */
+ /*   public void setGroupNote() {
+        //TODO
+        //this.groupNote = hs.getGroup().getNote(groupList[selectedGroup].substring(0,4))[0];
+    }
+
+    /**
+     * Получить описание выбранной товарной позиции.
+     *
+     * @return описание товарной позиции
+     */
+/*    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    /**
+     * Сформировать описание товарной позиции
+     */
+ /*   public void setItemDescription() {
+        this.itemDescription =
+                sectionList[selectedSection] + "\n\t" +
+                        subSectionList[selectedSubSection] + "\n\n" +
+                        subGroupList[selectedSubGroup] + "\n\t" +
+                        itemList[selectedItem];
+    }
+
+
+    /**
+     * Выбрать подгруппу
+     *
+     */
+ /*   public void setSelectedSubGroup(String item) {
+        this.selectedSubGroup = Arrays.asList(subGroupList).indexOf(item);
+
+        this.setItemList();
+        this.selectedItem = 0;
+        this.setItemDescription();
+    }
+
+
+
+
+    /**
+     * Сформировать список подгрупп
+     *
+     */
+/*    public void setSubGroupList() {
+        this.subGroupList = hs.getSubSections().getItemsView(subSectionList[selectedSubSection].substring(2,4));
+    }
+
+
+
+    /**
      * Установить список товарных позиций.
      */
-    public void setItemList() {
+ /*   public void setItemList() {
         String[] result;
         result = hs.getItems().getItemsView(subGroupList[selectedSubGroup].substring(0,4));
         if(result.length == 0)
@@ -270,7 +333,7 @@ public class ModelV2 {
     }
 
     public String[] getSubSectionsList(){
-        return
+        return hs.getSections().getItemsView();
     }
 
     public String[] getSubSections(String code){
@@ -298,7 +361,7 @@ public class ModelV2 {
      * @param nestlingLevel уровень вложенности
      * @return список
      */
-    String[] getSubPositions(String code, int nestlingLevel){
+/*    String[] getSubPositions(String code, int nestlingLevel){
         String[] result = null;
         //TODO Разобнатся с необходимостью такого метода
         /*
@@ -306,6 +369,8 @@ public class ModelV2 {
             nestlingLevel++;
 
          */
-        return result;
+ /*       return result;
     }
+
+  */
 }
