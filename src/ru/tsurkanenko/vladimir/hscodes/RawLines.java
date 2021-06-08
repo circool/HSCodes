@@ -37,7 +37,6 @@ public class RawLines extends ArrayList {
             rawData = foundLines.toArray(new String[0]);
         } catch (IOException exception) {
             System.err.println("Ошибка чтения файла " + fileName);
-            return;
         }
     }
 

@@ -126,7 +126,7 @@ public class HSGroup {
     /**
      * Возвражает список субпозиций с учетом уровня вложенности
      * @param arg Код, на который должны начинаться возвращаемые элементы
-     * @arg level уровень вложенности
+     * @param level уровень вложенности
      * @return список субпозиций
      */
     public String[] getSubList(String arg, int level){

@@ -1,38 +1,38 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
-import javafx.beans.value.*;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * Контроллер для варианта, использующего View с древовидным списком.
  * @version 0.1.1
  */
 public class ControllerTreeV2 implements Initializable {
     @FXML
     TreeView<String> mainTree;
-    //@FXML
-    //Button buttonDetailsMore;
-    //@FXML
-    //Button buttonCancel;
+    TreeItem<String> selectedTreeItem;
+    /*
+    @FXML
+    Button buttonDetailsMore;
+    @FXML
+    Button buttonCancel;
+
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ModelV2 model= new ModelV2();
-        TreeItem<String> currentSubSectionTreeItem;
-        // Создание корневого узда дерева
+// Создание корневого узла дерева
         TreeItem<String> root = new TreeItem<>("Разделы ТНВЭД");
-
-        int lastSectionTreeItem,lastSubSectionTreeItem, lastGroupTreeView, lastItemTreeView;
+        int lastSectionTreeItem,lastSubSectionTreeItem, lastGroupTreeView;
         String[] sectionList, subSectionList, groupList, itemList;
-// Разделы
         sectionList = model.getSectionList();
 // для каждого раздела
         for (String section:sectionList
@@ -62,17 +62,18 @@ public class ControllerTreeV2 implements Initializable {
                     }
                 }
             }
-
+            selectedTreeItem = new TreeItem<>();
             mainTree.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
 
                 @Override
                 public void changed(ObservableValue<? extends TreeItem<String>> observable,
                                     TreeItem<String> oldValue, TreeItem<String> newValue) {
-                    // newValue represents the selected itemTree
-                    // повторяется по 22 раза!!
-                    System.out.println(newValue.getValue() );
+                    // чтобы не повторялось по 22 раза!!
+                    if(!selectedTreeItem.equals(newValue)) {
+                        selectedTreeItem = newValue;
+                        //System.out.println(newValue.getValue());
+                    }
                 }
-
             });
         }
 

@@ -1,6 +1,5 @@
 import ru.tsurkanenko.vladimir.hscodes.HSBase;
-import ru.tsurkanenko.vladimir.hscodes.HarmGroup;
-import ru.tsurkanenko.vladimir.hscodes.HarmItem;
+
 
 public class HarmArrayTest {
     public static void main(String[] args) {

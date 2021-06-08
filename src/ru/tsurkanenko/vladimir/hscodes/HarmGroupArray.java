@@ -18,7 +18,7 @@ public class HarmGroupArray extends HarmArray {
      */
     public HarmGroupArray(String fileName) {
         super(fileName);
-        //notes = new String[itemsArray.length];
+        notes = new String[itemsArray.length];
         //TODO Заполнить массив примечаниями
     }
     public String getNote(String code){
