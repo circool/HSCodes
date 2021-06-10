@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author Vladimir Tsurkanenko
- * @version 1.0
+ * @version 0.1
  * Представляет из себя объект, имплементирующий необработанные строки файла, в которых содержатся только актуальные данные.
  */
 @SuppressWarnings("rawtypes")
