@@ -20,6 +20,9 @@ public class SimpleGroupsSet extends SimpleItemsSet {
     public SimpleItem[] getAllNotes() {
         return notes;
     }
+    public SimpleItem getNote(int index) {
+        return notes[index];
+    }
 
     public SimpleItem[] getNotesStartsWith(String prefix) {
         //  Обрезать префикс если он длиннее кода в массиве элементов SimpleItem
@@ -34,13 +37,13 @@ public class SimpleGroupsSet extends SimpleItemsSet {
         int lastIndex = indexLastOne[actualIndex];
 
         // Найти подходящие коды
-        ArrayList<SimpleItem> totalFound = new ArrayList<SimpleItem>();
+        ArrayList<SimpleItem> totalFound = new ArrayList<>();
         for(int i = firstIndex; i <= lastIndex; i++ ){
-            if(notes[i].code.substring(0, prefix.length()).equals(prefix))
+            if(notes[i].code.startsWith(prefix))
                 totalFound.add(notes[i]);
         }
         // Вернуть результат в виде массива
-        SimpleItem result[] = new SimpleItem[totalFound.size()];
+        SimpleItem[] result = new SimpleItem[totalFound.size()];
         result = totalFound.toArray(result);
         return result;
     }

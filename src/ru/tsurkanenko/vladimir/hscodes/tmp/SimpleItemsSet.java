@@ -5,7 +5,7 @@ import ru.tsurkanenko.vladimir.hscodes.RawLines;
 import java.util.ArrayList;
 
 public class SimpleItemsSet {
-    private SimpleItem items[];
+    private SimpleItem[] items;
     final int[] indexFirstOne = new int[10];
     final int[] indexLastOne= new int[10];
 
@@ -26,6 +26,9 @@ public class SimpleItemsSet {
     public SimpleItem[] getAllItems() {
         return items;
     }
+    public SimpleItem getItem(int index) {
+        return items[index];
+    }
 
     public SimpleItem[] getItemsStartsWith(String prefix) {
         //  Обрезать префикс если он длиннее кода в массиве элементов SimpleItem
@@ -40,13 +43,13 @@ public class SimpleItemsSet {
         int lastIndex = indexLastOne[actualIndex];
 
         // Найти подходящие коды
-        ArrayList<SimpleItem> totalFound = new ArrayList<SimpleItem>();
+        ArrayList<SimpleItem> totalFound = new ArrayList<>();
         for(int i = firstIndex; i <= lastIndex; i++ ){
-            if(items[i].code.substring(0, prefix.length()).equals(prefix))
+            if(items[i].code.startsWith(prefix))
                 totalFound.add(items[i]);
         }
         // Вернуть результат в виде массива
-        SimpleItem result[] = new SimpleItem[totalFound.size()];
+        SimpleItem[] result = new SimpleItem[totalFound.size()];
         result = totalFound.toArray(result);
         return result;
     }
