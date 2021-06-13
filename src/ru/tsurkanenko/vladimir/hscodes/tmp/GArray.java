@@ -1,25 +1,22 @@
 package ru.tsurkanenko.vladimir.hscodes.tmp;
 
 
-import ru.tsurkanenko.vladimir.hscodes.tmp.HGroup;
-import ru.tsurkanenko.vladimir.hscodes.tmp.IArray;
-
 public class GArray extends IArray {
-    HGroup[] hGroups;
+    SimpleGroup[] hGroups;
 
     public GArray(String fileName) {
         super(fileName);
         String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";
-        hGroups = new HGroup[dataLines.length];
+        hGroups = new SimpleGroup[dataLines.length];
         String currentCode, currentDescription, currentNote, firstOneLetter;
-        for(int i=0; i< hItems.length; i++){
-            currentCode = hItems[i].code;
-            currentDescription = hItems[i].description;
+        for(int i = 0; i< simpleItems.length; i++){
+            currentCode = simpleItems[i].code;
+            currentDescription = simpleItems[i].description;
             currentNote = dataLines[i].replaceAll(regexNote,"$1");
-            hGroups[i] = new HGroup(currentCode,currentDescription,currentNote);
+            hGroups[i] = new SimpleGroup(currentCode,currentDescription,currentNote);
         }
     }
-    public HGroup[] getItems() {
+    public SimpleGroup[] getItems() {
         return hGroups;
     }
 }

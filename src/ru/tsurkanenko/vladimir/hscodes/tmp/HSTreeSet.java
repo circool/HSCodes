@@ -9,7 +9,7 @@ import java.util.TreeSet;
  * The type Hs tree set.
  */
 public class HSTreeSet {
-    private TreeSet<HItem> hsTree;
+    private TreeSet<SimpleItem> hsTree;
 
     /**
      * Instantiates a new Hs tree set.
@@ -23,7 +23,7 @@ public class HSTreeSet {
         String regexDescription = "^[0-9|]+(.*?)\\|.*";
         for (String singleLine:dataLines
         ) {
-            hsTree.add(new HItem(singleLine.replaceAll(regexCode,"$1$2$3"),singleLine.replaceAll(regexDescription,"$1")));
+            hsTree.add(new SimpleItem(singleLine.replaceAll(regexCode,"$1$2$3"),singleLine.replaceAll(regexDescription,"$1")));
         }
     }
 
@@ -32,7 +32,7 @@ public class HSTreeSet {
      *
      * @return the all
      */
-    public TreeSet<HItem> getAll() {
+    public TreeSet<SimpleItem> getAll() {
         return hsTree;
     }
 
@@ -42,9 +42,9 @@ public class HSTreeSet {
      * @param prefix the prefix
      * @return the tree set
      */
-    public TreeSet<HItem> startsWith(String prefix){
-        TreeSet<HItem> result = new TreeSet<>();
-        for (HItem singleElement: hsTree
+    public TreeSet<SimpleItem> startsWith(String prefix){
+        TreeSet<SimpleItem> result = new TreeSet<>();
+        for (SimpleItem singleElement: hsTree
              ) {
             if (singleElement.code.startsWith(prefix))
                 result.add(singleElement);

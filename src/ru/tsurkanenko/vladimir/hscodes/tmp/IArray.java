@@ -6,7 +6,7 @@ import ru.tsurkanenko.vladimir.hscodes.RawLines;
 import java.util.ArrayList;
 
 public class IArray {
-    HItem[] hItems;
+    SimpleItem[] simpleItems;
     String[] dataLines;
     final int[] indexFirstOne = new int[10];
     final int[] indexLastOne= new int[10];
@@ -17,12 +17,12 @@ public class IArray {
         String regexCode = "^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$";
         String regexDescription = "^[0-9|]+(.*?)\\|.*";
         String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";
-        hItems = new HItem[dataLines.length];
+        simpleItems = new SimpleItem[dataLines.length];
         String currentCode,currentDescription,firstOneLetter;
-        for(int i=0; i< hItems.length; i++){
+        for(int i = 0; i< simpleItems.length; i++){
             currentCode = dataLines[i].replaceAll(regexCode,"$1$2$3");
             currentDescription = dataLines[i].replaceAll(regexDescription,"$1");
-            hItems[i] = new HItem(currentCode,currentDescription);
+            simpleItems[i] = new SimpleItem(currentCode,currentDescription);
             // Индексация
             firstOneLetter = currentCode.substring(0,1);
             int curr = Integer.parseInt(firstOneLetter);
@@ -31,16 +31,16 @@ public class IArray {
             indexLastOne[curr] = i;
         }
     }
-    public HItem[] getItems() {
-        return hItems;
+    public SimpleItem[] getItems() {
+        return simpleItems;
     }
 
-    public HItem[] startsWith(String prefix) {
+    public SimpleItem[] startsWith(String prefix) {
         // Подготовить массив для результатов
-        ArrayList<HItem> totalFound = new ArrayList<HItem>();
-        //  Обрезать префикс если он длиннее кода в массиве элементов HItem
-        if(prefix.length() > hItems[0].code.length())
-            prefix = prefix.substring(0,hItems[0].code.length());
+        ArrayList<SimpleItem> totalFound = new ArrayList<SimpleItem>();
+        //  Обрезать префикс если он длиннее кода в массиве элементов SimpleItem
+        if(prefix.length() > simpleItems[0].code.length())
+            prefix = prefix.substring(0, simpleItems[0].code.length());
         // Получить первую цифру из параметра prefix
         int actualIndex = Integer.parseInt(prefix.substring(0,1));
         // Сузить границы поиска
@@ -48,11 +48,11 @@ public class IArray {
         int lastIndex = indexLastOne[actualIndex];
         // Найти подходящие коды
         for(int i = firstIndex; i <= lastIndex; i++ ){
-            if(hItems[i].code.substring(0, prefix.length()).equals(prefix))
-                totalFound.add(hItems[i]);
+            if(simpleItems[i].code.substring(0, prefix.length()).equals(prefix))
+                totalFound.add(simpleItems[i]);
         }
         // Вернуть результат в виде массива
-        HItem result[] = new HItem[totalFound.size()];
+        SimpleItem result[] = new SimpleItem[totalFound.size()];
         result = totalFound.toArray(result);
         return result;
     }
