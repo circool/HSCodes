@@ -5,6 +5,7 @@ package ru.tsurkanenko.vladimir.deprecated;
  * @version 1.0
  * Базовый элемент справочника кодов ТНВЭД - отдельный код
  */
+@Deprecated
 public class HarmItem {
     private String code;
     private String description;

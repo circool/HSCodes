@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
  * @author Vladimir Tsurkanenko
  * @version 1.0
  */
+@Deprecated
 public class ControllerComboBoxViewV2 implements Initializable {
     @FXML private ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxSubGroup,comboBoxItem;
     @FXML private Label labelShortSectionNote, labelShortGroupNote, labelFullCodeDescription;

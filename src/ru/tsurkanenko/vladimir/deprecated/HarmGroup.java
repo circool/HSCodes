@@ -7,6 +7,7 @@ package ru.tsurkanenko.vladimir.deprecated;
  *
  * @see HarmItem
  */
+@Deprecated
 public class HarmGroup extends HarmItem{
     private String note;
     final private String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";

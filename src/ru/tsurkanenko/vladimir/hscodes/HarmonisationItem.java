@@ -47,6 +47,9 @@ class HarmonisationItem {
     String getCode(int index) {
         return code[index];
     }
+    String[] getCode() {
+        return code;
+    }
     /**
      * Возвращает описание раздела или товарной группы
      * @return Строка с описанием
@@ -54,39 +57,16 @@ class HarmonisationItem {
     String getDescription(int index) {
         return description[index];
     }
+    String[] getDescription() {
+        return description;
+    }
     /**
      * Возвращает строку с кодом и описанием раздела или товарной группы
      * @return Строка с кодом и описанием разделенными пробелом
      */
-    String getItem(int index){
+    String getCodeAndDescription(int index){
         return code[index] + " " + description[index];
     }
-    /**
-     * Возвращает массив строк в формате "код описание" для кодов, начинающихся с аргумента
-     */
-    String[] getItems(String codeStartFrom){
-        int firstDigit = Integer.parseInt(codeStartFrom.substring(0,1));
-        // сократить длину искомого значения до длины кода
-        int thisCodeLength = code[0].length();
-        if(thisCodeLength > codeStartFrom.length())
-            thisCodeLength = codeStartFrom.length();
-        // подсчет количества совпадений
-        int totalFound = 0;
-        for(int i=indexFirstOne[firstDigit]; i <= indexLastOne[firstDigit]; i++){
-            if(code[i].startsWith(codeStartFrom.substring(0,thisCodeLength)))
-                totalFound++;
-        }
-        String[] result = new String[totalFound];
-        totalFound = 0;
-        for(int i=indexFirstOne[firstDigit]; i <= indexLastOne[firstDigit]; i++){
-            if(code[i].startsWith(codeStartFrom.substring(0,thisCodeLength))){
-                result[totalFound] = code[i] + " " + description[i];
-                totalFound++;
-            }
-        }
-        return result;
-    }
-
     /**
      * Возвращает массив состоящий из строк вида "код описание"
      * @return массив строк
@@ -97,4 +77,33 @@ class HarmonisationItem {
             result[i] = code[i] + " " + description[i];
         return result;
     }
+
+
+    /**
+     * Возвращает массив строк в формате "код описание" для кодов, начинающихся с аргумента
+     */
+    String[] startsWith(String prefix){
+        int firstDigit = Integer.parseInt(prefix.substring(0,1));
+        // сократить длину искомого значения до длины кода
+        int thisCodeLength = code[0].length();
+        if(thisCodeLength > prefix.length())
+            thisCodeLength = prefix.length();
+        // подсчет количества совпадений
+        int totalFound = 0;
+        for(int i=indexFirstOne[firstDigit]; i <= indexLastOne[firstDigit]; i++){
+            if(code[i].startsWith(prefix.substring(0,thisCodeLength)))
+                totalFound++;
+        }
+        String[] result = new String[totalFound];
+        totalFound = 0;
+        for(int i=indexFirstOne[firstDigit]; i <= indexLastOne[firstDigit]; i++){
+            if(code[i].startsWith(prefix.substring(0,thisCodeLength))){
+                result[totalFound] = code[i] + " " + description[i];
+                totalFound++;
+            }
+        }
+        return result;
+    }
+
+
 }

@@ -9,6 +9,7 @@ import ru.tsurkanenko.vladimir.hscodes.RawLines;
  * @version 1.0
  * @see HarmGroup
  */
+@Deprecated
 public class HarmGroupArray extends HarmArray {
     private String[] notes;
     //private final String regexNote = "";

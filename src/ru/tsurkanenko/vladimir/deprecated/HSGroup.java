@@ -11,6 +11,7 @@ import java.io.IOException;
  * Объект инкапсулирующий данные о разделах, группах или подгруппах:
  * код, описание и примечания
  */
+@Deprecated
 public class HSGroup {
     private String[] code;
     private String[] description;

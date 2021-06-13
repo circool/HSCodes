@@ -2,7 +2,7 @@ package ru.tsurkanenko.vladimir.deprecated.tree;
 import ru.tsurkanenko.vladimir.deprecated.HarmBase;
 
 import java.util.Arrays;
-
+@Deprecated
 /**
  * Модель (ModelForComboBox) ModelForComboBox-View-Controller для варианта, использующего View с древовидным списком.
  * Модель хранит свое состояние и предоставляет данные Представлению (View) реагируя на команды Контроллера (Controller)

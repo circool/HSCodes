@@ -19,12 +19,16 @@ public class HarmonisationModel_view_flexi_combo_box {
         base = new HarmonisationBase();
         sectionList = base.getSections().getCodesAndDescriptions();
         selectedSection = 0;
-        groupList = base.getGroups().getItems(sectionList[selectedSection].substring(0,2));
+        //groupList = base.getGroups().startWith(sectionList[selectedSection].substring(0,2));
         selectedGroup = 0;
-        positionList = base.getPositions().getItems(groupList[selectedGroup].substring(2,4));
+        //positionList = base.getPositions().startWith(groupList[selectedGroup].substring(2,4));
         selectedPosition = 0;
-        itemList = base.getItems().getItems(positionList[selectedPosition].substring(0,4));
+        //itemList = base.getItems().startWith(positionList[selectedPosition].substring(0,4));
         selectedItem = 0;
+        fullDescription = base.getSections().getDescription(selectedSection) + "\n\t" +
+                groupList[selectedGroup].substring(5) +  "\n\t\t" +
+                positionList[selectedPosition] + "\n\t\t\t" +
+                itemList[selectedItem];
     }
 
 // Работа с разделами
@@ -40,7 +44,7 @@ public class HarmonisationModel_view_flexi_combo_box {
     }
 // Работа с группами
     void updateGroupList(){
-        groupList = base.getGroups().getItems(sectionList[selectedSection].substring(0,2));
+        //groupList = base.getGroups().startWith(sectionList[selectedSection].substring(0,2));
         selectedGroup = 0;
         updatePositionList();
     }
@@ -60,7 +64,7 @@ public class HarmonisationModel_view_flexi_combo_box {
     }
 // Работа с позициями
     void updatePositionList(){
-        positionList = base.getPositions().getItems(groupList[selectedGroup].substring(2,4));
+        //positionList = base.getPositions().startWith(groupList[selectedGroup].substring(2,4));
         selectedPosition = 0;
     }
     void selectPosition(String selItem){
@@ -73,7 +77,7 @@ public class HarmonisationModel_view_flexi_combo_box {
     int getSelectedPosition() {return selectedPosition;}
 // Работа с кодами
     void updateItemList(){
-        itemList = base.getItems().getItems(positionList[selectedPosition].substring(0,4));
+        //itemList = base.getItems().startWith(positionList[selectedPosition].substring(0,4));
         selectedItem = 0;
     }
     void selectItem(String selItem){

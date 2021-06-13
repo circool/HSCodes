@@ -9,7 +9,7 @@ import javafx.scene.control.TreeView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+@Deprecated
 /**
  * Контроллер для варианта, использующего View с древовидным списком.
  * @version 0.2

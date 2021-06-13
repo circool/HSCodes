@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+@Deprecated
 public class HSChapter {
     private String[] code;
     private String[] description;

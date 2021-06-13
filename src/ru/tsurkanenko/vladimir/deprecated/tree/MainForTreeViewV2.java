@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Objects;
-
+@Deprecated
 public class MainForTreeViewV2 extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{

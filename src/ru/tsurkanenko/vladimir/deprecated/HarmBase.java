@@ -7,7 +7,7 @@ package ru.tsurkanenko.vladimir.deprecated;
  * Данные справочника получены из файлов dic/TNVED?.TXT
  * Справочник доступен по адресу https://www.nalog.gov.ru/rn77/program/5961290/
  */
-
+@Deprecated
 public class HarmBase {
     private HarmGroupArray section, subsection;
     private HarmArray group, item;

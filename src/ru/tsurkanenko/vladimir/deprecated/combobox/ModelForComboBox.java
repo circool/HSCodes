@@ -3,7 +3,7 @@ package ru.tsurkanenko.vladimir.deprecated.combobox;
 import ru.tsurkanenko.vladimir.deprecated.HarmBase;
 
 import java.util.Arrays;
-
+@Deprecated
 /**
  * Модель (ModelForComboBox) ModelForComboBox-View-Controller
  * Модель хранит свое состояние и предоставляет данные Представлению (View) реагируя на команды Контроллера (Controller)

@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+@Deprecated
 /**
  * Контроллер (ControllerComboBoxViewV1) ModelForComboBox-View-Controller
  * В качестве представления используется viewcomboboxviewv1.fxml
