@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.tmp;
+package ru.tsurkanenko.vladimir.hscodes.database;
 
 class SimpleGroup extends SimpleItem {
     String note;

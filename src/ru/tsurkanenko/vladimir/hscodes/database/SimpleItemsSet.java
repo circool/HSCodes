@@ -1,9 +1,14 @@
-package ru.tsurkanenko.vladimir.hscodes.tmp;
+package ru.tsurkanenko.vladimir.hscodes.database;
 
 import ru.tsurkanenko.vladimir.hscodes.RawLines;
 
 import java.util.ArrayList;
 
+/**
+ * Коллекция элементов справочника организованная в виде массива
+ *  @author Vladimir Tsurkanenko
+ *  @version 0.4
+ */
 public class SimpleItemsSet {
     private SimpleItem[] items;
     final int[] indexFirstOne = new int[10];
@@ -23,17 +28,22 @@ public class SimpleItemsSet {
         }
     }
 
-    public SimpleItem[] getAllItems() {
-        return items;
+    public String[] getAllItems() {
+        String[] result = new String[items.length];
+        for(int i = 0; i < result.length; i++)
+            result[i] = items[i].get();
+        return result;
     }
+
+    @Deprecated
     public SimpleItem getItem(int index) {
         return items[index];
     }
 
-    public SimpleItem[] getItemsStartsWith(String prefix) {
+    public String[] getItemsStartsWith(String prefix) {
         //  Обрезать префикс если он длиннее кода в массиве элементов SimpleItem
-        if(prefix.length() > items[0].code.length())
-            prefix = prefix.substring(0, items[0].code.length());
+        if(prefix.length() > this.items[0].getCode().length())
+            prefix = prefix.substring(0, this.items[0].getCode().length());
 
         // Получить первую цифру из параметра prefix
         int actualIndex = Integer.parseInt(prefix.substring(0,1));
@@ -43,13 +53,13 @@ public class SimpleItemsSet {
         int lastIndex = indexLastOne[actualIndex];
 
         // Найти подходящие коды
-        ArrayList<SimpleItem> totalFound = new ArrayList<>();
+        ArrayList<String> totalFound = new ArrayList<>();
         for(int i = firstIndex; i <= lastIndex; i++ ){
-            if(items[i].code.startsWith(prefix))
-                totalFound.add(items[i]);
+            if(this.items[i].getCode().startsWith(prefix))
+                totalFound.add(items[i].get());
         }
         // Вернуть результат в виде массива
-        SimpleItem[] result = new SimpleItem[totalFound.size()];
+        String[] result = new String[totalFound.size()];
         result = totalFound.toArray(result);
         return result;
     }

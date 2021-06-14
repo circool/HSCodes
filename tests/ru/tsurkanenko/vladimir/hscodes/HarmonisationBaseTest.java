@@ -1,5 +1,7 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
+import java.util.Arrays;
+
 /**
  * Код для проверки классов HarmonisationBase, HarmonisationItem и HarmonisationGroup
  */
@@ -10,7 +12,7 @@ class HarmonisationBaseTest {
 
         // Получение одиночного элемента
         // получить один раздел и его примечание
-        System.out.println(test.getSections().getCode());
+        System.out.println(Arrays.toString(test.getSections().getCode()));
         System.out.println(test.getSections().getDescription(index));
         System.out.println(test.getSections().getNote(index));
         System.out.println();

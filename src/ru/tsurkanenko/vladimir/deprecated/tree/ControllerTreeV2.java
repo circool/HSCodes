@@ -56,16 +56,11 @@ public class ControllerTreeV2 implements Initializable {
                 }
             }
             selectedTreeItem = new TreeItem<>();
-            mainTree.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
-
-                @Override
-                public void changed(ObservableValue<? extends TreeItem<String>> observable,
-                                    TreeItem<String> oldValue, TreeItem<String> newValue) {
-                    // чтобы не повторялось по 22 раза!!
-                    if(!selectedTreeItem.equals(newValue)) {
-                        selectedTreeItem = newValue;
-                        //System.out.println(newValue.getValue());
-                    }
+            mainTree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                // чтобы не повторялось по 22 раза!!
+                if(!selectedTreeItem.equals(newValue)) {
+                    selectedTreeItem = newValue;
+                    //System.out.println(newValue.getValue());
                 }
             });
         }

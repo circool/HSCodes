@@ -1,9 +1,15 @@
-package ru.tsurkanenko.vladimir.hscodes.tmp;
+package ru.tsurkanenko.vladimir.hscodes.database;
 
 import ru.tsurkanenko.vladimir.hscodes.RawLines;
 
 import java.util.ArrayList;
-
+/**
+ * Коллекция разделов или товарных групп справочника организованная в виде массива
+ * Отличается от SimpleItemsSet тем, что имеет дополнительное поле с комментарием к разделам/группам
+ * @see ru.tsurkanenko.vladimir.hscodes.database.SimpleItemsSet
+ * @author Vladimir Tsurkanenko
+ * @version 0.4
+ */
 public class SimpleGroupsSet extends SimpleItemsSet {
     private SimpleItem[] notes;
 
@@ -17,17 +23,20 @@ public class SimpleGroupsSet extends SimpleItemsSet {
             notes[i] = new SimpleItem(dataLines[i].replaceAll(regexCode,"$1$2$3"), dataLines[i].replaceAll(regexNote,"$1"));
     }
 
-    public SimpleItem[] getAllNotes() {
-        return notes;
+    public String[] getAllNotes() {
+        String[] result = new String[notes.length];
+        for(int i = 0; i < result.length; i++)
+            result[i] = notes[i].get();
+        return result;
     }
     public SimpleItem getNote(int index) {
         return notes[index];
     }
 
-    public SimpleItem[] getNotesStartsWith(String prefix) {
+    public String[] getNotesStartsWith(String prefix) {
         //  Обрезать префикс если он длиннее кода в массиве элементов SimpleItem
-        if(prefix.length() > notes[0].code.length())
-            prefix = prefix.substring(0, notes[0].code.length());
+        if(prefix.length() > this.notes[0].getCode().length())
+            prefix = prefix.substring(0, this.notes[0].getCode().length());
 
         // Получить первую цифру из параметра prefix
         int actualIndex = Integer.parseInt(prefix.substring(0,1));
@@ -39,11 +48,11 @@ public class SimpleGroupsSet extends SimpleItemsSet {
         // Найти подходящие коды
         ArrayList<SimpleItem> totalFound = new ArrayList<>();
         for(int i = firstIndex; i <= lastIndex; i++ ){
-            if(notes[i].code.startsWith(prefix))
+            if(this.notes[0].getCode().startsWith(prefix))
                 totalFound.add(notes[i]);
         }
         // Вернуть результат в виде массива
-        SimpleItem[] result = new SimpleItem[totalFound.size()];
+        String[] result = new String[totalFound.size()];
         result = totalFound.toArray(result);
         return result;
     }
