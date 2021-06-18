@@ -11,8 +11,7 @@ import java.util.TreeSet;
  * @version 0.4
  */
 public class SimpleItemsTree {
-    private TreeSet<SimpleItem> itemsTree;
-
+    private final TreeSet<SimpleItem> itemsTree;
 
     public SimpleItemsTree(String fileName) {
         String[] dataLines = new RawLines(fileName).getRawData();

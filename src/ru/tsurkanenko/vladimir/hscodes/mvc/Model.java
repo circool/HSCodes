@@ -9,10 +9,14 @@ import ru.tsurkanenko.vladimir.hscodes.database.*;
  * @version 0.4
  */
 public class Model {
-    private SimpleGroupsSet sectionList,groupList;
-    private SimpleItemsSet positionList,itemList;
-    private int selectedSectionIndex,selectedGroupIndex,selectedPositionIndex,selectedItemIndex;
-    private String[] actualSectionList, actualGroupList, actualPositionList, actualItemList;
+    private final SimpleGroupsSet sectionList;
+    private final SimpleGroupsSet groupList;
+    private final SimpleItemsSet positionList;
+    private final SimpleItemsSet itemList;
+    private final int selectedSectionIndex,selectedGroupIndex,selectedPositionIndex,selectedItemIndex;
+    private String[] actualGroupList;
+    private String[] actualPositionList;
+    private String[] actualItemList;
     private String selectedSection,selectedGroup,selectedPosition,selectedItem, sectionNote,groupNote,itemDescription;
 
     public Model() {
@@ -20,18 +24,13 @@ public class Model {
         groupList       = new SimpleGroupsSet("dic/TNVED2.TXT");
         positionList    = new SimpleItemsSet("dic/TNVED3.TXT");
         itemList        = new SimpleItemsSet("dic/TNVED4.TXT");
-
         selectedSectionIndex = selectedGroupIndex = selectedPositionIndex = selectedItemIndex = 0;
-        actualSectionList = sectionList.getAllItems();
-
+        String[] actualSectionList = sectionList.getAllItems();
         String actualSectionPrefix = actualSectionList[selectedSectionIndex].substring(0, 2);
-
         actualGroupList = groupList.getItemsStartsWith(actualSectionPrefix);
         String actualGroupPrefix = actualGroupList[selectedGroupIndex].substring(2, 4);
-
         actualPositionList = positionList.getItemsStartsWith(actualGroupPrefix);
         String actualPositionPrefix = actualPositionList[selectedPositionIndex].substring(0, 4);
-
         actualItemList = itemList.getItemsStartsWith(actualPositionPrefix);
     }
 
@@ -41,9 +40,6 @@ public class Model {
             if(sectionList.getAllItems()[i].startsWith(selectedSection))
             sectionNote = sectionList.getNote(i).getDescription();
         updateGroups();
-    }
-    public String getSelectedSection() {
-        return selectedSection;
     }
     public String[] getActualSectionList() {
         return sectionList.getAllItems();
@@ -63,8 +59,7 @@ public class Model {
     public String[] getActualGroupList() {
         String actualSectionPrefix = selectedSection.substring(0,2);
         actualGroupList = groupList.getItemsStartsWith(actualSectionPrefix);
-
-        String actualGroupPrefix = selectedGroup.substring(2, 4);
+        selectedGroup = actualGroupList[0];
         return actualGroupList;
     }
     public String getSelectedGroupNote(){return groupNote;}
@@ -77,7 +72,7 @@ public class Model {
         return actualPositionList[selectedPositionIndex];
     }
     public String[] getActualPositionList() {
-        String actualGroupPrefix = selectedGroup.substring(2, 4);//actualGroupList[selectedGroupIndex].substring(2, 4);
+        String actualGroupPrefix = selectedGroup.substring(2, 4);
         actualPositionList = positionList.getItemsStartsWith(actualGroupPrefix);
         return actualPositionList;
     }
@@ -85,19 +80,21 @@ public class Model {
     public void setSelectedItem(String itemName){
         this.selectedItem = itemName;
         // TODO После выбора субпозиции необходимо обновить описание субпозиции
+        itemDescription = selectedItem;
 
     }
     public String getSelectedItem() {
         return actualItemList[selectedItemIndex];
     }
     public String[] getActualItemList() {
-        String actualPositionPrefix = selectedPosition.substring(0, 4);//actualPositionList[selectedPositionIndex].substring(0, 4);
+        String actualPositionPrefix = selectedPosition.substring(0, 4);
         actualItemList = itemList.getItemsStartsWith(actualPositionPrefix);
         return actualItemList;
     }
     public String getItemDescription(){
         //TODO Сформировать описание
-        return "TODO";
+        itemDescription = actualItemList[selectedItemIndex];
+        return itemDescription;
     }
 
 

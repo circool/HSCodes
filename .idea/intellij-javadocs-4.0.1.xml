@@ -2,13 +2,13 @@
 <project version="4">
   <component name="JavaDocConfiguration">
     <GENERAL>
-      <MODE>UPDATE</MODE>
+      <MODE>KEEP</MODE>
       <OVERRIDDEN_METHODS>false</OVERRIDDEN_METHODS>
       <SPLITTED_CLASS_NAME>true</SPLITTED_CLASS_NAME>
       <LEVELS>
         <LEVEL>TYPE</LEVEL>
-        <LEVEL>FIELD</LEVEL>
         <LEVEL>METHOD</LEVEL>
+        <LEVEL>FIELD</LEVEL>
       </LEVELS>
       <VISIBILITIES>
         <VISIBILITY>PUBLIC</VISIBILITY>

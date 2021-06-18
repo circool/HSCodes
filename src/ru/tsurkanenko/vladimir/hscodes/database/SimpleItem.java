@@ -8,8 +8,8 @@ package ru.tsurkanenko.vladimir.hscodes.database;
  * @author Vladimir Tsurkanenko
  */
 public class SimpleItem implements Comparable<SimpleItem> {
-    private String code;
-    private String description;
+    private final String code;
+    private final String description;
 
     /**
      * Поддерживает конструктор с одним параметром

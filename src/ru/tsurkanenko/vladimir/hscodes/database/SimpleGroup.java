@@ -1,7 +1,7 @@
 package ru.tsurkanenko.vladimir.hscodes.database;
-
+@Deprecated
 class SimpleGroup extends SimpleItem {
-    String note;
+    final String note;
 
     public SimpleGroup(String code, String description, String note) {
         super(code, description);

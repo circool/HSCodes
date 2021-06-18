@@ -58,7 +58,7 @@ public class ControllerForComboBoxView implements Initializable {
     public void onActionComboBoxPosition(){
         modelForComboBox.setSelectedPosition(comboBoxPosition.getValue());
         comboBoxItem.getItems().setAll(modelForComboBox.getActualItemList());
-        comboBoxItem.setValue(modelForComboBox.getSelectedItem());
+        comboBoxItem.setValue(comboBoxItem.getItems().get(0));
     }
     public void onActionComboBoxItem(){
         modelForComboBox.setSelectedItem(comboBoxItem.getValue());

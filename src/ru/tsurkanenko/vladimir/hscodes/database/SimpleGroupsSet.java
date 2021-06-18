@@ -11,16 +11,26 @@ import java.util.ArrayList;
  * @version 0.4
  */
 public class SimpleGroupsSet extends SimpleItemsSet {
-    private SimpleItem[] notes;
+    private final SimpleItem[] notes;
 
     public SimpleGroupsSet(String fileName){
         super(fileName);
         String regexCode = "^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$";
-        String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";
+        String regexNote = "^[0-9|]*.*?\\|\\s*(.*?)\\|.*$";
+
+        String regexNoteClear = "([;:]|\\.\\d)";
+
+        String regexFormattingWhat = "(\\.)\\s(\\d\\.)";
+        String regexFormattingReplace = "$1\n$2";
         String[] dataLines = new RawLines(fileName).getRawData();
         notes = new SimpleItem[dataLines.length];
-        for (int i = 0; i < notes.length; i++)
-            notes[i] = new SimpleItem(dataLines[i].replaceAll(regexCode,"$1$2$3"), dataLines[i].replaceAll(regexNote,"$1"));
+        for (int i = 0; i < notes.length; i++) {
+            String clearedNote = dataLines[i].replaceAll(regexNote, "$1");
+            clearedNote = clearedNote.replaceAll("([:;])\\s+(\\S)","$1\n$2");
+            clearedNote = clearedNote.replaceAll("\\.\\s+(\\d+\\.)","\n$1");
+
+            notes[i] = new SimpleItem(dataLines[i].replaceAll(regexCode, "$1$2$3"), clearedNote);
+        }
     }
 
     public String[] getAllNotes() {
@@ -33,13 +43,14 @@ public class SimpleGroupsSet extends SimpleItemsSet {
         return notes[index];
     }
 
-    public String[] getNotesStartsWith(String prefix) {
+
+    public String getNote(String code) {
         //  Обрезать префикс если он длиннее кода в массиве элементов SimpleItem
-        if(prefix.length() > this.notes[0].getCode().length())
-            prefix = prefix.substring(0, this.notes[0].getCode().length());
+        if(code.length() > this.notes[0].getCode().length())
+            code = code.substring(0, this.notes[0].getCode().length());
 
         // Получить первую цифру из параметра prefix
-        int actualIndex = Integer.parseInt(prefix.substring(0,1));
+        int actualIndex = Integer.parseInt(code.substring(0,1));
 
         // Сузить границы поиска
         int firstIndex = indexFirstOne[actualIndex];
@@ -48,12 +59,9 @@ public class SimpleGroupsSet extends SimpleItemsSet {
         // Найти подходящие коды
         ArrayList<SimpleItem> totalFound = new ArrayList<>();
         for(int i = firstIndex; i <= lastIndex; i++ ){
-            if(this.notes[0].getCode().startsWith(prefix))
-                totalFound.add(notes[i]);
+            if(this.notes[i].getCode().startsWith(code))
+                return (notes[i].getDescription());
         }
-        // Вернуть результат в виде массива
-        String[] result = new String[totalFound.size()];
-        result = totalFound.toArray(result);
-        return result;
+        return "";
     }
 }
