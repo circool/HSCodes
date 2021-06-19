@@ -9,8 +9,10 @@ package ru.tsurkanenko.vladimir.deprecated;
  */
 @Deprecated
 public class HarmBase {
-    private HarmGroupArray section, subsection;
-    private HarmArray group, item;
+    private final HarmGroupArray section;
+    private final HarmGroupArray subsection;
+    private final HarmArray group;
+    private final HarmArray item;
     public HarmBase() {
         section = new HarmGroupArray("dic/TNVED1.TXT");
         subsection = new HarmGroupArray("dic/TNVED2.TXT");

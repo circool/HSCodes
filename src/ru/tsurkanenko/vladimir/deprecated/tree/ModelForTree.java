@@ -3,12 +3,6 @@ import ru.tsurkanenko.vladimir.deprecated.HarmBase;
 
 import java.util.Arrays;
 @Deprecated
-/**
- * Модель (ModelForComboBox) ModelForComboBox-View-Controller для варианта, использующего View с древовидным списком.
- * Модель хранит свое состояние и предоставляет данные Представлению (View) реагируя на команды Контроллера (Controller)
- * @author Vladimir Tsurkanenko
- * @version 0.2 WOF
- */
 public class ModelForTree {
     /**
      * Комментарий к выбранному разделу
@@ -25,36 +19,22 @@ public class ModelForTree {
     /**
      * Список разделов
      */
-    private String[] sectionList,
-    /**
-     * Список группп
-     */
-    subSectionList,
-    /**
-     * Список подгрупп
-     */
-    groupList,
-    /**
-     * Список товарных позиций
-     */
-    itemList;
+    private final String[] sectionList;
+    private String[]
+            subSectionList;
+    private String[]
+            groupList;
+    private String[]
+            itemList;
     /**
      * Выбранный раздел
      */
-    private int selectedSection,
-    /**
-     * Выбранный подраздел (группа)
-     */
-    selectedSubSection,
-    /**
-     * Выбранная подгруппа
-     */
-    selectedGroup,
-    /**
-     * Выбранная товарная позиция
-     */
-    selectedItem;
-    HarmBase hs;
+    private int selectedSection;
+    private int
+            selectedSubSection;
+    private int
+            selectedGroup;
+    final HarmBase hs;
 
     /**
      * Создание новой модели.
@@ -132,6 +112,6 @@ public class ModelForTree {
      *
      */
     public void selectItem(String item) {
-        this.selectedItem = Arrays.asList(itemList).indexOf(item);
+        int selectedItem = Arrays.asList(itemList).indexOf(item);
     }
 }

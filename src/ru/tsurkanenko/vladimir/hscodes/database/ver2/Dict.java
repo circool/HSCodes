@@ -1,7 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes.database.ver2;
 
-import java.text.ParseException;
-
 /**
  * Инкапсулирует массивы разделов, групп и товарных позиций в один объект
  * и предоставляет методы для работы с ними
@@ -28,7 +26,7 @@ public class Dict {
         final String regexTovSubPos_TOV_POZ = "$2";
         final String regexTovSubPos_SUB_POZ = "$3";
         final String regexTovSubPos_KR_NAIM = "$4";
-        private Razdel[] razdel;
+        private final Razdel[] razdel;
 
     public Dict() {
         String[] dataLines;

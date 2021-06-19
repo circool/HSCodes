@@ -9,7 +9,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-class Gruppa extends DictNoted {
+public class Gruppa extends DictNoted {
     private String parentRazdel;
     private String gruppa;
 
@@ -43,6 +43,10 @@ class Gruppa extends DictNoted {
      */
     public String getGruppaCode() {
         return gruppa;
+    }
+
+    public String toString(){
+        return parentRazdel + gruppa + " " + this.getNaim();
     }
 
 }

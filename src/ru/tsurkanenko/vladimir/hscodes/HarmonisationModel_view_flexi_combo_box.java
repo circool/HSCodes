@@ -10,7 +10,10 @@ import java.util.Arrays;
 public class HarmonisationModel_view_flexi_combo_box {
     final public HarmonisationBase base;
     public int selectedSection, selectedGroup, selectedPosition, selectedItem;
-    public String[] sectionList, groupList, positionList, itemList;
+    public final String[] sectionList;
+    public String[] groupList;
+    public String[] positionList;
+    public String[] itemList;
     public String[] groupNotes;
     public String fullDescription;
 

@@ -11,7 +11,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-class TovPoz extends DictCommon{
+public class TovPoz extends DictCommon{
     private String tovGruppa;
     private String tovPoz;
 
@@ -42,6 +42,10 @@ class TovPoz extends DictCommon{
      */
     public String getTovPozCode() {
         return tovPoz;
+    }
+
+    public String toString() {
+        return tovGruppa + tovPoz + " " + getNaim();
     }
 
 }

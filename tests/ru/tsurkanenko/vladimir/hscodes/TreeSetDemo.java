@@ -3,7 +3,7 @@ package ru.tsurkanenko.vladimir.hscodes;
 import java.util.TreeSet;
 import ru.tsurkanenko.vladimir.hscodes.RawLines;
 class HarmTreeSet {
-    private TreeSet<HarmoItem> hsTree;
+    private final TreeSet<HarmoItem> hsTree;
 
 
     public HarmTreeSet(String fileName) {
@@ -12,10 +12,7 @@ class HarmTreeSet {
         String regexCode = "^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$";
         String regexDescription = "^[0-9|]+(.*?)\\|.*";
 
-        for (String singleLine:dataLines
-             ) {
-            //hsTree.add(new HSGroup((singleLine.replaceAll(regexCode,"$1$2$3"),singleLine.replaceAll(regexDescription,"$1"), singleLine.replaceAll(regexNote,"$1")));
-        }
+        //hsTree.add(new HSGroup((singleLine.replaceAll(regexCode,"$1$2$3"),singleLine.replaceAll(regexDescription,"$1"), singleLine.replaceAll(regexNote,"$1")));
 
     }
 
@@ -27,7 +24,8 @@ class HarmTreeSet {
 }
 
 class HarmoItem implements Comparable<HarmoItem> {
-    private String code,description;
+    private final String code;
+    private final String description;
 
     public HarmoItem(String code, String description) {
         this.code = code;

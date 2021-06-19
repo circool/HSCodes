@@ -7,11 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.util.Objects;
 @Deprecated
-/**
- * Основной класс приложения, запускающий модель MVC FXML
- * @author Vladimir Tsurkanenko
- * @version 0.2
- */
 public class MainForComboBoxViewV2 extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{

@@ -4,7 +4,6 @@ import ru.tsurkanenko.vladimir.hscodes.RawLines;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Коллекция элементов справочника организованная в виде массива
@@ -17,22 +16,22 @@ public class SimplePositionSet {
     final int[] indexLastOne= new int[10];
 
     public SimplePositionSet(String fileNameGroups, String fileNameItems) {
-        ArrayList group  = new ArrayList<SimpleItem>();
+        ArrayList<SimpleItem> group  = new ArrayList<>();
 
         String[] dataLines = new RawLines(fileNameGroups).getRawData();
-        for (int i = 0; i < dataLines.length; i++) {
-            group.add(new SimpleItem(dataLines[i]));
+        for (String line : dataLines) {
+            group.add(new SimpleItem(line));
         }
         dataLines = new RawLines(fileNameItems).getRawData();
-        for (int i = 0; i < dataLines.length; i++) {
-            Boolean x = dataLines[i].substring(6).startsWith("000000");
-            if(dataLines[i].substring(6).startsWith("000000"))
-                group.add(new SimpleItem(dataLines[i].replaceAll("^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$",
-                        "$1$2$3").substring(0,4),dataLines[i].replaceAll("^[0-9|]+(.*?)\\|.*","$1")
+        for (String dataLine : dataLines) {
+            //Boolean x = dataLine.substring(6).startsWith("000000");
+            if (dataLine.substring(6).startsWith("000000"))
+                group.add(new SimpleItem(dataLine.replaceAll("^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$",
+                        "$1$2$3").substring(0, 4), dataLine.replaceAll("^[0-9|]+(.*?)\\|.*", "$1")
                 ));
         }
         Collections.sort(group);
-        items = (SimpleItem[]) group.toArray(new SimpleItem[group.size()]);
+        items = group.toArray(new SimpleItem[0]);
         // Индексация
         for(int i=0; i<items.length;i++){
             String firstOneLetter = items[i].getCode().substring(0,1);

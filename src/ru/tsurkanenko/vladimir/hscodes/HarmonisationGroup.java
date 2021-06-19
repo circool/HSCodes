@@ -8,7 +8,7 @@ package ru.tsurkanenko.vladimir.hscodes;
  * @author Vladimir Tsurkanenko
  */
 class HarmonisationGroup extends HarmonisationItem {
-    String[] note;
+    final String[] note;
 
     /**
      * Конструктор создает новый обьект из строки сырых данных, вычленяя из них код, описание и примечание
@@ -16,7 +16,7 @@ class HarmonisationGroup extends HarmonisationItem {
      */
     HarmonisationGroup(String fileName) {
         super(fileName);
-        String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";
+        String regexNote = "^[0-9|]*.*?\\|(.*?)\\|.*$";
         String regexFormattingWhat = "([;:])";
         String regexFormattingReplace = "$1\n";
         String[] dataLines = new RawLines(fileName).getRawData();

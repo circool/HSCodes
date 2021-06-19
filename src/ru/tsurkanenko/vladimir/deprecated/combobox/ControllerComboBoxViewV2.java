@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
  * Контроллер (Controller) ModelForComboBox-View-Controller
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
  * @author Vladimir Tsurkanenko
- * @version 1.0
+ * @version 0.2
  */
 @Deprecated
 public class ControllerComboBoxViewV2 implements Initializable {
@@ -37,14 +37,6 @@ public class ControllerComboBoxViewV2 implements Initializable {
         comboBoxLevel2.setValue(modelForComboBox.getSelectedItem());
         //labelItemDescription.setText(modelForComboBox.getItemDescription());
     }
-
-    /**
-     *  Действия, выполняемые при изменении состояния выпадающего списка Разделы
-     */
-
-    /**
-     *  Действия, выполняемые при изменении состояния выпадающего списка Группы
-     */
 
     /**
      *  Действия, выполняемые при изменении состояния выпадающего списка Подгруппы

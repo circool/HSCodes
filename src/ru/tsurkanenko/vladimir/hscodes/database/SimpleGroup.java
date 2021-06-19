@@ -10,7 +10,7 @@ class SimpleGroup extends SimpleItem {
 
     public SimpleGroup(String rawLine) {
         super(rawLine);
-        String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";
+        String regexNote = "^[0-9|]*.*?\\|(.*?)\\|.*$";
         this.note = rawLine.replaceAll(regexNote, "$1");
     }
 

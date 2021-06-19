@@ -131,10 +131,10 @@ public class HSGroup {
      * @return список субпозиций
      */
     public String[] getSubList(String arg, int level){
-        String prefix="";
+        StringBuilder prefix= new StringBuilder();
         for(int i = 1; i <= level; i++){
-            prefix += (char)45;
-            prefix += (char)160;
+            prefix.append((char) 45);
+            prefix.append((char) 160);
         }
 
         int totalFound = 0;
@@ -145,7 +145,7 @@ public class HSGroup {
             }
             else {
                 if (code[i].startsWith(arg) &&
-                        description[i].startsWith(prefix) &&
+                        description[i].startsWith(prefix.toString()) &&
                         (description[i].lastIndexOf(45) < (prefix.length())))
                     totalFound++;
             }
@@ -163,7 +163,7 @@ public class HSGroup {
         }
         else {
             for (int i = 0; i < size; i++) {
-                if (code[i].startsWith(arg) && description[i].startsWith(prefix) && (description[i].lastIndexOf(45)<(prefix.length()))){
+                if (code[i].startsWith(arg) && description[i].startsWith(prefix.toString()) && (description[i].lastIndexOf(45)<(prefix.length()))){
                     result[totalFound] = code[i].substring(0,5) + " " + description[i];
                     totalFound++;
                 }

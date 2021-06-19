@@ -5,8 +5,8 @@ package ru.tsurkanenko.vladimir.hscodes;
  * @author Vladimir Tsurkanenko
  */
 class HarmonisationItem {
-    String[] code;
-    String[] description;
+    final String[] code;
+    final String[] description;
     final int[] indexFirstOne = new int[10];
     final int[] indexLastOne= new int[10];
 

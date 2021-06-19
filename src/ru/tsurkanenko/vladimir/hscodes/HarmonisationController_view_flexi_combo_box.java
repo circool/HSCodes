@@ -65,8 +65,6 @@ public class HarmonisationController_view_flexi_combo_box implements Initializab
 
     /**
      * Инициализация представления и модели
-     * @param location
-     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

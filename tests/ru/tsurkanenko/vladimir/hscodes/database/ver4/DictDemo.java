@@ -25,7 +25,7 @@ class DictDemo {
                         System.out.println("\t\tТоварные субпозиции:");
                         for(TovSubPoz curTovSubPos:result3){
                             if(curTovSubPos.isActual() )
-                                System.out.println("\t\t" + curTovSubPos.ParentGruppaCode()+ "" + curTovSubPos.getTovPozCode()+ " " + curTovSubPos.getTovSubPozCode().substring(0,1) + " " + curTovSubPos.getTovSubPozCode().substring(1) + ": " + curTovSubPos.getNaim());
+                                System.out.println("\t\t" + curTovSubPos.ParentGruppaCode()+ "" + curTovSubPos.getTovPozCode()+ " " + curTovSubPos.getTovSubPozCode().charAt(0) + " " + curTovSubPos.getTovSubPozCode().substring(1) + ": " + curTovSubPos.getNaim());
                         }
                     }
                 }

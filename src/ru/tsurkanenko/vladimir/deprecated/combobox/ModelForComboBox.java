@@ -4,12 +4,6 @@ import ru.tsurkanenko.vladimir.deprecated.HarmBase;
 
 import java.util.Arrays;
 @Deprecated
-/**
- * Модель (ModelForComboBox) ModelForComboBox-View-Controller
- * Модель хранит свое состояние и предоставляет данные Представлению (View) реагируя на команды Контроллера (Controller)
- * @author Vladimir Tsurkanenko
- * @version 0.1
- */
 public class ModelForComboBox {
     /**
      * Комментарий к выбранному разделу
@@ -261,11 +255,11 @@ public class ModelForComboBox {
      */
     public void setItemList() {
         String[] result;
-        //result = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),1);
-        //if(result.length == 0)
-            //this.itemList = hs.getItem().getSubList(subGroupList[selectedSubGroup].substring(0,4),0);
-        //else
-            //this.itemList = result;
+        result = hs.getItems().getItemsView(subGroupList[selectedSubGroup].substring(0, 4));
+        if(result.length == 0)
+            this.itemList = hs.getItems().getItemsView(subGroupList[selectedSubGroup].substring(0,4));
+        else
+            this.itemList = result;
     }
     public String[] getSubSections(String code){
         //groupList = hs.getGroup().getList();
@@ -293,9 +287,6 @@ public class ModelForComboBox {
      * @return список
      */
     String[] getSubPositions(String code, int nestlingLevel){
-        String[] result = new String[1];
-        //while((result = hs.getChapter().getList(code, nestlingLevel)).length == 0 || nestlingLevel < 10)
-        //    nestlingLevel++;
-        return result;
+        return new String[1];
     }
 }

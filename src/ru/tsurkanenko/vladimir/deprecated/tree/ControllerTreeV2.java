@@ -1,7 +1,5 @@
 package ru.tsurkanenko.vladimir.deprecated.tree;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
@@ -10,10 +8,6 @@ import javafx.scene.control.TreeView;
 import java.net.URL;
 import java.util.ResourceBundle;
 @Deprecated
-/**
- * Контроллер для варианта, использующего View с древовидным списком.
- * @version 0.2
- */
 public class ControllerTreeV2 implements Initializable {
     @FXML
     TreeView<String> mainTree;

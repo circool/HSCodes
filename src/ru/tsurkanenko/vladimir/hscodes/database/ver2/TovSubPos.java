@@ -1,8 +1,6 @@
 package ru.tsurkanenko.vladimir.hscodes.database.ver2;
 
 
-import java.text.ParseException;
-
 /**
  * Класс для описания товарных под-позиций ТНВЭД
  * Наследует класс TovPos {@inheritDoc}

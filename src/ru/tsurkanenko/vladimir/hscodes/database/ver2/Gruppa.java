@@ -1,7 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes.database.ver2;
 
-import java.text.ParseException;
-
 /**
  * Класс для описания товарных групп ТНВЭД
  * Наследует класс Razdel {@inheritDoc}

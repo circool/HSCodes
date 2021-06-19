@@ -10,9 +10,6 @@ package ru.tsurkanenko.vladimir.deprecated;
 @Deprecated
 public class HarmGroup extends HarmItem{
     private String note;
-    final private String regexNote = "^[0-9\\|]*.*?\\|(.*?)\\|.*$";
-    final private String regexFormattingWhat = "([;:])";
-    final private String regexFormattingReplace = "$1\n";
 
     /**
      * Конструктор, создающий из сырой строки отдельные элементы - описание, код и примечание
@@ -21,8 +18,11 @@ public class HarmGroup extends HarmItem{
      */
     public HarmGroup(String rawData) {
         super(rawData);
+        String regexNote = "^[0-9|]*.*?\\|(.*?)\\|.*$";
         this.note = rawData.replaceAll(regexNote,"$1");
-        this.note = this.note.replaceAll(regexFormattingWhat,regexFormattingReplace);
+        String regexFormattingReplace = "$1\n";
+        String regexFormattingWhat = "([;:])";
+        this.note = this.note.replaceAll(regexFormattingWhat, regexFormattingReplace);
     }
 
     /**

@@ -9,7 +9,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-class Razdel extends DictNoted {
+public class Razdel extends DictNoted {
     private String razdel;
 
     public Razdel(){

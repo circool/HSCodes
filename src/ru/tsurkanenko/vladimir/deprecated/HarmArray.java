@@ -3,9 +3,9 @@ package ru.tsurkanenko.vladimir.deprecated;
 import ru.tsurkanenko.vladimir.hscodes.RawLines;
 @Deprecated
 public class HarmArray {
-    HarmItem[] itemsArray;
+    final HarmItem[] itemsArray;
     private final int[] indexFirstOne = { 0,0,0,0,0,0,0,0,0,0 };
-    private int[] indexLastOne = { 0,0,0,0,0,0,0,0,0,0 };
+    private final int[] indexLastOne = { 0,0,0,0,0,0,0,0,0,0 };
 
     /**
      * Создание нового массива с разделами, подразделами, товарными группы или товарными позициями.

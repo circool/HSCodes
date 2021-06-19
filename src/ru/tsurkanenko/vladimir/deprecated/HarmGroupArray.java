@@ -11,8 +11,7 @@ import ru.tsurkanenko.vladimir.hscodes.RawLines;
  */
 @Deprecated
 public class HarmGroupArray extends HarmArray {
-    private String[] notes;
-    //private final String regexNote = "";
+    private final String[] notes;
 
     /**
      * Создание нового раздела/подраздела.

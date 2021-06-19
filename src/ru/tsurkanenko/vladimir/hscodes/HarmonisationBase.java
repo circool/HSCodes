@@ -6,8 +6,10 @@ package ru.tsurkanenko.vladimir.hscodes;
  * @author Vladimir Tsurkanenko
  */
 class HarmonisationBase {
-    private HarmonisationGroup sections, groups;
-    private HarmonisationItem positions, items;
+    private final HarmonisationGroup sections;
+    private final HarmonisationGroup groups;
+    private final HarmonisationItem positions;
+    private final HarmonisationItem items;
 
     HarmonisationBase() {
         sections = new HarmonisationGroup("dic/TNVED1.TXT");

@@ -7,8 +7,8 @@ package ru.tsurkanenko.vladimir.deprecated;
  */
 @Deprecated
 public class HarmItem {
-    private String code;
-    private String description;
+    private final String code;
+    private final String description;
     final String regexCode = "^([0-9]+)\\|([0-9]*)\\|*([0-9]*)\\|*.*$";
     final String regexDescription = "^[0-9|]+(.*?)\\|.*";
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-class Dict {
+public class Dict {
 
     private final Razdel[] razdel;
     private final Gruppa[] gruppa;
@@ -106,7 +106,7 @@ class Dict {
         ArrayList<Gruppa> totalFound = new ArrayList<>();
         for (Gruppa currGruppa:this.getGruppa()
              ) {
-            if(currGruppa.getGruppaCode().equals(parentRazdel))
+            if(currGruppa.getParentRazdelCode().equals(parentRazdel))
                 totalFound.add(currGruppa);
         }
         Gruppa[] result = new Gruppa[totalFound.size()];
@@ -190,6 +190,7 @@ class Dict {
      * @param parentGruppa Код родительской товарной группы
      * @param parentTovPos Код родительской товарной позиции
      */
+    //TODO Список товарных подпозиций формируется без учета вложенности. Нужно разобраться, как это исправить
     public TovSubPoz[] getChildrenTovSubPos(String parentGruppa, String parentTovPos){
         ArrayList<TovSubPoz> totalFound = new ArrayList<>();
         for (TovSubPoz currTovSubPos:this.getTovSubPoz()

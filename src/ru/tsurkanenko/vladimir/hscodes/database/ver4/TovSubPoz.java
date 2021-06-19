@@ -10,7 +10,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-class TovSubPoz extends TovPoz {
+public class TovSubPoz extends TovPoz {
     private String tovSubPoz;
 
     TovSubPoz(){
@@ -36,4 +36,7 @@ class TovSubPoz extends TovPoz {
         return tovSubPoz;
     }
     public String getParentTovPozCode() {return this.getTovPozCode();}
+    public String toString() {
+        return this.getParentTovPozCode() + tovSubPoz + " " + getNaim();
+    }
 }

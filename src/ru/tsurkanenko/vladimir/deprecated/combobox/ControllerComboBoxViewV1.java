@@ -8,13 +8,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Deprecated
-/**
- * Контроллер (ControllerComboBoxViewV1) ModelForComboBox-View-Controller
- * В качестве представления используется viewcomboboxviewv1.fxml
- * интерпретирует действия пользователя, оповещая модель о необходимости изменений
- * @author Vladimir Tsurkanenko
- * @version 0.1
- */
 public class ControllerComboBoxViewV1 implements Initializable {
     @FXML private ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxSubGroup,comboBoxItem;
     @FXML private Label labelSectionNote, labelGroupNote, labelItemDescription;

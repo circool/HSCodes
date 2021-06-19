@@ -10,9 +10,9 @@ public class HSChapter {
     private String[] code;
     private String[] description;
     private int size;
-    final String lineRegex = "^[0-9\\|]+.+?\\|[0-9\\.]+\\|{2}$";
+    final String lineRegex = "^[0-9|]+.+?\\|[0-9.]+\\|{2}$";
     final String codeRegex = "^(\\d\\d)\\|(\\d\\d)\\|(\\d*)(.*)";
-    final String DescriptionRegex = "(^[0-9\\|]+)(.+?)(\\|[0-9\\|.]+)$";
+    final String DescriptionRegex = "(^[0-9|]+)(.+?)(\\|[0-9|.]+)$";
     final String dateRegex = "(\\d{2}\\.\\d{2}\\.\\d{4}\\|)+$";
 
     public HSChapter(String fileName){
@@ -78,10 +78,10 @@ public class HSChapter {
         String[] code = this.getList(arg);
 
 
-        String prefix="";
+        StringBuilder prefix= new StringBuilder();
         for(int i = 1; i <= nestlingLevel; i++){
-            prefix += (char)45;
-            prefix += (char)160;
+            prefix.append((char) 45);
+            prefix.append((char) 160);
         }
 
         int totalFound = 0;
@@ -92,7 +92,7 @@ public class HSChapter {
             }
             else {
                 if (code[i].startsWith(arg) &&
-                        description[i].startsWith(prefix) &&
+                        description[i].startsWith(prefix.toString()) &&
                         (description[i].lastIndexOf(45) < (prefix.length())))
                     totalFound++;
             }
@@ -110,7 +110,7 @@ public class HSChapter {
         }
         else {
             for (int i = 0; i < size; i++) {
-                if (code[i].startsWith(arg) && description[i].startsWith(prefix) && (description[i].lastIndexOf(45)<(prefix.length()))){
+                if (code[i].startsWith(arg) && description[i].startsWith(prefix.toString()) && (description[i].lastIndexOf(45)<(prefix.length()))){
                     result[totalFound] = code[i].substring(0,5) + " " + description[i];
                     totalFound++;
                 }

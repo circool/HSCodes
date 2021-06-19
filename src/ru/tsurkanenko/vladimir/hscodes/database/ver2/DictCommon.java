@@ -1,7 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes.database.ver2;
 
-import javafx.scene.control.ComboBox;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,8 +88,8 @@ class DictCommon {
     }
 
     <T extends Comparable<T>> boolean haveItem(T x) {
-        for (int i = 0; i < mainCode.length; i++) {
-            if(x.equals(mainCode[i])) return true;
+        for (char c : mainCode) {
+            if (x.equals(c)) return true;
         }
         return false;
     }

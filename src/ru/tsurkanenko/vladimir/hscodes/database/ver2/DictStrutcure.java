@@ -20,9 +20,7 @@ class DictStructureTest{
         Razdel demoRazdel;
         Gruppa demoGruppa;
 // Перебор всех разделов
-        char[] x = new char[2];
-        x[0] = (char) '2';
-        x[1] = (char) '2';
+
         dataLines = new RawLines("dic/TNVED1.TXT").getRawData();
         System.out.println("-------- Перебор всех разделов --------");
         for (String rawLine:dataLines
@@ -48,7 +46,7 @@ class DictStructureTest{
 
 
 // Перебор всех групп
-        /*{
+        {
         dataLines = new RawLines("dic/TNVED2.TXT").getRawData();
         System.out.println("-------- Перебор всех разделов --------");
         for (String rawLine:dataLines
@@ -70,9 +68,9 @@ class DictStructureTest{
             System.out.println(demoGruppa.getStartData() + " : " + demoGruppa.getEndData());
             //System.out.println(demoGruppa.getEndData());
             System.out.println("--------");
-        }}*/
+        }}
 // Перебор товарных позиций
-       /* {
+        {
         dataLines = new RawLines("dic/TNVED3.TXT").getRawData();
         System.out.println("-------- Перебор всех товарных позиций --------");
         for (String rawLine:dataLines
@@ -93,9 +91,9 @@ class DictStructureTest{
 
             System.out.println("--------");
         }
-    }*/
+    }
 // Перебор товарных под-позиций
-        /*dataLines = new RawLines("dic/TNVED4.TXT").getRawData();
+        dataLines = new RawLines("dic/TNVED4.TXT").getRawData();
         System.out.println("-------- Перебор всех товарных подпозиций --------");
         for (String rawLine:dataLines
         ) {
@@ -117,7 +115,7 @@ class DictStructureTest{
             System.out.println(demoTovSubPos.getStartData() + " : " + demoTovSubPos.getEndData());
             System.out.println("Действующий? " + demoTovSubPos.isActual());
             System.out.println("--------");
-        }*/
+        }
 
 
     }
