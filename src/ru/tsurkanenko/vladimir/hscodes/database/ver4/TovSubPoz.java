@@ -35,6 +35,6 @@ public class TovSubPoz extends TovPoz {
     }
     public String getParentTovPozCode() {return this.getTovPozCode();}
     public String toString() {
-        return this.getParentTovPozCode() + tovSubPoz + " " + getNaim();
+        return this.getParentGruppaCode() + this.getParentTovPozCode() + tovSubPoz + " " + getNaim();
     }
 }

@@ -12,10 +12,6 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
 public class Razdel extends DictNoted {
     private String razdel;
 
-    //public Razdel(){
-        //super();
-    //}
-
     /**
      * Конструктор
      * Создает новый объект инкапсулирующий данные о разделе ТНВЭД
