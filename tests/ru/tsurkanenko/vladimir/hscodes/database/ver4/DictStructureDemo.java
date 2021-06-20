@@ -53,7 +53,7 @@ class DictStructureDemo {
         for (String rawLine:dataLines
         ) {
             TovPoz demoTovPos = new TovPoz(rawLine);
-            System.out.print(demoTovPos.ParentGruppaCode());
+            System.out.print(demoTovPos.getParentGruppaCode());
             System.out.print("-");
             System.out.println(demoTovPos.getTovPozCode());
             System.out.println("Наименование: " + demoTovPos.getNaim());
@@ -68,7 +68,7 @@ class DictStructureDemo {
         for (String rawLine:dataLines
         ) {
             TovSubPoz demoTovSubPos = new TovSubPoz(rawLine);
-            System.out.print(demoTovSubPos.ParentGruppaCode());
+            System.out.print(demoTovSubPos.getParentGruppaCode());
             System.out.print("-");
             System.out.print(demoTovSubPos.getTovPozCode());
             System.out.print("-");

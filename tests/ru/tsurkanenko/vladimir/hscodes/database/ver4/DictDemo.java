@@ -19,13 +19,13 @@ class DictDemo {
                 ) {
                     if(curTovPos.isActual()) {
 
-                        System.out.println("\t" + curTovPos.ParentGruppaCode() + "" + curTovPos.getTovPozCode() + " " + curTovPos.getNaim());
+                        System.out.println("\t" + curTovPos.getParentGruppaCode() + "" + curTovPos.getTovPozCode() + " " + curTovPos.getNaim());
 
-                        TovSubPoz[] result3 = demo.getChildrenTovSubPos(curTovPos.ParentGruppaCode(),curTovPos.getTovPozCode());
+                        TovSubPoz[] result3 = demo.getChildrenTovSubPos(curTovPos.getParentGruppaCode(),curTovPos.getTovPozCode());
                         System.out.println("\t\tТоварные субпозиции:");
                         for(TovSubPoz curTovSubPos:result3){
                             if(curTovSubPos.isActual() )
-                                System.out.println("\t\t" + curTovSubPos.ParentGruppaCode()+ "" + curTovSubPos.getTovPozCode()+ " " + curTovSubPos.getTovSubPozCode().charAt(0) + " " + curTovSubPos.getTovSubPozCode().substring(1) + ": " + curTovSubPos.getNaim());
+                                System.out.println("\t\t" + curTovSubPos.getParentGruppaCode()+ "" + curTovSubPos.getTovPozCode()+ " " + curTovSubPos.getTovSubPozCode().charAt(0) + " " + curTovSubPos.getTovSubPozCode().substring(1) + ": " + curTovSubPos.getNaim());
                         }
                     }
                 }
