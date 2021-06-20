@@ -13,9 +13,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
 public class TovSubPoz extends TovPoz {
     private String tovSubPoz;
 
-    TovSubPoz(){
-        super();
-    }
+
 
     /**
      * Конструктор

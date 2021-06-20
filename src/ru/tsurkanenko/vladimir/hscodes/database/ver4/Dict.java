@@ -68,7 +68,7 @@ public class Dict {
             if (value.getRazdelCode().equals(code))
                 return value;
         }
-        return new Razdel();
+        return new Razdel("");
     }
 
     /**
@@ -96,7 +96,7 @@ public class Dict {
             if (value.getGruppaCode().equals(code))
                 return value;
         }
-        return new Gruppa();
+        return new Gruppa("");
     }
     /**
      * Возвращает массив с дочерними группами
@@ -137,10 +137,10 @@ public class Dict {
      */
     public TovPoz getTovPoz(String gruppa, String tovPoz) {
         for (TovPoz tovPos : this.tovPoz) {
-            if (tovPos.ParentGruppaCode().equals(gruppa) & tovPos.getTovPozCode().equals(tovPoz))
+            if (tovPos.getParentGruppaCode().equals(gruppa) & tovPos.getTovPozCode().equals(tovPoz))
                 return tovPos;
         }
-        return new TovPoz();
+        return new TovPoz("");
     }
     /**
      * Возвращает массив с дочерними позициями
@@ -150,7 +150,7 @@ public class Dict {
         ArrayList<TovPoz> totalFound = new ArrayList<>();
         for (TovPoz currTovPos:this.getTovPoz()
         ) {
-            if(currTovPos.ParentGruppaCode().equals(parentGruppa))
+            if(currTovPos.getParentGruppaCode().equals(parentGruppa))
                 totalFound.add(currTovPos);
         }
         TovPoz[] result = new TovPoz[totalFound.size()];
@@ -180,10 +180,10 @@ public class Dict {
      */
     public TovSubPoz getTovSubPos(String gruppa, String tovPoz, String tovSubPoz) {
         for (TovSubPoz currTovSubPoz : this.tovSubPoz) {
-            if (currTovSubPoz.ParentGruppaCode().equals(gruppa) & currTovSubPoz.getTovPozCode().equals(tovPoz) & currTovSubPoz.getTovSubPozCode().equals(tovSubPoz))
+            if (currTovSubPoz.getParentGruppaCode().equals(gruppa) & currTovSubPoz.getTovPozCode().equals(tovPoz) & currTovSubPoz.getTovSubPozCode().equals(tovSubPoz))
                 return currTovSubPoz;
         }
-        return new TovSubPoz();
+        return new TovSubPoz("");
     }
     /**
      * Возвращает массив с дочерними подпозициями
@@ -195,7 +195,7 @@ public class Dict {
         ArrayList<TovSubPoz> totalFound = new ArrayList<>();
         for (TovSubPoz currTovSubPos:this.getTovSubPoz()
         ) {
-            if(currTovSubPos.ParentGruppaCode().equals(parentGruppa) & currTovSubPos.getTovPozCode().equals(parentTovPos))
+            if(currTovSubPos.getParentGruppaCode().equals(parentGruppa) & currTovSubPos.getTovPozCode().equals(parentTovPos))
                 totalFound.add(currTovSubPos);
         }
         TovSubPoz[] result = new TovSubPoz[totalFound.size()];

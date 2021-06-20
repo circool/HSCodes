@@ -15,9 +15,7 @@ public class TovPoz extends DictCommon{
     private String tovGruppa;
     private String tovPoz;
 
-    TovPoz(){
-        super();
-    }
+
     /**
      * Конструктор
      * Создает новый объект инкапсулирующий данные о товарной позиции ТНВЭД
@@ -28,11 +26,12 @@ public class TovPoz extends DictCommon{
         tovGruppa = rawLine.replaceAll("^([0-9]{2})\\|[0-9]{2}.*$","$1");
         tovPoz = rawLine.replaceAll("^[0-9]{2}\\|([0-9]{2}).*$","$1");
     }
+
     /**
      * Возвращает код товарной группы GRUPPA
      * @return Код товарной  группы
      */
-    public String ParentGruppaCode() {
+    public String getParentGruppaCode() {
         return tovGruppa;
     }
 

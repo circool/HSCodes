@@ -21,9 +21,7 @@ class DictCommon {
     private Date endData;
     private Date noData;
 
-    public DictCommon(){
-        naim = "";
-    }
+
 
     /**
      * Конструктор для создания объекта из строки с сырыми данными

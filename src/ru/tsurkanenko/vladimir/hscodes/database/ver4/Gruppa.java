@@ -14,9 +14,9 @@ public class Gruppa extends DictNoted {
     private String gruppa;
 
 
-    Gruppa(){
+    /*Gruppa(){
         super();
-    }
+    }*/
     /**
      * Конструктор
      * Создает новый объект инкапсулирующий данные о товарной группе ТНВЭД

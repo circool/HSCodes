@@ -13,10 +13,13 @@ import java.util.List;
  * @version 0.4
  * @since 0.4
  */
-@SuppressWarnings("rawtypes")
-public class RawLines extends ArrayList {
+
+public class RawLines {
+
     private String[] rawData;
-    private final String regexGarbage = " | Н |\\s\\s+|\\s+\\||\\|\\s+";
+
+
+    private final String regexGarbage = " | Н |\\s{2,}+";
 
     /**
      * Читает файл, имя которого получено в качестве аргумента и формирует массив, содержащий строки,
@@ -24,7 +27,7 @@ public class RawLines extends ArrayList {
      *
      * @param fileName имя файла с данными
      */
-    public RawLines(String fileName) {
+    RawLines(String fileName) {
         try {
             BufferedReader sourceFile =
                     new BufferedReader(new FileReader(fileName));
@@ -41,6 +44,8 @@ public class RawLines extends ArrayList {
             System.err.println("Ошибка чтения файла " + fileName);
         }
     }
+
+
 
     /**
      * Возвращает инкапсулированный строковый массив с данными, включая устаревшие.

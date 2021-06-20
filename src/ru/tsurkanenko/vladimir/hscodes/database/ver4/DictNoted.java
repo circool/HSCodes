@@ -12,8 +12,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
 public class DictNoted extends DictCommon {
     private String prim;
 
-    public DictNoted() {
-    }
+
 
     public DictNoted(String rawLine) {
         super(rawLine);
