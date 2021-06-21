@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import ru.tsurkanenko.vladimir.hscodes.mvc.Model;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +14,7 @@ import java.util.ResourceBundle;
  * Предназначен для представления, реализующего древовидное представление данных справочника
  * Контроллер отслеживает изменения элементов управления Представления и передает ему обновленные данные,
  * получая их от Модели
- * @see ru.tsurkanenko.vladimir.hscodes.mvc.tree.Model
+ * @see Model
  * @author Vladimir Tsurkanenko
  * @version 0.4
  * @since 0.4
@@ -76,7 +77,7 @@ public class Controller implements Initializable {
         // раскрываем узел
         root.setExpanded(true);
     }
-    // Обработка элементов управыления Представления
+    // Обработка элементов управления Представления
     @FXML void buttonCloseOnAction(){
         System.exit(0);
     }

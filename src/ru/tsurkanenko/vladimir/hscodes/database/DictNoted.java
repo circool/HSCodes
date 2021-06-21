@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.database.ver4;
+package ru.tsurkanenko.vladimir.hscodes.database;
 
 /**
  * Класс для описания элементов ТНВЭД, содержащих примечания

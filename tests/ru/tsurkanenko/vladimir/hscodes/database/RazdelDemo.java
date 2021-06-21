@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.database.ver4;
+package ru.tsurkanenko.vladimir.hscodes.database;
 
 class RazdelDemo {
     public static void main(String[] args) {

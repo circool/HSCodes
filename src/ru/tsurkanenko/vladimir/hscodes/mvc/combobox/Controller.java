@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import ru.tsurkanenko.vladimir.hscodes.mvc.Model;
 
 
 import java.net.URL;
@@ -25,18 +26,17 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         model = new Model();
         //Раздел
         comboBoxSection.getItems().setAll(model.getSectionList());
         comboBoxSection.setValue(comboBoxSection.getItems().get(0));
         model.selectSection(comboBoxSection.getValue());
-        //labelSectionNote.setText(model.getSectionNote());
+        labelSectionNote.setText(model.getSectionNote());
         //Товарная группа
         comboBoxGroup.getItems().setAll(model.getGroupList());
         comboBoxGroup.setValue(comboBoxGroup.getItems().get(0));
         model.selectGroup(comboBoxSection.getItems().get(0).substring(0,2) + comboBoxGroup.getValue().substring(2));
-        //labelGroupNote.setText(model.getGroupNote());
+        labelGroupNote.setText(model.getGroupNote());
         //Товарная позиция
         comboBoxPosition.getItems().setAll(model.getPositionList());
         comboBoxPosition.setValue(comboBoxPosition.getItems().get(0));
@@ -45,13 +45,7 @@ public class Controller implements Initializable {
         comboBoxSubPosition.getItems().setAll(model.getSubPositionList());
         comboBoxSubPosition.setValue(comboBoxSubPosition.getItems().get(0));
         model.selectSubPosition(comboBoxSubPosition.getValue());
-        /*labelItemDescription.setText(
-                model.getSectionList()[model.selectedSection].substring(3) + "\n\t" +
-                        model.getSubSectionList()[model.selectedSubSection].substring(5) + "\n\t\t" +
-                        model.getGroupList()[model.selectedGroup].substring(5) + "\n\t\t\t" +
-                        model.getItemList()[model.selectedItem]);
-
-         */
+        labelDescription.setText(model.getDescription());
     }
     public void onActionComboBoxSection(){
         model.selectSection(comboBoxSection.getValue());
@@ -72,9 +66,7 @@ public class Controller implements Initializable {
     }
     public void onActionComboBoxItem(){
         model.selectSubPosition(comboBoxSubPosition.getValue());
-
-        labelDescription.setText(
-                model.getDescription());
+        labelDescription.setText(model.getDescription());
     }
     public void onActionButtonClose(){
         System.exit(1);

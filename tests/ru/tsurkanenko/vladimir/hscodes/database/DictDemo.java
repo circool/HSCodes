@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.database.ver4;
+package ru.tsurkanenko.vladimir.hscodes.database;
 
 class DictDemo {
     public static void main(String[] args) {
