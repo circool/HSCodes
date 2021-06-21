@@ -1,8 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes.database.ver4;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 class SubPosDemo {
     public static void main(String[] args) {
         Dict test = new Dict();
@@ -17,7 +14,6 @@ class SubPosDemo {
         System.out.println("getTovSubPoz: " + test.getTovSubPoz(9).getTovSubPozCode());
         System.out.println("getNaim: " + test.getTovSubPoz(9).getNaim());
 
-        Date isDate = test.getRazdel(0).getStartData();
-        System.out.println(LocalDate.of(1990, 3, 17));
+
     }
 }

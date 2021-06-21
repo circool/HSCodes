@@ -19,7 +19,7 @@ public class RawLines {
     private String[] rawData;
 
 
-    private final String regexGarbage = " | Н |\\s{2,}+";
+    //private final String regexGarbage = " | Н |\\s{2,}+";
 
     /**
      * Читает файл, имя которого получено в качестве аргумента и формирует массив, содержащий строки,

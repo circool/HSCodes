@@ -137,6 +137,21 @@ public class Model {
      *
      */
     public void selectSubPosition(String item) {
-        int selectedItem = Arrays.asList(subPositionList).indexOf(item);
+        selectedSubPosition = Arrays.asList(subPositionList).indexOf(item);
+    }
+
+    public String getGroupNote() {
+        this.groupNote = "TODO";
+        return groupNote;
+    }
+
+    public String getSectionNote() {
+        this.sectionNote = "TODO";
+        return sectionNote;
+    }
+
+    public String getDescription() {
+        this.itemDescription = "TODO";
+        return itemDescription;
     }
 }

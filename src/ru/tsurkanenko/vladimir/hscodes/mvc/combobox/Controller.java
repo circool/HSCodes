@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  */
 public class Controller implements Initializable {
     @FXML ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxPosition, comboBoxSubPosition;
-    @FXML Label labelSectionNote, labelGroupNote, labelItemDescription;
+    @FXML Label labelSectionNote, labelGroupNote, labelDescription;
     Model model;// = new Model();
 
 
@@ -55,13 +55,13 @@ public class Controller implements Initializable {
     }
     public void onActionComboBoxSection(){
         model.selectSection(comboBoxSection.getValue());
-        //labelSectionNote.setText(model.getSectionNote());
+        labelSectionNote.setText(model.getSectionNote());
         comboBoxGroup.getItems().setAll(model.getGroupList());
         comboBoxGroup.setValue(comboBoxGroup.getItems().get(0));
     }
     public void onActionComboBoxGroup(){
         model.selectGroup(comboBoxGroup.getValue());
-        //labelGroupNote.setText(model.getGroupNote());
+        labelGroupNote.setText(model.getGroupNote());
         comboBoxPosition.getItems().setAll(model.getPositionList());
         comboBoxPosition.setValue(comboBoxPosition.getItems().get(0));
     }
@@ -72,14 +72,9 @@ public class Controller implements Initializable {
     }
     public void onActionComboBoxItem(){
         model.selectSubPosition(comboBoxSubPosition.getValue());
-        /*
-        labelItemDescription.setText(
-                model.selectedSection.substring(3) + "\n\t" +
-                        model.selectedGroup.substring(5) + "\n\t\t" +
-                        model.selectedPosition.substring(5) + "\n\t\t\t" +
-                        model.getItemNote());
 
-         */
+        labelDescription.setText(
+                model.getDescription());
     }
     public void onActionButtonClose(){
         System.exit(1);

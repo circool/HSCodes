@@ -40,21 +40,21 @@ public class Controller implements Initializable {
             root.getChildren().add(new TreeItem<>(section));
             lastSectionTreeItem = root.getChildren().size() - 1;
             model.selectSection(section);
-            subSectionList = model.getSubSectionList();
+            subSectionList = model.getGroupList();
             // для каждого подраздела
             for (String subSection:subSectionList
                  ) {
                 root.getChildren().get(lastSectionTreeItem).getChildren().add(new TreeItem<>(subSection));
-                model.selectSubSection(subSection);
+                model.selectGroup(subSection);
                 lastSubSectionTreeItem = root.getChildren().get(lastSectionTreeItem).getChildren().size() - 1;
-                groupList = model.getGroupList();
+                groupList = model.getPositionList();
                 // для каждой группы
                 for (String group:groupList
                      ) {
                     root.getChildren().get(lastSectionTreeItem).getChildren().get(lastSubSectionTreeItem).getChildren().add(new TreeItem<>(group));
-                    model.selectGroup(group);
+                    model.selectPosition(group);
                     lastGroupTreeView = root.getChildren().get(lastSectionTreeItem).getChildren().get(lastSubSectionTreeItem).getChildren().size()-1;
-                    itemList = model.getItemList();
+                    itemList = model.getSubPositionList();
                     // для каждой товарной позиции
                     for (String item:itemList){
                         root.getChildren().get(lastSectionTreeItem).getChildren().get(lastSubSectionTreeItem).getChildren().get(lastGroupTreeView).getChildren().add(new TreeItem<>(item));
