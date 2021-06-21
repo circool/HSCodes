@@ -8,13 +8,7 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  */
 class DictStructureDemo {
     public static void main(String[] args) {
-        String universalRegexSearch = "^([0-9]{2})\\|*([0-9]*)\\|(.*?)\\|(.*?)\\|([0-9.]*)\\|([0-9.]*)\\|$";
-        String regexMainCode = "$1";
-        String regexSubCode = "$2";
-        String regexNaim = "$3";
-        String regexPrim = "$4";
-        String regexStartDate = "$5";
-        String regexEndDate = "$6";
+
 
         String[] dataLines;
         Razdel demoRazdel;
@@ -53,7 +47,7 @@ class DictStructureDemo {
         for (String rawLine:dataLines
         ) {
             TovPoz demoTovPos = new TovPoz(rawLine);
-            System.out.print(demoTovPos.getParentGruppaCode());
+            System.out.print(demoTovPos.getGruppaCode());
             System.out.print("-");
             System.out.println(demoTovPos.getTovPozCode());
             System.out.println("Наименование: " + demoTovPos.getNaim());
@@ -68,7 +62,7 @@ class DictStructureDemo {
         for (String rawLine:dataLines
         ) {
             TovSubPoz demoTovSubPos = new TovSubPoz(rawLine);
-            System.out.print(demoTovSubPos.getParentGruppaCode());
+            System.out.print(demoTovSubPos.getGruppaCode());
             System.out.print("-");
             System.out.print(demoTovSubPos.getTovPozCode());
             System.out.print("-");

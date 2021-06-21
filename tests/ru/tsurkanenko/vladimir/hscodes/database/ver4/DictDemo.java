@@ -13,19 +13,19 @@ class DictDemo {
             if(curGruppa.isActual()) {
                 System.out.println("Группа:");
                 System.out.println(curGruppa.getGruppaCode() + "" + curGruppa.getGruppaCode() + " " + curGruppa.getNaim());
-                TovPoz[] result2 = demo.getChildrenTovPos(curGruppa.getGruppaCode());
+                TovPoz[] result2 = demo.getChildrenTovPoz(curGruppa.getGruppaCode());
                 System.out.println("\tТоварные позиции:");
                 for (TovPoz curTovPos:result2
                 ) {
                     if(curTovPos.isActual()) {
 
-                        System.out.println("\t" + curTovPos.getParentGruppaCode() + "" + curTovPos.getTovPozCode() + " " + curTovPos.getNaim());
+                        System.out.println("\t" + curTovPos.getGruppaCode() + "" + curTovPos.getTovPozCode() + " " + curTovPos.getNaim());
 
-                        TovSubPoz[] result3 = demo.getChildrenTovSubPos(curTovPos.getParentGruppaCode(),curTovPos.getTovPozCode());
+                        TovSubPoz[] result3 = demo.getChildrenTovSubPoz(curTovPos.getGruppaCode(),curTovPos.getTovPozCode());
                         System.out.println("\t\tТоварные субпозиции:");
                         for(TovSubPoz curTovSubPos:result3){
                             if(curTovSubPos.isActual() )
-                                System.out.println("\t\t" + curTovSubPos.getParentGruppaCode()+ "" + curTovSubPos.getTovPozCode()+ " " + curTovSubPos.getTovSubPozCode().charAt(0) + " " + curTovSubPos.getTovSubPozCode().substring(1) + ": " + curTovSubPos.getNaim());
+                                System.out.println("\t\t" + curTovSubPos.getGruppaCode()+ "" + curTovSubPos.getTovPozCode()+ " " + curTovSubPos.getTovSubPozCode().charAt(0) + " " + curTovSubPos.getTovSubPozCode().substring(1) + ": " + curTovSubPos.getNaim());
                         }
                     }
                 }
