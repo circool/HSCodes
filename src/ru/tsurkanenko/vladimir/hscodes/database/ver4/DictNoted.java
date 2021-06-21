@@ -21,7 +21,8 @@ public class DictNoted extends DictCommon {
         prim = prim.replaceAll("([:;])\\s+((\\()*[а-яА-Я0-9]\\)|\\.)","$1\n$2");
         prim = prim.replaceAll("([.:;])\\s+(\\d+\\.)","$1\n$2");
         prim = prim.replaceAll("(; [ил]+)+\\s+(\\([а-я]\\))","$1\n$2");
-        prim = prim.replaceAll(" "," ");
+        prim = prim.replaceAll("(\\.)\\s(\\([А-Я]\\))","$1\n$2");
+        prim = prim.replaceAll("^ (.*)","$1");
         prim = prim.replaceAll(" Н "," ");
         prim = prim.replaceAll("\\s\\s+", " ");
         prim = prim.replaceAll("^(\\s)","");

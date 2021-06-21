@@ -21,8 +21,6 @@ class DictCommon {
     private Date endData;
     private Date noData;
 
-
-
     /**
      * Конструктор для создания объекта из строки с сырыми данными
      * @param rawLine - строка с данными

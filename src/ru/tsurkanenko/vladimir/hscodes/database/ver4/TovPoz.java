@@ -12,8 +12,8 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  * @author Vladimir Tsurkanenko
  */
 public class TovPoz extends DictCommon{
-    private String tovGruppa;
-    private String tovPoz;
+    private final String tovGruppa;
+    private final String tovPoz;
 
 
     /**
@@ -31,7 +31,7 @@ public class TovPoz extends DictCommon{
      * Возвращает код товарной группы GRUPPA
      * @return Код товарной  группы
      */
-    public String getParentGruppaCode() {
+    public String getGruppaCode() {
         return tovGruppa;
     }
 

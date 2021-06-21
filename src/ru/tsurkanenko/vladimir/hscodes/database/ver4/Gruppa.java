@@ -10,18 +10,13 @@ package ru.tsurkanenko.vladimir.hscodes.database.ver4;
  * @author Vladimir Tsurkanenko
  */
 public class Gruppa extends DictNoted {
-    private String parentRazdel;
-    private String gruppa;
+    private final String parentRazdel;
+    private final String gruppa;
 
-
-    /*Gruppa(){
-        super();
-    }*/
     /**
      * Конструктор
      * Создает новый объект инкапсулирующий данные о товарной группе ТНВЭД
      * @param rawLine - строка с данными
-
      */
     public Gruppa(String rawLine) {
         super(rawLine);

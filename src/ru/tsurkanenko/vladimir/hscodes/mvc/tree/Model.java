@@ -83,7 +83,7 @@ public class Model {
      * @return массив с подгруппами (строки в формате "ХХХХ НАИМЕНОВАНИЕ ТОВАРНОЙ ПОЗИЦИИ")
      */
     public String[] getGroupList() {
-        TovPoz[] tovPoz = hs.getChildrenTovPos(subSectionList[selectedSubSection].substring(2,4));
+        TovPoz[] tovPoz = hs.getChildrenTovPoz(subSectionList[selectedSubSection].substring(2,4));
         this.groupList = new String[tovPoz.length];
         for (int i=0; i < groupList.length; i++){
             groupList[i] = tovPoz[i].toString();
@@ -97,7 +97,7 @@ public class Model {
      * @return массив с товарными подпозициями (строки в формате "ХХХХХХ наименование товарной подпозиции")
      */
     public String[] getItemList() {
-        TovSubPoz[] tovSubPoz = hs.getChildrenTovSubPos(groupList[selectedGroup].substring(0,2),groupList[selectedGroup].substring(2,4));
+        TovSubPoz[] tovSubPoz = hs.getChildrenTovSubPoz(groupList[selectedGroup].substring(0,2),groupList[selectedGroup].substring(2,4));
         itemList = new String[tovSubPoz.length];
         for (int i=0; i < itemList.length; i++){
             itemList[i] = tovSubPoz[i].toString();

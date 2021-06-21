@@ -87,13 +87,26 @@ public class Dict {
         return gruppa[index];
     }
     /**
-     * Возвращает одиночный раздел с заданным кодом
+     * Возвращает одиночную группу с заданным кодом
      * @param code Код группы
      * @return Объект инкапсулирующий свойства группы или пустой объект
      */
     public Gruppa getGruppa(String code) {
         for (Gruppa value : gruppa) {
             if (value.getGruppaCode().equals(code))
+                return value;
+        }
+        return new Gruppa("");
+    }
+    /**
+     * Возвращает одиночную группу с заданным кодом
+     * @param razdelCode Код родительского раздела
+     * @param gruppaCode Код группы
+     * @return Объект инкапсулирующий свойства группы или пустой объект
+     */
+    public Gruppa getGruppa(String razdelCode, String gruppaCode) {
+        for (Gruppa value : gruppa) {
+            if (value.getGruppaCode().equals(gruppaCode) & value.getParentRazdelCode().equals(razdelCode))
                 return value;
         }
         return new Gruppa("");
@@ -137,7 +150,7 @@ public class Dict {
      */
     public TovPoz getTovPoz(String gruppa, String tovPoz) {
         for (TovPoz tovPos : this.tovPoz) {
-            if (tovPos.getParentGruppaCode().equals(gruppa) & tovPos.getTovPozCode().equals(tovPoz))
+            if (tovPos.getGruppaCode().equals(gruppa) & tovPos.getTovPozCode().equals(tovPoz))
                 return tovPos;
         }
         return new TovPoz("");
@@ -146,11 +159,11 @@ public class Dict {
      * Возвращает массив с дочерними позициями
      * @param parentGruppa Код родительской группы
      */
-    public TovPoz[] getChildrenTovPos(String parentGruppa){
+    public TovPoz[] getChildrenTovPoz(String parentGruppa){
         ArrayList<TovPoz> totalFound = new ArrayList<>();
         for (TovPoz currTovPos:this.getTovPoz()
         ) {
-            if(currTovPos.getParentGruppaCode().equals(parentGruppa))
+            if(currTovPos.getGruppaCode().equals(parentGruppa))
                 totalFound.add(currTovPos);
         }
         TovPoz[] result = new TovPoz[totalFound.size()];
@@ -170,7 +183,7 @@ public class Dict {
      * @param index индекс элемента в массиве
      * @return элемент массива
      */
-    public TovSubPoz getTovSubPos(int index) {
+    public TovSubPoz getTovSubPoz(int index) {
         return tovSubPoz[index];
     }
     /**
@@ -178,9 +191,9 @@ public class Dict {
      * @param tovPoz Код субпозиции
      * @return Объект инкапсулирующий свойства раздела или пустой объект
      */
-    public TovSubPoz getTovSubPos(String gruppa, String tovPoz, String tovSubPoz) {
+    public TovSubPoz getTovSubPoz(String gruppa, String tovPoz, String tovSubPoz) {
         for (TovSubPoz currTovSubPoz : this.tovSubPoz) {
-            if (currTovSubPoz.getParentGruppaCode().equals(gruppa) & currTovSubPoz.getTovPozCode().equals(tovPoz) & currTovSubPoz.getTovSubPozCode().equals(tovSubPoz))
+            if (currTovSubPoz.getGruppaCode().equals(gruppa) & currTovSubPoz.getTovPozCode().equals(tovPoz) & currTovSubPoz.getTovSubPozCode().equals(tovSubPoz))
                 return currTovSubPoz;
         }
         return new TovSubPoz("");
@@ -188,14 +201,14 @@ public class Dict {
     /**
      * Возвращает массив с дочерними подпозициями
      * @param parentGruppa Код родительской товарной группы
-     * @param parentTovPos Код родительской товарной позиции
+     * @param parentTovPoz Код родительской товарной позиции
      */
     //TODO Список товарных подпозиций формируется без учета вложенности. Нужно разобраться, как это исправить
-    public TovSubPoz[] getChildrenTovSubPos(String parentGruppa, String parentTovPos){
+    public TovSubPoz[] getChildrenTovSubPoz(String parentGruppa, String parentTovPoz){
         ArrayList<TovSubPoz> totalFound = new ArrayList<>();
         for (TovSubPoz currTovSubPos:this.getTovSubPoz()
         ) {
-            if(currTovSubPos.getParentGruppaCode().equals(parentGruppa) & currTovSubPos.getTovPozCode().equals(parentTovPos))
+            if(currTovSubPos.getGruppaCode().equals(parentGruppa) & currTovSubPos.getTovPozCode().equals(parentTovPoz))
                 totalFound.add(currTovSubPos);
         }
         TovSubPoz[] result = new TovSubPoz[totalFound.size()];
