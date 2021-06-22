@@ -5,15 +5,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import ru.tsurkanenko.vladimir.hscodes.mvc.Model;
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
  * Контроллер (Controller) Model-View-Controller
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
- * Предназначен для представления view.fxml
+ * Предназначен для представления view.fxml использующего выпадающие списки для отображения данных
  * @author Vladimir Tsurkanenko
  * @version 0.4
  * @since 0.4
@@ -21,8 +19,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxPosition, comboBoxSubPosition;
     @FXML Label labelSectionNote, labelGroupNote, labelDescription;
-    Model model;// = new Model();
-
+    Model model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

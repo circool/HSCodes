@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тестирование класса Dict
+ */
 class DictTest {
     Dict testDictionary;
     DateFormat format;

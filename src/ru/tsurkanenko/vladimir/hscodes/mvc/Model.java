@@ -14,7 +14,6 @@ import java.util.Arrays;
  * @since 0.4
  */
 public class Model {
-    private String sectionNote, groupNote, itemDescription;
     private final String[] sectionList;
     private String[] groupList;
     private String[] positionList;
@@ -55,6 +54,7 @@ public class Model {
             subPositionList[i] = subPositions[i].toString();
         }
     }
+
     /**
      * Получить список разделов.
      * Возвращает массив с удобочитаемым перечнем разделов стравочника
@@ -74,7 +74,6 @@ public class Model {
         for (int i = 0; i < groupList.length; i++){
             groupList[i] = groups[i].toString();
         }
-        selectedGroup = 0;
         return groupList;
     }
     /**
@@ -88,7 +87,6 @@ public class Model {
         for (int i = 0; i < positionList.length; i++){
             positionList[i] = positions[i].toString();
         }
-        selectedPosition = 0;
         return positionList;
     }
     /**
@@ -97,36 +95,39 @@ public class Model {
      * @return массив с товарными подпозициями (строки в формате "ХХХХХХ наименование товарной подпозиции")
      */
     public String[] getSubPositionList() {
-        TovSubPoz[] subPositions = hs.getChildrenTovSubPoz(positionList[selectedPosition].substring(0,2), positionList[selectedPosition].substring(2,4));
+        TovSubPoz[] subPositions = hs.getChildrenTovSubPoz(
+                positionList[selectedPosition].substring(0,2),
+                positionList[selectedPosition].substring(2,4)
+        );
         subPositionList = new String[subPositions.length];
         for (int i = 0; i < subPositionList.length; i++){
             subPositionList[i] = subPositions[i].toString();
         }
         return subPositionList;
     }
+
     /**
      * Выбрать активный(текущий) раздел.
      *
      */
     public void selectSection(String item) {
         this.selectedSection = Arrays.asList(sectionList).indexOf(item);
-        this.getGroupList();
-        // TODO Добавить обработку комментариев
+        groupList = getGroupList();
     }
     /**
      * Выбрать активный(текущий) подраздел (группу)
      *
      */
     public void selectGroup(String item) {
-        this.selectedGroup = Arrays.asList(groupList).indexOf(item);
-        this.getPositionList();
-        // TODO Добавить обработку комментариев
+        selectedGroup = Arrays.asList(groupList).indexOf(item);
+        positionList = getPositionList();
     }
     /**
      * Выбрать активную(текущую) группу
      */
     public void selectPosition(String item){
         this.selectedPosition = Arrays.asList(positionList).indexOf(item);
+        subPositionList = getSubPositionList();
     }
     /**
      * Выбрать активную(текущую) товарную позицию.
@@ -135,32 +136,37 @@ public class Model {
     public void selectSubPosition(String item) {
         selectedSubPosition = Arrays.asList(subPositionList).indexOf(item);
     }
+
     /**
      * Возвращает примечание для текущей группы ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
     public String getGroupNote() {
-        this.groupNote = hs.getGruppa(selectedGroup).getPrim();
-        return groupNote;
+        return hs.getGruppa(selectedGroup).getPrim();
     }
     /**
      * Возвращает примечание для текущего раздела ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
     public String getSectionNote() {
-        this.sectionNote = hs.getRazdel(selectedSection).getPrim();
-        return sectionNote;
+        return hs.getRazdel(selectedSection).getPrim();
     }
     /**
      * Возвращает описание выбранного кода ТНВЭД, включая его родительские субпозицию, позицию и группу
      * @return Строка с описанием кода ТНВЭД
      */
     public String getDescription() {
-        this.itemDescription =
-                hs.getRazdel(selectedSection).getNaim() + "\n\t" +
-                hs.getGruppa(selectedGroup).getNaim() + "\n\t\t" +
-                hs.getTovPoz(selectedPosition).getNaim()+ "\n\t\t\t" +
-                hs.getTovSubPoz(selectedSubPosition).getNaim();
-        return itemDescription;
+
+        return hs.getRazdel(sectionList[selectedSection].substring(0, 2)).getNaim() + "\n\t" +
+                hs.getGruppa(groupList[selectedGroup].substring(2, 4)).getNaim() + "\n\t\t" +
+                hs.getTovPoz(
+                        positionList[selectedPosition].substring(0, 2),
+                        positionList[selectedPosition].substring(2, 4))
+                        .getNaim() + "\n\t\t\t" +
+                hs.getTovSubPoz(
+                        positionList[selectedPosition].substring(0, 2),
+                        positionList[selectedPosition].substring(2, 4),
+                        subPositionList[selectedSubPosition].substring(4, 10)
+                ).getNaim();
     }
 }

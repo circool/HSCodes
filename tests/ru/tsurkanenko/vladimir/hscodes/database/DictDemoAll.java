@@ -1,15 +1,14 @@
 package ru.tsurkanenko.vladimir.hscodes.database;
 
-
 /**
- * Тестирование классов TovSubPos, TovPos, Gruppa, Razdel и DictCommon
- * @version 0.3
+ * Демонстрация работы класса Dict
+ * TovSubPos, TovPos, Gruppa, Razdel и DictCommon - показ всех элементов справочника
+ * @version 0.4
+ * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-class DictStructureDemo {
+class DictDemoAll {
     public static void main(String[] args) {
-
-
         String[] dataLines;
         Razdel demoRazdel;
         Gruppa demoGruppa;

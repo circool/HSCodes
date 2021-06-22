@@ -1,8 +1,7 @@
 package ru.tsurkanenko.vladimir.hscodes.database;
 
-
 /**
- * Проверка работоспособности класса Gruppa
+ * Демонстрация класса Gruppa
  */
 class GruppaDemo {
     public static void main(String[] args) {
@@ -11,7 +10,6 @@ class GruppaDemo {
         for (Gruppa testGruppa: test.getGruppa()
              ) {
             testGruppa.isActual();
-
         }
         System.out.println(test.getGruppa(0).getParentRazdelCode());
         System.out.println(test.getGruppa(code).getParentRazdelCode());
