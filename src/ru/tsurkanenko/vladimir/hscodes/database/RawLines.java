@@ -14,7 +14,7 @@ import java.util.List;
  * @since 0.4
  */
 
-public class RawLines {
+class RawLines {
 
     private String[] rawData;
 

@@ -36,7 +36,9 @@ class DictTest {
                 assertFalse(currGruppa.getNaim().matches(".*[|].*"));
                 assertEquals(currGruppa, testDictionary.getGruppa(currGruppa.getGruppaCode()));
                 for (TovPoz currTovPos:testDictionary.getChildrenTovPoz(currGruppa.getGruppaCode())){
+                    /* начиная с вертии 0.5 в массиве TovPoz могут быть элементы с isActual != true
                     assertTrue(currTovPos.isActual());
+                     */
                     assertTrue(currTovPos.getGruppaCode().matches("\\d{2}"));
                     assertTrue(currTovPos.getTovPozCode().matches("\\d{2}"));
                     assertEquals(currTovPos, testDictionary.getTovPoz(currGruppa.getGruppaCode(), currTovPos.getTovPozCode()));

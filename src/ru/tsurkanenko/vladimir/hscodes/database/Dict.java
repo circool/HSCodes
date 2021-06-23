@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Инкапсулирует массивы разделов, групп и товарных позиций в один объект
  * и предоставляет методы для работы с ними
- * @version 0.4
+ * @version 0.5
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
@@ -30,11 +30,7 @@ public class Dict {
             gruppa[i] = new Gruppa(dataLines[i]);
         }
         String fileNameTovPosSource = "dic/TNVED3.TXT";
-        dataLines = new RawLines(fileNameTovPosSource).getActualData();
-        tovPoz = new TovPoz[dataLines.length];
-        for (int i = 0; i < dataLines.length; i++) {
-            tovPoz[i] = new TovPoz(dataLines[i]);
-        }
+        tovPoz = new TovPozScope(fileNameTovPosSource).getAll();
         String fileNameTovSubPosSource = "dic/TNVED4.TXT";
         dataLines = new RawLines(fileNameTovSubPosSource).getActualData();
         tovSubPoz = new TovSubPoz[dataLines.length];
@@ -214,5 +210,55 @@ public class Dict {
         TovSubPoz[] result = new TovSubPoz[totalFound.size()];
         result = totalFound.toArray(result);
         return result;
+    }
+
+    /**
+     * Возвращает список товарных позиций или подпозиций справочника с учетом их уровня вложенности
+     * Пример уровня вложенности:
+     * 0-й уровень:
+     *  - коды состоящие из 6-ти нулей:                                     9604 00 000 0    Сита и решета ручные
+     *  1-й уровень:
+     *  - коды с 5-ю нулями и имеющие один дефис в описании:                0101 20 000 0    - лошади:
+     *  2-й уровень:
+     *  - коды с 4-мя замыкающими нулями и двумя дефисами в наименовании:   0101 21 000 0   - - чистопородные племенные животные
+     * итд
+     * @param gruppaCode первые две цифры 10-значного кода НТВЭД (товарная группа)
+     * @param TovPosCode 2-4я цифры 10-значного кода НТВЭД (товарная позиция)
+     * @param nestlingLevel уровень вложенности
+     * @return Массив элементов
+     */
+    public TovSubPoz[] getNestledTovSubPoz(String gruppaCode, String TovPosCode, int nestlingLevel){
+        String regexNestling = "000000";
+        switch (nestlingLevel){
+            case 0:
+                regexNestling = "000000";
+                break;
+            case 1:
+                regexNestling = "[1-9]00000";
+                break;
+            case 2:
+                regexNestling = "[1-9]{2}0000";
+                break;
+            case 3:
+                regexNestling = "[1-9]{3}000";
+                break;
+            case 4:
+                regexNestling = "[1-9]{4}00";
+                break;
+            case 5:
+                regexNestling = "[1-9]{5}00";
+                break;
+        }
+        ArrayList<TovSubPoz> result = new ArrayList<>();
+        for(TovSubPoz currItem:tovSubPoz)
+
+            if(currItem.getGruppaCode().equals(gruppaCode) &
+                    currItem.getTovPozCode().equals(TovPosCode) &
+                    currItem.getTovSubPozCode().matches(regexNestling)){
+                result.add(currItem);
+            }
+
+        return result.toArray(new TovSubPoz[result.size()]);
+
     }
 }
