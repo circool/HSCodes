@@ -7,7 +7,7 @@ class RazdelDemo {
         Dict demo = new Dict();
         for (Razdel curRazdel: demo.getRazdel()
              ) {
-            System.out.println(curRazdel.getNaim());
+            System.out.println(curRazdel.toString());
         }
     }
 }

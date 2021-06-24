@@ -4,12 +4,17 @@ package ru.tsurkanenko.vladimir.hscodes.database;
 
 class ItemsScopeDemo {
     public static void main(String[] args) {
-        Item[] scope = new ItemsScope().getAll();
+        ItemsScope demo = new ItemsScope();
+        Item dem = demo.getItem("0101210002");
+        System.out.println(dem.toString());
 
-        for (Item curItem:scope
+
+        for (Item x:demo.startsWith("2095")
              ) {
-            if(curItem.toString().startsWith("2503"))
-                System.out.println(curItem.nestlingLevel + ": " + curItem);
+            System.out.println(x);
         }
+
     }
+
+
 }

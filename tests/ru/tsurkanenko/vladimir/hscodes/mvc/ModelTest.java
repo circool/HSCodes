@@ -31,34 +31,17 @@ class ModelTest {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
         String[] groupList = test.getGroupList();
         MatcherAssert.assertThat(groupList.length, is(3));
-        /*
-        не актуально для версии 0.4.1
-        for (String testGroup:groupList
-        ) {
-            assertTrue(testGroup.startsWith("20"));
-        }
-
-         */
     }
 
     @Test
     void getPositionList() {
-        test.selectGroup("2095 ИГРУШКИ, ИГРЫ И СПОРТИВНЫЙ ИНВЕНТАРЬ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.selectGroup("95 ИГРУШКИ, ИГРЫ И СПОРТИВНЫЙ ИНВЕНТАРЬ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         String[] positionList = test.getPositionList();
         /*
         Начиная с версии 0.5 количество подпунктов может увеличится
          */
         MatcherAssert.assertThat(positionList.length, is(5));
-
-
-        /*
-        не актуально для версии 0.4.1
-        for (String testPosition:positionList
-             ) {
-            assertTrue(testPosition.startsWith("95"));
-        }
-
-         */
     }
 
     @Test

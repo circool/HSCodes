@@ -1,19 +1,15 @@
 package ru.tsurkanenko.vladimir.hscodes.database;
 
 /**
- * Демонстрация класса Gruppa
+ * Демонстрация класса TovPoz
  */
-class GruppaDemo {
+class TovPozDemo {
     public static void main(String[] args) {
         Dict test = new Dict();
         String code = "96";
-        Gruppa scope = test.getGruppa(code);
-        System.out.println(scope.toString());
-        for (Gruppa x: test.getGruppa()
-             ) {
+
+        for (TovPoz x : test.getTovPoz()) {
             System.out.println(x.toString());
         }
-
-
     }
 }

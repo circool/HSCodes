@@ -29,12 +29,16 @@ public class Dict {
         for (int i = 0; i < dataLines.length; i++) {
             gruppa[i] = new Gruppa(dataLines[i]);
         }
-        String fileNameTovPosSource = "dic/TNVED3.TXT";
-        tovPoz = new TovPozScope(fileNameTovPosSource).getAll();
-        String fileNameTovSubPosSource = "dic/TNVED4.TXT";
 
-        dataLines = new RawLines(fileNameTovSubPosSource).getActualData();
+        String fileNameTovPozSource = "dic/TNVED3.TXT";
+        dataLines = new RawLines(fileNameTovPozSource).getActualData();
+        tovPoz = new TovPoz[dataLines.length];
+        for (int i = 0; i < dataLines.length; i++) {
+            tovPoz[i] = new TovPoz(dataLines[i]);
+        }
 
+        String fileNameTovSubPozSource = "dic/TNVED4.TXT";
+        dataLines = new RawLines(fileNameTovSubPozSource).getActualData();
         tovSubPoz = new TovSubPoz[dataLines.length];
         for (int i = 0; i < dataLines.length; i++) {
             tovSubPoz[i] = new TovSubPoz(dataLines[i]);
