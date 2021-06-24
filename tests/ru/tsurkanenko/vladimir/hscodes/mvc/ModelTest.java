@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тестирование класса Model
+ * @author Vladimir Tsurkanenko
+ * @version 0.4.1
+ * @since 0.4
  */
 class ModelTest {
     Model test;
@@ -28,10 +31,14 @@ class ModelTest {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
         String[] groupList = test.getGroupList();
         MatcherAssert.assertThat(groupList.length, is(3));
+        /*
+        не актуально для версии 0.4.1
         for (String testGroup:groupList
         ) {
             assertTrue(testGroup.startsWith("20"));
         }
+
+         */
     }
 
     @Test
@@ -39,13 +46,19 @@ class ModelTest {
         test.selectGroup("2095 ИГРУШКИ, ИГРЫ И СПОРТИВНЫЙ ИНВЕНТАРЬ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         String[] positionList = test.getPositionList();
         /*
-        Начиная с версии 0&5 количество подпунктов может увеличится
-        MatcherAssert.assertThat(positionList.length, is(5));
+        Начиная с версии 0.5 количество подпунктов может увеличится
          */
+        MatcherAssert.assertThat(positionList.length, is(5));
+
+
+        /*
+        не актуально для версии 0.4.1
         for (String testPosition:positionList
              ) {
             assertTrue(testPosition.startsWith("95"));
         }
+
+         */
     }
 
     @Test
@@ -64,17 +77,21 @@ class ModelTest {
         MatcherAssert.assertThat(test.getSectionList()[test.selectedSection],is("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ"));
         String[] groupList = test.getGroupList();
         MatcherAssert.assertThat(groupList.length, is(3));
+        /*
+        не актуально для версии 0.4.1
         for (String group:groupList
+
              ) {
             assertTrue(group.startsWith("20"));
         }
+        */
     }
 
     @Test
     void selectGroup() {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("2096 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
-        MatcherAssert.assertThat(test.getGroupList()[test.selectedGroup], is("2096 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ"));
+        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        MatcherAssert.assertThat(test.getGroupList()[test.selectedGroup], is("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ"));
 
         String[] positionList = test.getPositionList();
         /*
@@ -90,7 +107,7 @@ class ModelTest {
     @Test
     void selectPosition() {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("2096 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
         MatcherAssert.assertThat(test.getPositionList()[test.selectedPosition], is("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ"));
         String[] subPositionList = test.getSubPositionList();
@@ -104,7 +121,7 @@ class ModelTest {
     @Test
     void selectSubPosition() {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("2096 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
         test.selectSubPosition("9607209000 - - прочие");
         MatcherAssert.assertThat(test.getSubPositionList()[test.selectedSubPosition],is ("9607209000 - - прочие"));
@@ -113,7 +130,8 @@ class ModelTest {
 
     @Test
     void getGroupNote() {
-        test.selectGroup("2299 FIFA2018");
+        test.selectSection("22 FIFA2018");
+        test.selectGroup("99 FIFA2018");
         MatcherAssert.assertThat(test.getGroupNote(), is ("ТОВАРЫ ДЛЯ FIFA2018"));
     }
 
@@ -126,7 +144,7 @@ class ModelTest {
     @Test
     void getDescription() {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("2096 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
         test.selectSubPosition("9607209000 - - прочие");
         MatcherAssert.assertThat(test.getDescription(), is("" +
