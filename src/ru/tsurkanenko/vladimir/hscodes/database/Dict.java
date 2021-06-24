@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Инкапсулирует массивы разделов, групп и товарных позиций в один объект
  * и предоставляет методы для работы с ними
- * @version 0.5
+ * @version 0.4
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
@@ -32,11 +32,16 @@ public class Dict {
         String fileNameTovPosSource = "dic/TNVED3.TXT";
         tovPoz = new TovPozScope(fileNameTovPosSource).getAll();
         String fileNameTovSubPosSource = "dic/TNVED4.TXT";
+
         dataLines = new RawLines(fileNameTovSubPosSource).getActualData();
+
         tovSubPoz = new TovSubPoz[dataLines.length];
         for (int i = 0; i < dataLines.length; i++) {
             tovSubPoz[i] = new TovSubPoz(dataLines[i]);
         }
+
+        //tovSubPoz = new TovSubPozScope(fileNameTovSubPosSource).getAll();
+
     }
 
     /**
