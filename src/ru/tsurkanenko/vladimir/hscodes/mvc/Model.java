@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @see Dict
  * @see Controller
  * @author Vladimir Tsurkanenko
- * @version 0.4
+ * @version 0.4.1
  * @since 0.4
  */
 public class Model {
@@ -72,7 +72,7 @@ public class Model {
         Gruppa[] groups = hs.getChildrenGruppa(sectionList[selectedSection].substring(0,2));
         groupList = new String[groups.length];
         for (int i = 0; i < groupList.length; i++){
-            groupList[i] = groups[i].toString();
+            groupList[i] = groups[i].toString().substring(2);
         }
         return groupList;
     }
@@ -82,7 +82,7 @@ public class Model {
      * @return массив с подгруппами (строки в формате "ХХХХ НАИМЕНОВАНИЕ ТОВАРНОЙ ПОЗИЦИИ")
      */
     public String[] getPositionList() {
-        TovPoz[] positions = hs.getChildrenTovPoz(groupList[selectedGroup].substring(2,4));
+        TovPoz[] positions = hs.getChildrenTovPoz(groupList[selectedGroup].substring(0,2));
         this.positionList = new String[positions.length];
         for (int i = 0; i < positionList.length; i++){
             positionList[i] = positions[i].toString();
@@ -142,7 +142,12 @@ public class Model {
      * @return Строка с примечанием (PRIM)
      */
     public String getGroupNote() {
-        return hs.getGruppa(selectedGroup).getPrim();
+        int deb1 = selectedGroup;
+        //Gruppa deb2 = hs.getGruppa(sectionList[selectedSection].substring(0,2),groupList[selectedGroup].substring(0,2));
+        //String deb3 = deb2.getPrim();
+        //int stop = 1;
+        //return deb3;
+        return hs.getGruppa(sectionList[selectedSection].substring(0,2),groupList[selectedGroup].substring(0,2)).getPrim();
     }
     /**
      * Возвращает примечание для текущего раздела ТНВЭД
@@ -158,7 +163,7 @@ public class Model {
     public String getDescription() {
 
         return hs.getRazdel(sectionList[selectedSection].substring(0, 2)).getNaim() + "\n\t" +
-                hs.getGruppa(groupList[selectedGroup].substring(2, 4)).getNaim() + "\n\t\t" +
+                hs.getGruppa(groupList[selectedGroup].substring(0, 2)).getNaim() + "\n\t\t" +
                 hs.getTovPoz(
                         positionList[selectedPosition].substring(0, 2),
                         positionList[selectedPosition].substring(2, 4))
