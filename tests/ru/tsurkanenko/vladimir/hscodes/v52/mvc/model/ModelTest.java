@@ -3,7 +3,6 @@ package ru.tsurkanenko.vladimir.hscodes.v52.mvc.model;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.tsurkanenko.vladimir.hscodes.v52.database.ScopeGroups;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -195,23 +194,9 @@ class ModelTest {
         test.selectSection("21 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
         test.selectGroup("97 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
         MatcherAssert.assertThat(test.getPositionList().length, is(1));
-
         test.selectSection("22 FIFA2018");
         test.selectGroup("99 FIFA2018");
         MatcherAssert.assertThat(test.getPositionList().length, is(1));
-    }
-
-    @Test
-    void debug(){
-        test.selectSection("22 FIFA2018");
-        test.selectGroup("99 FIFA2018");
-        System.out.println(test.selectedSection);
-        System.out.println(test.getPositionList().length);
-        ScopeGroups x = new ScopeGroups("dic/TNVED3.TXT");
-        int y = x.get().length;
-        //System.out.println(x.get()[942].toString());
-        System.out.println();
-
     }
 
     @Test
@@ -279,7 +264,12 @@ class ModelTest {
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
         test.selectSubPosition("9607209000 - - прочие");
         MatcherAssert.assertThat(test.getSubPositionList()[test.selectedSubPosition],is ("9607209000 - - прочие"));
-        MatcherAssert.assertThat(test.getDescription(), is("РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n\tРАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ\n\t\tЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ\n\t\t\t- - прочие"));
+        MatcherAssert.assertThat(test.getDescription(), is(
+                "РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
+                        "\tРАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ\n" +
+                        "\t\tЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ\n" +
+                        "\t\t\t- - прочие"
+        ));
     }
 
     @Test

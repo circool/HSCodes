@@ -39,7 +39,6 @@ public class Model {
         sI4 = new ScopeItems("dic/TNVED4.TXT");
         sI4.add("dic/TNVED4.ADD.TXT");
 
-
         // Список разделов
         Groups[] sections = sG1.get();
         sectionList = new String[sections.length];

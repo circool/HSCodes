@@ -2,9 +2,7 @@ package ru.tsurkanenko.vladimir.hscodes.v50.database;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
-import ru.tsurkanenko.vladimir.hscodes.database.RawLines;
-import ru.tsurkanenko.vladimir.hscodes.v50.database.Items;
-
+import ru.tsurkanenko.vladimir.hscodes.RawLines;
 import static org.hamcrest.CoreMatchers.is;
 
 class ItemsTest {

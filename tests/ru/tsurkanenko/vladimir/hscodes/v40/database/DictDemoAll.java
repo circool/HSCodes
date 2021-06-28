@@ -1,10 +1,7 @@
 package ru.tsurkanenko.vladimir.hscodes.v40.database;
 
-import ru.tsurkanenko.vladimir.hscodes.database.RawLines;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.Gruppa;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.Razdel;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.TovPoz;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.TovSubPoz;
+import ru.tsurkanenko.vladimir.hscodes.RawLines;
+
 
 /**
  * Демонстрация работы класса Dict

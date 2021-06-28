@@ -4,9 +4,7 @@ import org.hamcrest.MatcherAssert;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.tsurkanenko.vladimir.hscodes.database.RawLines;
-import ru.tsurkanenko.vladimir.hscodes.v50.database.DictCommon;
-
+import ru.tsurkanenko.vladimir.hscodes.RawLines;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

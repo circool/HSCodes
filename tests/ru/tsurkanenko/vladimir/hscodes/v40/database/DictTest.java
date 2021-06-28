@@ -3,12 +3,7 @@ package ru.tsurkanenko.vladimir.hscodes.v40.database;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.tsurkanenko.vladimir.hscodes.database.RawLines;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.Gruppa;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.Razdel;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.TovPoz;
-import ru.tsurkanenko.vladimir.hscodes.v40.database.TovSubPoz;
-
+import ru.tsurkanenko.vladimir.hscodes.RawLines;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -1,6 +1,6 @@
 package ru.tsurkanenko.vladimir.hscodes.v51.database;
 
-import ru.tsurkanenko.vladimir.hscodes.database.RawLines;
+import ru.tsurkanenko.vladimir.hscodes.RawLines;
 
 /**
  * Массив для разделов и групп справочника
