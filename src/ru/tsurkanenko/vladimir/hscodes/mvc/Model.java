@@ -1,6 +1,7 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
-import ru.tsurkanenko.vladimir.hscodes.database.*;
+
+import ru.tsurkanenko.vladimir.hscodes.database.v40.*;
 import ru.tsurkanenko.vladimir.hscodes.mvc.tree.Controller;
 import java.util.Arrays;
 
@@ -142,11 +143,6 @@ public class Model {
      * @return Строка с примечанием (PRIM)
      */
     public String getGroupNote() {
-        int deb1 = selectedGroup;
-        //Gruppa deb2 = hs.getGruppa(sectionList[selectedSection].substring(0,2),groupList[selectedGroup].substring(0,2));
-        //String deb3 = deb2.getPrim();
-        //int stop = 1;
-        //return deb3;
         return hs.getGruppa(sectionList[selectedSection].substring(0,2),groupList[selectedGroup].substring(0,2)).getPrim();
     }
     /**

@@ -11,15 +11,12 @@ import java.util.List;
  * в которых содержатся и либо актуальные либо все данные.
  * @author Vladimir Tsurkanenko
  * @version 0.4
- * @since 0.4
+ * @since 0.1
  */
 
-class RawLines {
+public class RawLines {
 
     private String[] rawData;
-
-
-    //private final String regexGarbage = " | Н |\\s{2,}+";
 
     /**
      * Читает файл, имя которого получено в качестве аргумента и формирует массив, содержащий строки,
@@ -27,7 +24,7 @@ class RawLines {
      *
      * @param fileName имя файла с данными
      */
-    RawLines(String fileName) {
+    public RawLines(String fileName) {
         try {
             BufferedReader sourceFile =
                     new BufferedReader(new FileReader(fileName));
@@ -45,8 +42,6 @@ class RawLines {
         }
     }
 
-
-
     /**
      * Возвращает инкапсулированный строковый массив с данными, включая устаревшие.
      * @return строковый массив
@@ -54,6 +49,7 @@ class RawLines {
     public String[] getRawData() {
         return rawData;
     }
+
     /**
      * Возвращает инкапсулированный строковый массив с актуальными данными.
      * @return строковый массив
