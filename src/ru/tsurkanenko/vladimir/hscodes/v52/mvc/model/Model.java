@@ -57,7 +57,6 @@ public class Model {
         for (int i = 0; i < positionList.length; i++){
             positionList[i] = positions[i].toString();
         }
-        int x = positionList.length;
         // Список товарных подпозиций
         Items[] subPositions = sI4.get();
         subPositionList = new String[subPositions.length];

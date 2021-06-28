@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * @version 0.5.2
  * @since 0.5.1
  */
-//TODO Raw use parametrized class ScopeCommonCompatible
-public abstract class ScopeCommon<T> implements ScopeCommonCompatible {
+
+public abstract class ScopeCommon<T> implements ScopeCommonCompatible<T> {
     T[] scope;
     T[] searchResult;
     final private int[][] codeIndex = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};

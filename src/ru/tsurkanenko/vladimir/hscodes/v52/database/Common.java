@@ -16,10 +16,12 @@ public class Common implements CommonCompatible,Comparable<CommonCompatible> {
     private final String naim;
 
 
-    public Common(){
-        naim = "";
-        code = "";
-    }
+// --Commented out by Inspection START (28/06/2021, 23:28):
+//    public Common(){
+//        naim = "";
+//        code = "";
+//    }
+// --Commented out by Inspection STOP (28/06/2021, 23:28)
     /**
      * Конструктор для создания объекта из строки с сырыми данными
      * @param rawLine - строка с данными
