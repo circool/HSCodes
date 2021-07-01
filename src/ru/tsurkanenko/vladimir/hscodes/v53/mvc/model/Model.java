@@ -21,10 +21,27 @@ public class Model {
     private String[] groupList;
     private String[] positionList;
     private String[] subPositionList;
-    public int selectedSection;
-    public int selectedGroup;
-    public int selectedPosition;
-    public int selectedSubPosition;
+    private int selectedSection;
+
+    public int getSelectedSection() {
+        return selectedSection;
+    }
+
+    public int getSelectedGroup() {
+        return selectedGroup;
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
+
+    public int getSelectedSubPosition() {
+        return selectedSubPosition;
+    }
+
+    private int selectedGroup;
+    private int selectedPosition;
+    private int selectedSubPosition;
     final ScopeGroups sG1, sG2;
     final ScopeItems sI3, sI4;
 

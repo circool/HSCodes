@@ -212,7 +212,7 @@ class ModelTest {
     @Test
     void selectSection() {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        MatcherAssert.assertThat(test.getSectionList()[test.selectedSection],is("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ"));
+        MatcherAssert.assertThat(test.getSectionList()[test.getSelectedSection()],is("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ"));
         String[] groupList = test.getGroupList();
         MatcherAssert.assertThat(groupList.length, is(3));
         /*
@@ -229,7 +229,7 @@ class ModelTest {
     void selectGroup() {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
         test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
-        MatcherAssert.assertThat(test.getGroupList()[test.selectedGroup], is("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ"));
+        MatcherAssert.assertThat(test.getGroupList()[test.getSelectedGroup()], is("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ"));
 
         String[] positionList = test.getPositionList();
         /*
@@ -247,7 +247,7 @@ class ModelTest {
         test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
         test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
-        MatcherAssert.assertThat(test.getPositionList()[test.selectedPosition], is("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ"));
+        MatcherAssert.assertThat(test.getPositionList()[test.getSelectedPosition()], is("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ"));
 
         String[] subPositionList = test.getSubPositionList();
         MatcherAssert.assertThat(subPositionList.length, is(4));
@@ -263,7 +263,7 @@ class ModelTest {
         test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
         test.selectSubPosition("9607209000 - - прочие");
-        MatcherAssert.assertThat(test.getSubPositionList()[test.selectedSubPosition],is ("9607209000 - - прочие"));
+        MatcherAssert.assertThat(test.getSubPositionList()[test.getSelectedSubPosition()],is ("9607209000 - - прочие"));
         MatcherAssert.assertThat(test.getDescription(), is(
                 "РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
                         "\tРАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ\n" +
