@@ -10,12 +10,10 @@ import java.util.List;
  * Представляет из себя объект, имплементирующий необработанные строки файла,
  * в которых содержатся и либо актуальные либо все данные.
  * @author Vladimir Tsurkanenko
- * @version 0.4
- * @since 0.1
+ * @version 0.5.3
+ * @since 0.5.3
  */
-
 public class RawLines {
-
     private String[] rawData;
 
     /**
@@ -31,8 +29,7 @@ public class RawLines {
             String singleLine;
             List<String> foundLines = new ArrayList<>();
             while((singleLine = sourceFile.readLine()) != null){
-                //singleLine = singleLine.replaceAll(regexGarbage," "); //Удаление артефактов из текста
-                String regexAllLines = "^\\d+\\|.*?\\|.*?\\|[0-9.]+\\|[0-9.]*\\|$";
+                String regexAllLines = "^[0-9]+\\|.*\\|\\|$";
                 if(singleLine.matches(regexAllLines))
                     foundLines.add(singleLine);
             }
@@ -43,26 +40,11 @@ public class RawLines {
     }
 
     /**
-     * Возвращает инкапсулированный строковый массив с данными, включая устаревшие.
+     * Возвращает строковый массив с актуальными данными.
      * @return строковый массив
      */
-    public String[] getRawData() {
+    public String[] get() {
         return rawData;
-    }
-
-    /**
-     * Возвращает инкапсулированный строковый массив с актуальными данными.
-     * @return строковый массив
-     */
-    public String[] getActualData() {
-        List<String> foundLines = new ArrayList<>();
-        for (String singleLine:rawData
-             ) {
-            String regexActualLines = "^\\d+\\|.*?\\|.*?\\|[0-9.]+\\|\\|$";
-            if(singleLine.matches(regexActualLines))
-                foundLines.add(singleLine);
-        }
-        return foundLines.toArray(new String[0]);
     }
 }
 

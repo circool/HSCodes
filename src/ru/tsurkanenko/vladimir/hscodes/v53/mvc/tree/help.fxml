@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.tsurkanenko.vladimir.hscodes.v53.mvc.tree.ControllerHelp">
+    <DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0"
+                prefWidth="600.0">
+        <header>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0">
+                <ScrollPane layoutX="3.0" layoutY="1.0" prefHeight="194.0" prefWidth="594.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="188.0" prefWidth="588.0">
+                        <Label text="Label"/>
+                    </AnchorPane>
+                </ScrollPane>
+            </AnchorPane>
+        </header>
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0"/>
+        </content>
+        <expandableContent>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0"/>
+        </expandableContent>
+    </DialogPane>
+    <Button layoutX="527.0" layoutY="359.0" mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close"/>
+</AnchorPane>
