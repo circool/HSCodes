@@ -22,9 +22,7 @@
   </rowConstraints>
   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0"
              GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
-    <image>
-      <!-- place holder -->
-    </image>
+    <!-- place holder -->
   </ImageView>
   <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0"
         GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
@@ -41,25 +39,18 @@
   </VBox>
   <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1"
         GridPane.rowIndex="1">
-    <HBox fx:id="actionParent" alignment="CENTER">
+    <HBox alignment="CENTER">
       <HBox.margin>
         <Insets/>
       </HBox.margin>
     </HBox>
     <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS"/>
-    <Button fx:id="helpCloseButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false"
+    <Button cancelButton="true" minWidth="80.0" mnemonicParsing="false"
             onAction="#helpCloseButtonOnAction" text="Close" HBox.hgrow="NEVER">
       <HBox.margin>
         <Insets/>
       </HBox.margin>
     </Button>
-    <HBox fx:id="okParent" alignment="CENTER">
-      <Button fx:id="helpOkButton" onAction="#helpOkButtonOnAction" minWidth="80.0" mnemonicParsing="false"
-              text="Ok" HBox.hgrow="NEVER">
-        <HBox.margin>
-          <Insets left="14.0"/>
-        </HBox.margin>
-      </Button>
-    </HBox>
+
   </HBox>
 </GridPane>

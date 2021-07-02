@@ -28,12 +28,19 @@ public class Controller implements Initializable {
     TreeView<String> rootView;
     TreeItem<String> root;
     MultipleSelectionModel<TreeItem<String>> selectionModel;
+    @FXML
     Label helpMessageLabel, helpDetailsLabel;
+    @FXML
+    MenuItem menuShowNote;
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         model= new Model();
+
+
         // Создание корневого узла дерева
         root = model.getTree();
         rootView = new TreeView<>(root);
@@ -41,15 +48,14 @@ public class Controller implements Initializable {
         // передаем корневой узел в компоненту
         mainTree.setRoot(rootView.getRoot());
         mainTree.setShowRoot(false);
-
         // раскрываем узел
         root.setExpanded(true);
         selectionModel = rootView.getSelectionModel();
-        //selectionModel.select(1);
         selectionModel.selectedItemProperty().addListener(observable -> {
             //TODO Сделать обработчик событий
 
         });
+
     }
 
 
@@ -62,12 +68,15 @@ public class Controller implements Initializable {
         helpMessageLabel.setText(model.getSection());
         helpDetailsLabel.setText(model.getSectionNote());
         //TODO Вывести справку о выбранном элементе
+
+
     }
     @FXML void mouseClickOnTree(){
         //TODO Сделать обработчик событий
     }
-    @FXML void menuShowNote(){
+    @FXML void menuShowNoteOnAction() {
         //TODO Сделать модальное окно
+        helpStage.show();
     }
 
     @FXML
@@ -75,7 +84,5 @@ public class Controller implements Initializable {
         helpStage.hide();
     }
 
-    @FXML void helpOkButtonOnAction(){
 
-    }
 }

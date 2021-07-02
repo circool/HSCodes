@@ -37,7 +37,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
             <MenuItem mnemonicParsing="false" text="About HSCode app"/>
-            <MenuItem fx:id="getNote" mnemonicParsing="false" onAction="#menuShowNote" text="Show Notes"/>
+            <MenuItem fx:id="menuShowNote" mnemonicParsing="false" onAction="#menuShowNoteOnAction" text="Show Notes"/>
         </Menu>
     </MenuBar>
     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
