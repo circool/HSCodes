@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 
 /**
  * Интерфейс, описывыающий методы, которые должны реализовывать все элементы справочника

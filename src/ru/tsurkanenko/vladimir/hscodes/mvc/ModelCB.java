@@ -1,12 +1,6 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.mvc.model;
+package ru.tsurkanenko.vladimir.hscodes.mvc;
 
-
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import ru.tsurkanenko.vladimir.hscodes.v53.database.*;
-
-
-
+import ru.tsurkanenko.vladimir.hscodes.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,7 +11,7 @@ import java.util.Arrays;
  * @version 0.5.3
  * @since 0.5.1
  */
-public class Model_v53 {
+public class ModelCB {
     private final String[] sectionList;
     private String[] groupList;
     private String[] positionList;
@@ -49,7 +43,7 @@ public class Model_v53 {
     /**
      * Создание новой модели.
      */
-    public Model_v53() {
+    public ModelCB() {
         sG1 = new ScopeGroups("dic/TNVED1.TXT");
         sG2 = new ScopeGroups("dic/TNVED2.TXT");
         sI3 = new ScopeItems("dic/TNVED3.TXT");
@@ -134,22 +128,6 @@ public class Model_v53 {
         return sp.toArray(subPositionList);
     }
 
-
-    public String[] getSubList(int nestlingLevel) {
-        //TODO подсубпозиции - вычислить значимые цифры родительской позиции и вывести дочерние элементы
-        //искать ориентируясь на первые 5 цифр кода
-        Items[] podSubPositions = sI4.startsWith(subPositionList[selectedSubPosition].substring(0,5));
-        ArrayList<String> psp = new ArrayList<>();
-        for (Items currSp:podSubPositions
-        ) {
-            if (currSp.getNestlingLevel()==nestlingLevel)
-                psp.add(currSp.toString());
-        }
-        String[] podSubPositionList = new String[psp.size()];
-        return psp.toArray(podSubPositionList);
-    }
-
-
     /**
      * Выбрать активный(текущий) раздел.
      *
@@ -207,137 +185,6 @@ public class Model_v53 {
                 sI4.startsWith(subPositionList[selectedSubPosition])[0].getNaim();
     }
 
-    @SuppressWarnings("CommentedOutCode")
-    public TreeItem<String> getTree(){
-        TreeItem<String> result = new TreeItem<>();
-        result.setValue("Справочник ТН ВЭД");
 
-        for (Groups currSection:sG1.get()) {
-            result
-                    .getChildren().add(new TreeItem<>(currSection.toString()));
-            int s0 = result
-                    .getChildren().size() - 1;
-            //result.addEventHandler(javafx.event.EventType.ROOT, (javafx.event.Event event) ->
-                    //System.out.println(event.getEventType()););
-
-            for (Groups currGroup:sG2.startsWith(currSection.getCode())) {
-                result
-                        .getChildren().get(s0)
-                        .getChildren().add(new TreeItem<>(currGroup.toString().substring(2)));
-                int s1 = result
-                        .getChildren().get(s0)
-                        .getChildren().size() - 1;
-
-
-                for (Items l0:sI3.startsWith(currGroup.getCode().substring(2))) {
-                    result
-                            .getChildren().get(s0)
-                            .getChildren().get(s1)
-                            .getChildren().add(new TreeItem<>(l0.toString()));
-                    int n0 = result
-                            .getChildren().get(s0)
-                            .getChildren().get(s1)
-                            .getChildren().size()-1;
-
-                    for (Items l1 : sI4.startsWith(l0.getCode(),1)) {
-                        result
-                                .getChildren().get(s0)
-                                .getChildren().get(s1)
-                                .getChildren().get(n0)
-                                .getChildren().add(new TreeItem<>(l1.toString()));
-                        int n1 = result
-                                .getChildren().get(s0)
-                                .getChildren().get(s1)
-                                .getChildren().get(n0)
-                                .getChildren().size() - 1;
-
-                        for (Items l2 : sI4.getChild(l1)) {
-                            result
-                                    .getChildren().get(s0)
-                                    .getChildren().get(s1)
-                                    .getChildren().get(n0)
-                                    .getChildren().get(n1)
-                                    .getChildren().add(new TreeItem<>(l2.toString()));
-                            int n2 = result
-                                    .getChildren().get(s0)
-                                    .getChildren().get(s1)
-                                    .getChildren().get(n0)
-                                    .getChildren().get(n1)
-                                    .getChildren().size() - 1;
-
-
-                            for (Items l3: sI4.getChild(l2)) {
-                            result
-                                    .getChildren().get(s0)
-                                    .getChildren().get(s1)
-                                    .getChildren().get(n0)
-                                    .getChildren().get(n1)
-                                    .getChildren().get(n2)
-                                    .getChildren().add(new TreeItem<>(l3.toString()));
-                            int n3 = result
-                                    .getChildren().get(s0)
-                                    .getChildren().get(s1)
-                                    .getChildren().get(n0)
-                                    .getChildren().get(n1)
-                                    .getChildren().get(n2)
-                                    .getChildren().size() - 1;
-
-                                for (Items l4: sI4.getChild(l3)) {
-                                    result
-                                            .getChildren().get(s0)
-                                            .getChildren().get(s1)
-                                            .getChildren().get(n0)
-                                            .getChildren().get(n1)
-                                            .getChildren().get(n2)
-                                            .getChildren().get(n3)
-                                            .getChildren().add(new TreeItem<>(l4.toString()));
-                                    int n4 = result
-                                            .getChildren().get(s0)
-                                            .getChildren().get(s1)
-                                            .getChildren().get(n0)
-                                            .getChildren().get(n1)
-                                            .getChildren().get(n2)
-                                            .getChildren().get(n3)
-                                            .getChildren().size() - 1;
-
-                                    for (Items l5: sI4.getChild(l4)) {
-                                        result
-                                                .getChildren().get(s0)
-                                                .getChildren().get(s1)
-                                                .getChildren().get(n0)
-                                                .getChildren().get(n1)
-                                                .getChildren().get(n2)
-                                                .getChildren().get(n3)
-                                                .getChildren().get(n4)
-                                                .getChildren().add(new TreeItem<>(l5.toString()));
-                                        /*int n5 = result
-                                                .getChildren().get(s0)
-                                                .getChildren().get(s1)
-                                                .getChildren().get(n0)
-                                                .getChildren().get(n1)
-                                                .getChildren().get(n2)
-                                                .getChildren().get(n3)
-                                                .getChildren().get(n4)
-                                                .getChildren().size() - 1;
-
-                                         */
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
-    public TreeView<String> getTreeView(){
-        TreeItem<String> rootTreeNode = this.getTree();
-        TreeView<String> hsTreeView = new TreeView<String>(rootTreeNode);
-        return hsTreeView;
-
-
-    }
 
 }

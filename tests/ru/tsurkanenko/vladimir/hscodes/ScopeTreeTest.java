@@ -1,5 +1,8 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 
+/**
+ * Демонстрация использования ScopeTree
+ */
 public class ScopeTreeTest {
     public static void main(String[] args) {
 
@@ -8,11 +11,11 @@ public class ScopeTreeTest {
         Items[] parent = item.startsWith("0102");
         for (Items a:parent
              ) {
-            System.out.println(Converting.toHuman(a.toString()));
+            System.out.println(StringTools.toHuman(a.toString()));
             Items[] scope = item.getChild(a);
             for (Items x:scope
             ) {
-                System.out.println("\t" + Converting.toHuman(x.toString()));
+                System.out.println("\t" + StringTools.toHuman(x.toString()));
             }
         }
         for (Items items:item.get()

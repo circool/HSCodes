@@ -1,10 +1,12 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-
+/**
+ * Тестирование поведения класса ScopeGroups
+ */
 class ScopeTest {
 
     @Test

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="640.0"
       xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.tsurkanenko.vladimir.hscodes.v53.mvc.combobox.Controller">
+      fx:controller="ru.tsurkanenko.vladimir.hscodes.mvc.ControllerCB">
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" text="New"/>

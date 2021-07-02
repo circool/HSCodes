@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.mvc.model;
+package ru.tsurkanenko.vladimir.hscodes.mvc;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @since 0.4
  */
 class ModelTest {
-    Model_v53 test;
+    ModelCB test;
 
     @BeforeEach
     void setUp() {
-        test = new Model_v53();
+        test = new ModelCB();
     }
 
     @Test

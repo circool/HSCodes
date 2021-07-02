@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 
 /**
  * Объект инкапсулирующий данные о товарной позиции, субпозиции, подсубпозиции или полного кода ТНВЭД

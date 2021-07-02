@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 
 import java.util.ArrayList;
 
@@ -55,18 +55,4 @@ public abstract class ScopeCommon<T extends Common> implements ScopeCommonCompat
             codeIndex[1][firstChar] = i;
         }
     }
-
-
-    /**
-     * Возвращает строковый массив с описаниями
-     * @since 0.5.3
-     */
-    @Override
-    public String[] toArray(){
-        String[] result = new String[scope.length];
-        for(int i=0;i < result.length; i++)
-            result[i] = scope[i].toString();
-        return result;
-    }
-
 }

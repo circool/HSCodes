@@ -1,6 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
-
-import ru.tsurkanenko.vladimir.hscodes.RawLines;
+package ru.tsurkanenko.vladimir.hscodes;
 
 
 import java.util.ArrayList;

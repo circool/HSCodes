@@ -1,10 +1,9 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.mvc.combobox;
+package ru.tsurkanenko.vladimir.hscodes.mvc;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import ru.tsurkanenko.vladimir.hscodes.v53.mvc.model.Model_v53;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,19 +11,19 @@ import java.util.ResourceBundle;
 /**
  * Контроллер (Controller) Model-View-Controller
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
- * Предназначен для представления view.fxml использующего выпадающие списки для отображения данных
+ * Предназначен для представления view_cb.fxml использующего выпадающие списки для отображения данных
  * @author Vladimir Tsurkanenko
  * @version 0.5.2
  * @since 0.4
  */
-public class Controller implements Initializable {
+public class ControllerCB implements Initializable {
     @FXML ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxPosition, comboBoxSubPosition;
     @FXML Label labelSectionNote, labelGroupNote, labelDescription;
-    Model_v53 model;
+    ModelCB model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new Model_v53();
+        model = new ModelCB();
         //Раздел
         comboBoxSection.getItems().setAll(model.getSectionList());
         comboBoxSection.setValue(comboBoxSection.getItems().get(0));

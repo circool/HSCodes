@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 
 import org.jetbrains.annotations.NotNull;
 

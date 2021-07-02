@@ -1,4 +1,4 @@
-package ru.tsurkanenko.vladimir.hscodes.v53.database;
+package ru.tsurkanenko.vladimir.hscodes;
 /**
  * Интерфейс, описывыающий методы, которые должны реализовывать все массивы элементов справочника
  * @author Vladimir Tsurkanenko
@@ -12,5 +12,4 @@ public interface ScopeCommonCompatible<T> {
     int lastIndexOf(String s);
     int firstIndexOf(String s);
     void makeScopeIndex();
-    String[] toArray();
 }
