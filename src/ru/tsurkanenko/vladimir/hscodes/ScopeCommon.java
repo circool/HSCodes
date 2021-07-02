@@ -30,8 +30,6 @@ public abstract class ScopeCommon<T extends Common> implements ScopeCommonCompat
         return result.toArray(searchResult);
     }
 
-
-
     @Override
     public int lastIndexOf(String s) {
         return codeIndex[1][Integer.parseInt(s.substring(0, 1))];

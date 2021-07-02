@@ -1,6 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -60,6 +59,8 @@ public class ScopeItems extends ScopeCommon<Items> {
      * @return Массив элементов
      * @since 0.5.3
      */
+    @Deprecated
+    //  Исключается ввиду наличия метода getChild
     public Items[] startsWith(String str, int nestingLevel) {
         ArrayList<Items> result = new ArrayList<>();
         for (int i = this.firstIndexOf(str); i <= this.lastIndexOf(str); i++) {
@@ -68,19 +69,21 @@ public class ScopeItems extends ScopeCommon<Items> {
         }
         return result.toArray(searchResult);
     }
+
     /**
      * Возвращает индекс элемента в массиве
      * @param parent Искомый элемент
      * @return индекс элемента
      * @since 0.5.3
      */
-    public int getIndex(Items parent){
+    int getIndex(Items parent){
         for (int i = 0; i < scope.length; i++) {
             if(scope[i].compareTo(parent)==0)
                 return i;
         }
         return -1;
     }
+
     /**
      * Возвращает массив элементов являющихся для искомого элемента дочерними
      * @param parent Искомый элемент

@@ -3,7 +3,7 @@ package ru.tsurkanenko.vladimir.hscodes;
 /**
  * Инструменты для работы со строками
  */
-public class StringTools {
+class StringTools {
     static String toHuman(String str){
         return str.substring(0,4) + " " +
                 str.substring(4,6) + " " +

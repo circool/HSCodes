@@ -18,7 +18,7 @@ public class Common implements CommonCompatible,Comparable<CommonCompatible> {
      * Конструктор для создания объекта из строки с сырыми данными
      * @param rawLine - строка с данными
      */
-    public Common(String rawLine)  {
+    Common(String rawLine)  {
         String regexActual = "^([0-9]+)\\|*([0-9]*)\\|*([0-9 ]*)\\|(.+?)\\|(.*?)\\|*([0-9.]+)\\|\\|$";
         naim = rawLine.replaceAll(regexActual,"$4");
         code = rawLine.replaceAll(regexActual,"$1$2$3");

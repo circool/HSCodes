@@ -291,8 +291,7 @@ class ModelTest {
         test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
         test.selectSubPosition("9607209000 - - прочие");
-        MatcherAssert.assertThat(test.getDescription(), is("" +
-                "РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
+        MatcherAssert.assertThat(test.getDescription(), is("РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
                 "\tРАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ\n" +
                 "\t\tЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ\n" +
                 "\t\t\t- - прочие"));

@@ -10,7 +10,7 @@ public class ScopeTreeDemo {
         Items[] allItems = group.startsWith("0102");
         for (int i = 0; i < 1; i++) {
             System.out.println(allItems[0].toString());
-            for (Items l1: item.startsWith(allItems[0].getCode(),1)) {
+            for (Items l1: item.startsWith(allItems[0].getCode())) {
                 System.out.println(StringTools.toHuman(l1.toString()));
                 for(Items l2 : item.getChild(l1)) {
                     System.out.println("\t" + StringTools.toHuman(l2.toString()));

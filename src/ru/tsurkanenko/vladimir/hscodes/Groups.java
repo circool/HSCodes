@@ -14,7 +14,7 @@ public class Groups extends Common {
      *
      * @param rawLine - строка с данными
      */
-    public Groups(String rawLine) {
+    Groups(String rawLine) {
         super(rawLine);
 
         String regexPrim  = "^[0-9|]*\\|.*?\\|(.*?)\\|([0-9.|]+)$";

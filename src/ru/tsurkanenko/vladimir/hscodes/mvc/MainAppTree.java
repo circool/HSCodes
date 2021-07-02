@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * Основной класс для запуска MVC использующей дерево для отображения элементов справочника
  */
-public class MainAppTree extends Application {
+class MainAppTree extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view.fxml")));

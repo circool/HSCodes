@@ -18,19 +18,19 @@ public class ModelCB {
     private String[] subPositionList;
     private int selectedSection;
 
-    public int getSelectedSection() {
+    int getSelectedSection() {
         return selectedSection;
     }
 
-    public int getSelectedGroup() {
+    int getSelectedGroup() {
         return selectedGroup;
     }
 
-    public int getSelectedPosition() {
+    int getSelectedPosition() {
         return selectedPosition;
     }
 
-    public int getSelectedSubPosition() {
+    int getSelectedSubPosition() {
         return selectedSubPosition;
     }
 
@@ -43,7 +43,7 @@ public class ModelCB {
     /**
      * Создание новой модели.
      */
-    public ModelCB() {
+    ModelCB() {
         sG1 = new ScopeGroups("dic/TNVED1.TXT");
         sG2 = new ScopeGroups("dic/TNVED2.TXT");
         sI3 = new ScopeItems("dic/TNVED3.TXT");
@@ -82,7 +82,7 @@ public class ModelCB {
      * Возвращает массив с удобочитаемым перечнем разделов стравочника
      * @return массив с разделами (строки в формате "ХХ НАИМЕНОВАНИЕ РАЗДЕЛА")
      */
-    public String[] getSectionList() {
+    String[] getSectionList() {
         return this.sectionList;
     }
     /**
@@ -90,7 +90,7 @@ public class ModelCB {
      * Возвращает массив с удобочитаемым перечнем дочерних групп текущего раздела
      * @return массив с группами (строки в формате "ХХХХ НАИМЕНОВАНИЕ ГРУППЫ")
      */
-    public String[] getGroupList() {
+    String[] getGroupList() {
         Groups[] groups = sG2.startsWith(sectionList[selectedSection].substring(0,2));
         groupList = new String[groups.length];
         for (int i = 0; i < groupList.length; i++){
@@ -103,7 +103,7 @@ public class ModelCB {
      * Возвращает массив с удобочитаемым перечнем дочерних товарных позиций текущей группы
      * @return массив с подгруппами (строки в формате "ХХХХ НАИМЕНОВАНИЕ ТОВАРНОЙ ПОЗИЦИИ")
      */
-    public String[] getPositionList() {
+    String[] getPositionList() {
         Items[] positions = sI3.startsWith(groupList[selectedGroup].substring(0,2));
         this.positionList = new String[positions.length];
         for (int i = 0; i < positionList.length; i++){
@@ -116,7 +116,7 @@ public class ModelCB {
      * Возвращает массив с удобочитаемым перечнем дочерних товарных подпозиций для текущей товарной позиции
      * @return массив с товарными подпозициями (строки в формате "ХХХХХХ наименование товарной подпозиции")
      */
-    public String[] getSubPositionList() {
+    String[] getSubPositionList() {
         // вывести только те позиции, у которых уровень вложенности меньше 2х
         Items[] subPositions = sI4.startsWith(positionList[selectedPosition].substring(0,4));
         ArrayList<String> sp = new ArrayList<>();
@@ -132,7 +132,7 @@ public class ModelCB {
      * Выбрать активный(текущий) раздел.
      *
      */
-    public void selectSection(String item) {
+    void selectSection(String item) {
         this.selectedSection = Arrays.asList(sectionList).indexOf(item);
         groupList = getGroupList();
     }
@@ -140,14 +140,14 @@ public class ModelCB {
      * Выбрать активный(текущий) подраздел (группу)
      *
      */
-    public void selectGroup(String item) {
+    void selectGroup(String item) {
         selectedGroup = Arrays.asList(groupList).indexOf(item);
         positionList = getPositionList();
     }
     /**
      * Выбрать активную(текущую) группу
      */
-    public void selectPosition(String item){
+    void selectPosition(String item){
         this.selectedPosition = Arrays.asList(positionList).indexOf(item);
         subPositionList = getSubPositionList();
     }
@@ -155,7 +155,7 @@ public class ModelCB {
      * Выбрать активную(текущую) товарную позицию.
      *
      */
-    public void selectSubPosition(String item) {
+    void selectSubPosition(String item) {
         selectedSubPosition = Arrays.asList(subPositionList).indexOf(item);
     }
 
@@ -163,14 +163,14 @@ public class ModelCB {
      * Возвращает примечание для текущей группы ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
-    public String getGroupNote() {
+    String getGroupNote() {
         return sG2.startsWith(sectionList[selectedSection].substring(0,2)+groupList[selectedGroup].substring(0,2))[0].getPrim();
     }
     /**
      * Возвращает примечание для текущего раздела ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
-    public String getSectionNote() {
+    String getSectionNote() {
         return sG1.startsWith(sectionList[selectedSection].substring(0,2))[0].getPrim();
 
     }
@@ -178,13 +178,10 @@ public class ModelCB {
      * Возвращает описание выбранного кода ТНВЭД, включая его родительские субпозицию, позицию и группу
      * @return Строка с описанием кода ТНВЭД
      */
-    public String getDescription() {
+    String getDescription() {
         return sG1.startsWith(sectionList[selectedSection].substring(0,2))[0].getNaim() + "\n\t" +
                 sG2.startsWith(sectionList[selectedSection].substring(0,2)+groupList[selectedGroup].substring(0,2))[0].getNaim() + "\n\t\t" +
                 sI3.startsWith(positionList[selectedPosition].substring(0,4))[0].getNaim() + "\n\t\t\t" +
                 sI4.startsWith(subPositionList[selectedSubPosition])[0].getNaim();
     }
-
-
-
 }

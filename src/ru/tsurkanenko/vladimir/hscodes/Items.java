@@ -14,7 +14,7 @@ public class Items extends Common implements Comparable<CommonCompatible> {
      * Конструктор для создания объекта из строки с сырыми данными
      * @param rawLine - строка с данными
      */
-    public Items(String rawLine) {
+    Items(String rawLine) {
         super(rawLine);
         nestlingLevel = this.toString().split("-[  ]").length - 1;
     }

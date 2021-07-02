@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,25 +17,15 @@ import java.util.ResourceBundle;
  * @since 0.4
  */
 public class Controller implements Initializable {
-
     Model model;
+
     @FXML
     Stage helpStage;
-
-    // Элементы Представления, состояние которых требуется менять или обновлять
-    @FXML
-    TreeView<String> mainTree;
-    MenuItem getNote;
-    TreeView<String> rootView;
+    public TreeView<String> mainTree, rootView;
     TreeItem<String> root;
     MultipleSelectionModel<TreeItem<String>> selectionModel;
-    @FXML
-    Label helpMessageLabel, helpDetailsLabel;
-    @FXML
-    MenuItem menuShowNote;
-
-
-
+    public Label helpMessageLabel, helpDetailsLabel;
+    public MenuItem menuShowNote;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,30 +50,33 @@ public class Controller implements Initializable {
     }
 
 
-    // Обработка элементов управления Представления
-    @FXML void buttonCloseOnAction(){
+    @FXML
+    void buttonCloseOnAction(){
         System.exit(0);
     }
 
-    @FXML void buttonDetailsMoreOnActions(){
+    @FXML
+    public void buttonDetailsMoreOnActions(){
         helpMessageLabel.setText(model.getSection());
         helpDetailsLabel.setText(model.getSectionNote());
         //TODO Вывести справку о выбранном элементе
 
 
     }
-    @FXML void mouseClickOnTree(){
+
+    @FXML
+    void mouseClickOnTree(){
         //TODO Сделать обработчик событий
     }
-    @FXML void menuShowNoteOnAction() {
+
+    @FXML
+    void menuShowNoteOnAction() {
         //TODO Сделать модальное окно
         helpStage.show();
     }
 
     @FXML
-    void helpCloseButtonOnAction(){
+    public void helpCloseButtonOnAction(){
         helpStage.hide();
     }
-
-
 }

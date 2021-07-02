@@ -11,7 +11,7 @@ import ru.tsurkanenko.vladimir.hscodes.*;
  * @version 0.5.4
  * @since 0.5.1
  */
-public class Model {
+class Model {
 
     private final ScopeGroups sG1, sG2;
     private final ScopeItems sI3, sI4;
@@ -19,7 +19,7 @@ public class Model {
     /**
      * Создание новой модели.
      */
-    public Model() {
+    Model() {
         sG1 = new ScopeGroups("dic/TNVED1.TXT");
         sG2 = new ScopeGroups("dic/TNVED2.TXT");
         sI3 = new ScopeItems("dic/TNVED3.TXT");
@@ -32,7 +32,7 @@ public class Model {
      * Возвращает примечание для текущего раздела ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
-    public String getSectionNote() {
+    String getSectionNote() {
         //TODO Сделать правильный ответ
         return sG1.get()[0].getPrim();
 
@@ -41,12 +41,12 @@ public class Model {
      * Возвращает описание текущего раздела ТНВЭД
      * @return Строка с кодом и описанием
      */
-    public String getSection() {
+    String getSection() {
         //TODO Сделать правильный ответ
         return sG1.get()[0].toString();
     }
 
-    public TreeItem<String> getTree() {
+    TreeItem<String> getTree() {
         TreeItem<String> result = new TreeItem<>();
         result.setValue("Справочник ТН ВЭД");
         // Разделы
@@ -70,7 +70,7 @@ public class Model {
                             .getChildren().get(s0).getChildren().get(s1)
                             .getChildren().size() - 1;
                     // Товарные субпозиции, подсубпозиции итд -, - -, - - - итд
-                    for (Items l1 : sI4.startsWith(l0.getCode(), 1)) {
+                    for (Items l1 : sI4.startsWith(l0.getCode())) {
                         TreeItem<String> a = nestedChild(sI4,l1);
                         result.getChildren().get(s0).getChildren().get(s1).getChildren().get(n0).getChildren().add(a);
                     }

@@ -13,7 +13,7 @@ import java.util.List;
  * @version 0.5.3
  * @since 0.5.3
  */
-public class RawLines {
+class RawLines {
     private String[] rawData;
 
     /**
@@ -22,7 +22,7 @@ public class RawLines {
      *
      * @param fileName имя файла с данными
      */
-    public RawLines(String fileName) {
+    RawLines(String fileName) {
         try {
             BufferedReader sourceFile =
                     new BufferedReader(new FileReader(fileName));
@@ -43,7 +43,7 @@ public class RawLines {
      * Возвращает строковый массив с актуальными данными.
      * @return строковый массив
      */
-    public String[] get() {
+    String[] get() {
         return rawData;
     }
 }
