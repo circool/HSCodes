@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @since 0.4
  */
 class ModelTest {
-    Model test;
+    Model_v53 test;
 
     @BeforeEach
     void setUp() {
-        test = new Model();
+        test = new Model_v53();
     }
 
     @Test

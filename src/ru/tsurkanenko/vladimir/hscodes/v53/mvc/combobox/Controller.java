@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import ru.tsurkanenko.vladimir.hscodes.v53.mvc.model.*;
+import ru.tsurkanenko.vladimir.hscodes.v53.mvc.model.Model_v53;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,11 +20,11 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxPosition, comboBoxSubPosition;
     @FXML Label labelSectionNote, labelGroupNote, labelDescription;
-    Model model;
+    Model_v53 model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new Model();
+        model = new Model_v53();
         //Раздел
         comboBoxSection.getItems().setAll(model.getSectionList());
         comboBoxSection.setValue(comboBoxSection.getItems().get(0));

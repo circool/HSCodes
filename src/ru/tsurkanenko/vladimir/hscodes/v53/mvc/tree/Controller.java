@@ -1,16 +1,16 @@
 package ru.tsurkanenko.vladimir.hscodes.v53.mvc.tree;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.stage.Stage;
 import ru.tsurkanenko.vladimir.hscodes.v53.mvc.model.Model;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-//TODO попытаться заполнить дерево при помощи рекурсивного вызова
 
 /**
  * Контроллер (Controller) Model-View-Controller
@@ -27,24 +27,40 @@ public class Controller implements Initializable {
 
     @FXML
     MenuItem getNote;
-
-// --Commented out by Inspection START (02/07/2021, 01:44):
-//    // Внутренние переменные
-//    TreeItem<String> selectedTreeItem;
-// --Commented out by Inspection STOP (02/07/2021, 01:44)
+    TreeView<String> rootView;
+    TreeItem<String> root;
+    MultipleSelectionModel<TreeItem<String>> selectionModel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model model= new Model();
         // Создание корневого узла дерева
-        TreeItem<String> root = model.getTree();
-
+        root = model.getTree();
+        rootView = new TreeView<>(root);
 
         // передаем корневой узел в компоненту
-        mainTree.setRoot(root);
+        mainTree.setRoot(rootView.getRoot());
         mainTree.setShowRoot(false);
+
         // раскрываем узел
         root.setExpanded(true);
+        selectionModel = rootView.getSelectionModel();
+        //selectionModel.select(1);
+        selectionModel.selectedItemProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                //TODO Сделать обработчик событий
+                /*
+                String selected = selectionModel.getSelectedIndices().get(1).toString();
+                //String selected = "";
+                for(TreeItem<String> item : selectionModel.getSelectedItems()){
+                    selected += item.getValue() + " ";
+                }
+                getNote.setText("Selected: " + selected);
+                System.out.println("Tree item was selected");
+                */
+            }
+        });
     }
 
 
@@ -56,15 +72,9 @@ public class Controller implements Initializable {
         //TODO Вывести справку о выбранном элементе
     }
     @FXML void mouseClickOnTree(){
-        //TODO Вывести справку о выбранном элементе
+        //TODO Сделать обработчик событий
     }
     @FXML void menuShowNote(){
-            //getNote.setVisible(!getNote.isVisible());
-            HelpApp x = new HelpApp();
-        try {
-            x.start(new Stage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //TODO Сделать модальное окно
     }
 }
