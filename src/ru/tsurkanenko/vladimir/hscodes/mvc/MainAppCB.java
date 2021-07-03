@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.util.Objects;
 
-
 /**
  * Основной класс для запуска MVC использующей выпадающие списки для выбора элементов справочника
  */

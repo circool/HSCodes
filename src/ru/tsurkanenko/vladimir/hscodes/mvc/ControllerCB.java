@@ -27,43 +27,43 @@ public class ControllerCB implements Initializable {
         //Раздел
         comboBoxSection.getItems().setAll(model.getSectionList());
         comboBoxSection.setValue(comboBoxSection.getItems().get(0));
-        model.selectSection(comboBoxSection.getValue());
+        model.setActiveSection(comboBoxSection.getValue());
         labelSectionNote.setText(model.getSectionNote());
         //Товарная группа
         comboBoxGroup.getItems().setAll(model.getGroupList());
         comboBoxGroup.setValue(comboBoxGroup.getItems().get(0));
-        model.selectGroup(comboBoxSection.getItems().get(0).substring(0,2) + comboBoxGroup.getValue().substring(2));
+        model.setActiveGroup(comboBoxSection.getItems().get(0).substring(0,2) + comboBoxGroup.getValue().substring(2));
         labelGroupNote.setText(model.getGroupNote());
         //Товарная позиция
         comboBoxPosition.getItems().setAll(model.getPositionList());
         comboBoxPosition.setValue(comboBoxPosition.getItems().get(0));
-        model.selectPosition(comboBoxPosition.getValue());
+        model.setActivePosition(comboBoxPosition.getValue());
         //Товарная подпозиция
         comboBoxSubPosition.getItems().setAll(model.getSubPositionList());
         comboBoxSubPosition.setValue(comboBoxSubPosition.getItems().get(0));
-        model.selectSubPosition(comboBoxSubPosition.getValue());
-        labelDescription.setText(model.getDescription());
+        model.setActiveSubPosition(comboBoxSubPosition.getValue());
+        labelDescription.setText(model.getFinalDescription());
     }
     public void onActionComboBoxSection(){
-        model.selectSection(comboBoxSection.getValue());
+        model.setActiveSection(comboBoxSection.getValue());
         labelSectionNote.setText(model.getSectionNote());
         comboBoxGroup.getItems().setAll(model.getGroupList());
         comboBoxGroup.setValue(comboBoxGroup.getItems().get(0));
     }
     public void onActionComboBoxGroup(){
-        model.selectGroup(comboBoxGroup.getValue());
+        model.setActiveGroup(comboBoxGroup.getValue());
         labelGroupNote.setText(model.getGroupNote());
         comboBoxPosition.getItems().setAll(model.getPositionList());
         comboBoxPosition.setValue(comboBoxPosition.getItems().get(0));
     }
     public void onActionComboBoxPosition(){
-        model.selectPosition(comboBoxPosition.getValue());
+        model.setActivePosition(comboBoxPosition.getValue());
         comboBoxSubPosition.getItems().setAll(model.getSubPositionList());
         comboBoxSubPosition.setValue(comboBoxSubPosition.getItems().get(0));
     }
     public void onActionComboBoxItem(){
-        model.selectSubPosition(comboBoxSubPosition.getValue());
-        labelDescription.setText(model.getDescription());
+        model.setActiveSubPosition(comboBoxSubPosition.getValue());
+        labelDescription.setText(model.getFinalDescription());
     }
     public void onActionButtonClose(){
         System.exit(1);

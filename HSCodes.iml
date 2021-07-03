@@ -6,17 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/dic" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/src/ru/tsurkanenko/vladimir/hscodes/v40/database" />
-      <excludeFolder url="file://$MODULE_DIR$/src/ru/tsurkanenko/vladimir/hscodes/v40/mvc/combobox" />
-      <excludeFolder url="file://$MODULE_DIR$/src/ru/tsurkanenko/vladimir/hscodes/v40/mvc/model" />
-      <excludeFolder url="file://$MODULE_DIR$/src/ru/tsurkanenko/vladimir/hscodes/v40/mvc/tree" />
-      <excludeFolder url="file://$MODULE_DIR$/src/ru/tsurkanenko/vladimir/hscodes/v50/database" />
-      <excludeFolder url="file://$MODULE_DIR$/src/ru/tsurkanenko/vladimir/hscodes/v51/database" />
-      <excludeFolder url="file://$MODULE_DIR$/tests/ru/tsurkanenko/vladimir/hscodes/v40/database" />
-      <excludeFolder url="file://$MODULE_DIR$/tests/ru/tsurkanenko/vladimir/hscodes/v40/mvc/model" />
-      <excludeFolder url="file://$MODULE_DIR$/tests/ru/tsurkanenko/vladimir/hscodes/v50/database" />
+
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="corretto-1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
