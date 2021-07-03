@@ -1,8 +1,5 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -20,14 +17,8 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     Model model;
     @FXML
-    TreeView<String> mainTreeView; // элемент в view.fxml
-    //TreeView<String> rootTreeView;
-    //TreeItem<String> rootTreeItem;
-    //MultipleSelectionModel<TreeItem<String>> selectionModel;
+    TreeView<String> mainTreeView;
     MenuItem menuShowNote;
-
-    @FXML
-    public Label helpMessageLabel, helpDetailsLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,9 +48,9 @@ public class Controller implements Initializable {
 
     @FXML
     void mouseClickOnTree(){
-        // для выбора элемента сначала получаем модель дерева
+        // для выбора/получения активного элемента сначала получаем модель дерева
         SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
-        // передать в модель выбраный пункт дерева
+        // получаем активный элемент из модели дерева и передаем их в модель MVC
         model.setActiveSection(treeSelectionModel.getSelectedItem().getValue());
     }
 
