@@ -1,18 +1,15 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
 /**
  * Модель MVC (Model-View-Controller)
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
- * Для формирования дерева товарных позиций используется рекурсивный метод nestedChild
+ * Для формирования дерева товарных позиций используется рекурсивный подход (getTreeRecursive и nestedChildRecursive) или итерационный 10-ти уровневый (getTreeIterable)
  * @author Vladimir Tsurkanenko
  * @version 0.5.5
  * @since 0.5.5
+ * TODO Рекурсивный способ работает значительно дольше, нужно оптимизировать его логику
  */
 class Model extends ModelCommon{
 
@@ -27,7 +24,7 @@ class Model extends ModelCommon{
      * Возвращает полное дерево ТНВЭД
      * @return Дерево элементов справочника ТНВЭД
      */
-    TreeItem<String> getTree() {
+    TreeItem<String> getTreeRecursive() {
         //System.out.println("Start getTree");
         TreeItem<String> result = new TreeItem<>();
         result.setValue("Справочник ТН ВЭД");
@@ -36,14 +33,6 @@ class Model extends ModelCommon{
             result.getChildren().add(new TreeItem<>(currSection.toString()));
             int s0 = result
                     .getChildren().size() - 1;
-            TreeItem curItem = result.getChildren().get(s0);
-            TreeView<String> thisTreeView = new TreeView<String>(curItem);
-            SelectionModel<TreeItem<String>> selectionModel = thisTreeView.getSelectionModel();
-            selectionModel.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>(){
-                public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldValue, TreeItem<String> newValue){
-                    setActiveSection(newValue.getValue());
-                }
-            });
 
             // Товарные группы ХХ
             for (Groups currGroup : getGroups().startsWith(currSection.getCode())) {
@@ -62,7 +51,7 @@ class Model extends ModelCommon{
                     // Товарные субпозиции, подсубпозиции итд -, - -, - - - итд
                     ScopeItems allItems = getItems();
                     for (Items l1 : allItems.startsWith(l0.getCode())) {
-                        TreeItem<String> a = nestedChild(allItems,l1);
+                        TreeItem<String> a = nestedChildRecursive(allItems,l1);
                         result.getChildren().get(s0).getChildren().get(s1).getChildren().get(n0).getChildren().add(a);
                     }
                 }
@@ -316,7 +305,7 @@ class Model extends ModelCommon{
                                                                     .getChildren().get(i8)
                                                                     .getChildren().get(i9)
                                                                     .getChildren().get(i10)
-                                                                    .getChildren().get(i10)
+                                                                    .getChildren().get(i11)
                                                                     .getChildren()
                                                                     .add(new TreeItem<>(l10.toString()));
                                                             }
@@ -344,18 +333,17 @@ class Model extends ModelCommon{
      * @return Дерево с корневым узлом parent и его дочерними элементами (и их дочерними элементами, вплоть до последнего листа)
      * TODO Нужна оптимизация
      */
-    TreeItem<String> nestedChild(ScopeItems data, Items parent) {
+    TreeItem<String> nestedChildRecursive(ScopeItems data, Items parent) {
         TreeItem<String> result = new TreeItem<>(parent.toString());
         Items[] nestedChild = data.getChild(parent);
         if (nestedChild.length == 0) {
             return result;
         }
         for (Items item : data.getChild(parent)){
-            result.getChildren().add(nestedChild(data,item));
+            result.getChildren().add(nestedChildRecursive(data,item));
             result.getChildren().get(result.getChildren().size()-1).setValue(item.toString());
         }
         return result;
     }
-
 
 }

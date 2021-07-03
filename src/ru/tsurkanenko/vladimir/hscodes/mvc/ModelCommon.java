@@ -32,6 +32,7 @@ public class ModelCommon {
     public ScopeGroups getSections() {
         return sections;
     }
+
     /**
      * Возвращает массив с группами ТНВЭД
      * @return массив с группами
@@ -39,6 +40,7 @@ public class ModelCommon {
     public ScopeGroups getGroups() {
         return groups;
     }
+
     /**
      * Возвращает массив с товарными позициями ТНВЭД
      * @return массив с товарными позициями
@@ -46,6 +48,7 @@ public class ModelCommon {
     public ScopeItems getPositions() {
         return positions;
     }
+
     /**
      * Возвращает массив с товарными позициями, подпозициями и субподпозициями ТНВЭД
      * @return массив с конечными элементами справочника
@@ -59,8 +62,10 @@ public class ModelCommon {
      * @param section Строковое представление текущего раздела
      */
     public void setActiveSection(String section) {
-        System.out.println("Пункт " + section + " установлен как активный.");
-        this.activeSection = section;
+        if(!section.equals(activeSection)){
+            //System.out.println("Пункт " + section + " установлен как активный.");
+            this.activeSection = section;
+        }
     }
 
     /**
@@ -104,9 +109,15 @@ public class ModelCommon {
     public String getSectionNote() {
         //TODO Сделать правильный ответ
         System.out.println("Вызван метод getSectionNote");
-        return null;
+        if(sections.startsWith(activeSection).length==1)
+            return sections.startsWith(activeSection)[0].getPrim();
+        return "";
     }
 
+    /**
+     * Возвращает полное описание выбранного кода ТНВЭД
+     * @return Строка описаниями родителей и выбранного кода
+     */
     public String getFinalDescription() {
         //TODO Сделать правильный ответ
         System.out.println("Вызван метод getFinalDescription");

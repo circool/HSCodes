@@ -59,8 +59,6 @@ public class ScopeItems extends ScopeCommon<Items> {
      * @return Массив элементов
      * @since 0.5.3
      */
-    @Deprecated
-    //  Исключается ввиду наличия метода getChild
     public Items[] startsWith(String str, int nestingLevel) {
         ArrayList<Items> result = new ArrayList<>();
         for (int i = this.firstIndexOf(str); i <= this.lastIndexOf(str); i++) {
@@ -94,8 +92,6 @@ public class ScopeItems extends ScopeCommon<Items> {
         int parentNesting = parent.getNestlingLevel();
         ArrayList<Items> result = new ArrayList<>();
         int startIndex = this.getIndex(parent);
-
-
         if (scope.length <= startIndex+1)
                 return new Items[0];
         while (scope[startIndex+1].getNestlingLevel() > parentNesting) {
