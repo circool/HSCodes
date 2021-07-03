@@ -1,6 +1,9 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
 /**
@@ -8,61 +11,50 @@ import ru.tsurkanenko.vladimir.hscodes.*;
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
  * Для формирования дерева товарных позиций используется рекурсивный метод nestedChild
  * @author Vladimir Tsurkanenko
- * @version 0.5.4
- * @since 0.5.1
+ * @version 0.5.5
+ * @since 0.5.5
  */
-class Model {
-
-    private final ScopeGroups sG1, sG2;
-    private final ScopeItems sI3, sI4;
+class Model extends ModelCommon{
 
     /**
      * Создание новой модели.
      */
     Model() {
-        sG1 = new ScopeGroups("dic/TNVED1.TXT");
-        sG2 = new ScopeGroups("dic/TNVED2.TXT");
-        sI3 = new ScopeItems("dic/TNVED3.TXT");
-        sI3.add("dic/TNVED3.ADD.TXT");
-        sI4 = new ScopeItems("dic/TNVED4.TXT");
-        sI4.add("dic/TNVED4.ADD.TXT");
+        super();
+        setActiveSection("01 ЖИВЫЕ ЖИВОТНЫЕ; ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ");
     }
 
     /**
-     * Возвращает примечание для текущего раздела ТНВЭД
-     * @return Строка с примечанием (PRIM)
+     * Возвращает полное дерево ТНВЭД
+     * @return Дерево элементов справочника ТНВЭД
      */
-    String getSectionNote() {
-        //TODO Сделать правильный ответ
-        return sG1.get()[0].getPrim();
-
-    }
-    /**
-     * Возвращает описание текущего раздела ТНВЭД
-     * @return Строка с кодом и описанием
-     */
-    String getSection() {
-        //TODO Сделать правильный ответ
-        return sG1.get()[0].toString();
-    }
-
     TreeItem<String> getTree() {
+
+        System.out.println("Start getTree");
         TreeItem<String> result = new TreeItem<>();
         result.setValue("Справочник ТН ВЭД");
         // Разделы
-        for (Groups currSection : sG1.get()) {
+        for (Groups currSection : getSections().get()) {
             result.getChildren().add(new TreeItem<>(currSection.toString()));
             int s0 = result
                     .getChildren().size() - 1;
+            TreeItem curItem = result.getChildren().get(s0);
+            TreeView<String> thisTreeView = new TreeView<String>(curItem);
+            SelectionModel<TreeItem<String>> selectionModel = thisTreeView.getSelectionModel();
+            selectionModel.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>(){
+                public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldValue, TreeItem<String> newValue){
+                    setActiveSection(newValue.getValue());
+                }
+            });
 
             // Товарные группы ХХ
-            for (Groups currGroup : sG2.startsWith(currSection.getCode())) {
+            for (Groups currGroup : getGroups().startsWith(currSection.getCode())) {
                 result.getChildren().get(s0).getChildren().add(new TreeItem<>(currGroup.toString().substring(2)));
                 int s1 = result
                         .getChildren().get(s0)
                         .getChildren().size() - 1;
                 // Товарные позиции ХХХХ
-                for (Items l0 : sI3.startsWith(currGroup.getCode().substring(2))) {
+                for (Items l0 : getPositions().startsWith(currGroup.getCode().substring(2))) {
                     result
                             .getChildren().get(s0).getChildren().get(s1)
                             .getChildren().add(new TreeItem<>(l0.toString()));
@@ -70,19 +62,292 @@ class Model {
                             .getChildren().get(s0).getChildren().get(s1)
                             .getChildren().size() - 1;
                     // Товарные субпозиции, подсубпозиции итд -, - -, - - - итд
-                    for (Items l1 : sI4.startsWith(l0.getCode())) {
-                        TreeItem<String> a = nestedChild(sI4,l1);
+                    ScopeItems allItems = getItems();
+                    for (Items l1 : allItems.startsWith(l0.getCode())) {
+                        TreeItem<String> a = nestedChild(allItems,l1);
                         result.getChildren().get(s0).getChildren().get(s1).getChildren().get(n0).getChildren().add(a);
                     }
                 }
             }
         }
+        System.out.println("End getTree");
         return result;
     }
 
+    /**
+     * Возвращает дерево сформированное из дочерних элементов справочника.
+     * Использует итерационный способ обхода всех уровней вложенности справочника
+     * Всего в товарных позициях найдено 10 уровней вложенности.
+     * @return Дерево с корневым узлом parent и его дочерними элементами (и их дочерними элементами, вплоть до последнего листа)
+     */
+    TreeItem<String> getTreeIterable() {
+        System.out.println("Start getTreeIterable");
+        TreeItem<String> result = new TreeItem<>();
+        result.setValue("Справочник ТН ВЭД");
+        // Разделы XX
+        for (Groups currSection : getSections().get()) {
+            result.getChildren().add(new TreeItem<>(currSection.toString()));
+            int i0 = result
+                    .getChildren().size() - 1;
+            // Товарные группы ХХ ХХ
+            for (Groups currGroup : getGroups().startsWith(currSection.getCode())) {
+                result.getChildren().get(i0).getChildren().add(new TreeItem<>(currGroup.toString()));
+                int i1 = result
+                        .getChildren().get(i0)
+                        .getChildren().size() - 1;
+                // Товарные позиции ХХХХ
+                for (Items currPosition : getPositions().startsWith(currGroup.getCode().substring(2))) {
+                    result
+                            .getChildren().get(i0)
+                            .getChildren().get(i1)
+                            .getChildren().add(new TreeItem<>(currPosition.toString()));
+                    int i2 = result
+                            .getChildren().get(i0)
+                            .getChildren().get(i1)
+                            .getChildren().size() - 1;
+
+                    // Товарные подсубпозиции 1-го уровня вложенности
+                    for (Items l1 : getItems().startsWith(currPosition.getCode(),1)) {
+                        result
+                                .getChildren().get(i0)
+                                .getChildren().get(i1)
+                                .getChildren().get(i2)
+                                .getChildren()
+                                .add(new TreeItem<>(l1.toString()));
+                        int i3 = result
+                                .getChildren().get(i0)
+                                .getChildren().get(i1)
+                                .getChildren().get(i2)
+                                .getChildren()
+                                .size() - 1;
+                        // Товарные подсубпозиции 2-го уровня вложенности
+                        for (Items l2 : getItems().getChild(l1)) {
+                            result
+                                    .getChildren().get(i0)
+                                    .getChildren().get(i1)
+                                    .getChildren().get(i2)
+                                    .getChildren().get(i3)
+                                    .getChildren()
+                                    .add(new TreeItem<>(l2.toString()));
+                            int i4 = result
+                                    .getChildren().get(i0)
+                                    .getChildren().get(i1)
+                                    .getChildren().get(i2)
+                                    .getChildren().get(i3)
+                                    .getChildren()
+                                    .size() - 1;
+                            // Товарные подсубпозиции 3-го уровня вложенности
+                            for (Items l3 : getItems().getChild(l2)) {
+                                result
+                                        .getChildren().get(i0)
+                                        .getChildren().get(i1)
+                                        .getChildren().get(i2)
+                                        .getChildren().get(i3)
+                                        .getChildren().get(i4)
+                                        .getChildren()
+                                        .add(new TreeItem<>(l3.toString()));
+                                int i5 = result
+                                        .getChildren().get(i0)
+                                        .getChildren().get(i1)
+                                        .getChildren().get(i2)
+                                        .getChildren().get(i3)
+                                        .getChildren().get(i4)
+                                        .getChildren()
+                                        .size() - 1;
+                                // Товарные подсубпозиции 4-го уровня вложенности
+                                for (Items l4 : getItems().getChild(l3)) {
+                                    result
+                                            .getChildren().get(i0)
+                                            .getChildren().get(i1)
+                                            .getChildren().get(i2)
+                                            .getChildren().get(i3)
+                                            .getChildren().get(i4)
+                                            .getChildren().get(i5)
+                                            .getChildren()
+                                            .add(new TreeItem<>(l4.toString()));
+                                    int i6 = result
+                                            .getChildren().get(i0)
+                                            .getChildren().get(i1)
+                                            .getChildren().get(i2)
+                                            .getChildren().get(i3)
+                                            .getChildren().get(i4)
+                                            .getChildren().get(i5)
+                                            .getChildren()
+                                            .size() - 1;
+                                    // Товарные подсубпозиции 5-го уровня вложенности
+                                    for (Items l5 : getItems().getChild(l4)) {
+                                        result
+                                                .getChildren().get(i0)
+                                                .getChildren().get(i1)
+                                                .getChildren().get(i2)
+                                                .getChildren().get(i3)
+                                                .getChildren().get(i4)
+                                                .getChildren().get(i5)
+                                                .getChildren().get(i6)
+                                                .getChildren()
+                                                .add(new TreeItem<>(l5.toString()));
+                                        int i7 = result
+                                                .getChildren().get(i0)
+                                                .getChildren().get(i1)
+                                                .getChildren().get(i2)
+                                                .getChildren().get(i3)
+                                                .getChildren().get(i4)
+                                                .getChildren().get(i5)
+                                                .getChildren().get(i6)
+                                                .getChildren()
+                                                .size() - 1;
+                                        // Товарные подсубпозиции 6-го уровня вложенности
+                                        for (Items l6 : getItems().getChild(l5)) {
+                                            result
+                                                    .getChildren().get(i0)
+                                                    .getChildren().get(i1)
+                                                    .getChildren().get(i2)
+                                                    .getChildren().get(i3)
+                                                    .getChildren().get(i4)
+                                                    .getChildren().get(i5)
+                                                    .getChildren().get(i6)
+                                                    .getChildren().get(i7)
+                                                    .getChildren()
+                                                    .add(new TreeItem<>(l6.toString()));
+                                            int i8 = result
+                                                    .getChildren().get(i0)
+                                                    .getChildren().get(i1)
+                                                    .getChildren().get(i2)
+                                                    .getChildren().get(i3)
+                                                    .getChildren().get(i4)
+                                                    .getChildren().get(i5)
+                                                    .getChildren().get(i6)
+                                                    .getChildren().get(i7)
+                                                    .getChildren()
+                                                    .size() - 1;
+                                            // Товарные подсубпозиции 7-го уровня вложенности
+                                            for (Items l7 : getItems().getChild(l6)) {
+                                                result
+                                                        .getChildren().get(i0)
+                                                        .getChildren().get(i1)
+                                                        .getChildren().get(i2)
+                                                        .getChildren().get(i3)
+                                                        .getChildren().get(i4)
+                                                        .getChildren().get(i5)
+                                                        .getChildren().get(i6)
+                                                        .getChildren().get(i7)
+                                                        .getChildren().get(i8)
+                                                        .getChildren()
+                                                        .add(new TreeItem<>(l7.toString()));
+                                                int i9 = result
+                                                        .getChildren().get(i0)
+                                                        .getChildren().get(i1)
+                                                        .getChildren().get(i2)
+                                                        .getChildren().get(i3)
+                                                        .getChildren().get(i4)
+                                                        .getChildren().get(i5)
+                                                        .getChildren().get(i6)
+                                                        .getChildren().get(i7)
+                                                        .getChildren().get(i8)
+                                                        .getChildren()
+                                                        .size() - 1;
+                                                // Товарные подсубпозиции 8-го уровня вложенности
+                                                for (Items l8 : getItems().getChild(l7)) {
+                                                    result
+                                                            .getChildren().get(i0)
+                                                            .getChildren().get(i1)
+                                                            .getChildren().get(i2)
+                                                            .getChildren().get(i3)
+                                                            .getChildren().get(i4)
+                                                            .getChildren().get(i5)
+                                                            .getChildren().get(i6)
+                                                            .getChildren().get(i7)
+                                                            .getChildren().get(i8)
+                                                            .getChildren().get(i9)
+                                                            .getChildren()
+                                                            .add(new TreeItem<>(l8.toString()));
+                                                    int i10 = result
+                                                            .getChildren().get(i0)
+                                                            .getChildren().get(i1)
+                                                            .getChildren().get(i2)
+                                                            .getChildren().get(i3)
+                                                            .getChildren().get(i4)
+                                                            .getChildren().get(i5)
+                                                            .getChildren().get(i6)
+                                                            .getChildren().get(i7)
+                                                            .getChildren().get(i8)
+                                                            .getChildren().get(i9)
+                                                            .getChildren()
+                                                            .size() - 1;
+                                                    // Товарные подсубпозиции 9-го уровня вложенности
+                                                    for (Items l9 : getItems().getChild(l8)) {
+                                                        result
+                                                                .getChildren().get(i0)
+                                                                .getChildren().get(i1)
+                                                                .getChildren().get(i2)
+                                                                .getChildren().get(i3)
+                                                                .getChildren().get(i4)
+                                                                .getChildren().get(i5)
+                                                                .getChildren().get(i6)
+                                                                .getChildren().get(i7)
+                                                                .getChildren().get(i8)
+                                                                .getChildren().get(i9)
+                                                                .getChildren().get(i10)
+                                                                .getChildren()
+                                                                .add(new TreeItem<>(l9.toString()));
+                                                        int i11 = result
+                                                                .getChildren().get(i0)
+                                                                .getChildren().get(i1)
+                                                                .getChildren().get(i2)
+                                                                .getChildren().get(i3)
+                                                                .getChildren().get(i4)
+                                                                .getChildren().get(i5)
+                                                                .getChildren().get(i6)
+                                                                .getChildren().get(i7)
+                                                                .getChildren().get(i8)
+                                                                .getChildren().get(i9)
+                                                                .getChildren().get(i10)
+                                                                .getChildren()
+                                                                .size() - 1;
+                                                        // Товарные подсубпозиции 10-го уровня вложенности
+                                                        for (Items l10 : getItems().getChild(l9)) {
+                                                            result
+                                                                    .getChildren().get(i0)
+                                                                    .getChildren().get(i1)
+                                                                    .getChildren().get(i2)
+                                                                    .getChildren().get(i3)
+                                                                    .getChildren().get(i4)
+                                                                    .getChildren().get(i5)
+                                                                    .getChildren().get(i6)
+                                                                    .getChildren().get(i7)
+                                                                    .getChildren().get(i8)
+                                                                    .getChildren().get(i9)
+                                                                    .getChildren().get(i10)
+                                                                    .getChildren().get(i10)
+                                                                    .getChildren()
+                                                                    .add(new TreeItem<>(l10.toString()));
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("End getTreeIterable");
+        return result;
+    }
+
+    /**
+     * Возвращает дерево сформированное из дочерних элементов справочника.
+     * Использует рекурсивный вызов для обхода всех уровней вложенности справочника
+     * @param data Массив товарных позиций справочника, из которого производится выборка элементов
+     * @param parent товарная позиция, для которой нужно построить дерево дочерних элементов
+     * @return Дерево с корневым узлом parent и его дочерними элементами (и их дочерними элементами, вплоть до последнего листа)
+     * TODO Нужна оптимизация
+     */
     TreeItem<String> nestedChild(ScopeItems data, Items parent) {
         TreeItem<String> result = new TreeItem<>(parent.toString());
-
         Items[] nestedChild = data.getChild(parent);
         if (nestedChild.length == 0) {
             return result;
@@ -93,4 +358,6 @@ class Model {
         }
         return result;
     }
+
+
 }

@@ -29,179 +29,179 @@ class ModelTest {
 
     @Test
     void getGroupList() {
-        test.selectSection("01 ЖИВЫЕ ЖИВОТНЫЕ; ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveSection("01 ЖИВЫЕ ЖИВОТНЫЕ; ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ");
         MatcherAssert.assertThat(test.getGroupList().length, is(5));
-        test.selectSection("02 ПРОДУКТЫ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveSection("02 ПРОДУКТЫ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
         MatcherAssert.assertThat(test.getGroupList().length, is(9));
-        test.selectSection("03 ЖИРЫ И МАСЛА ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ И ПРОДУКТЫ ИХ РАСЩЕПЛЕНИЯ; ГОТОВЫЕ ПИЩЕВЫЕ ЖИРЫ; ВОСКИ ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveSection("03 ЖИРЫ И МАСЛА ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ И ПРОДУКТЫ ИХ РАСЩЕПЛЕНИЯ; ГОТОВЫЕ ПИЩЕВЫЕ ЖИРЫ; ВОСКИ ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
         MatcherAssert.assertThat(test.getGroupList().length, is(1));
-        test.selectSection("04 ГОТОВЫЕ ПИЩЕВЫЕ ПРОДУКТЫ; АЛКОГОЛЬНЫЕ И БЕЗАЛКОГОЛЬНЫЕ НАПИТКИ И УКСУС; ТАБАК И ЕГО ЗАМЕНИТЕЛИ");
+        test.setActiveSection("04 ГОТОВЫЕ ПИЩЕВЫЕ ПРОДУКТЫ; АЛКОГОЛЬНЫЕ И БЕЗАЛКОГОЛЬНЫЕ НАПИТКИ И УКСУС; ТАБАК И ЕГО ЗАМЕНИТЕЛИ");
         MatcherAssert.assertThat(test.getGroupList().length, is(9));
-        test.selectSection("05 МИНЕРАЛЬНЫЕ ПРОДУКТЫ");
+        test.setActiveSection("05 МИНЕРАЛЬНЫЕ ПРОДУКТЫ");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("06 ПРОДУКЦИЯ ХИМИЧЕСКОЙ И СВЯЗАННЫХ С НЕЙ ОТРАСЛЕЙ ПРОМЫШЛЕННОСТИ");
+        test.setActiveSection("06 ПРОДУКЦИЯ ХИМИЧЕСКОЙ И СВЯЗАННЫХ С НЕЙ ОТРАСЛЕЙ ПРОМЫШЛЕННОСТИ");
         MatcherAssert.assertThat(test.getGroupList().length, is(11));
-        test.selectSection("07 ПЛАСТМАССЫ И ИЗДЕЛИЯ ИЗ НИХ; КАУЧУК, РЕЗИНА И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveSection("07 ПЛАСТМАССЫ И ИЗДЕЛИЯ ИЗ НИХ; КАУЧУК, РЕЗИНА И ИЗДЕЛИЯ ИЗ НИХ");
         MatcherAssert.assertThat(test.getGroupList().length, is(2));
-        test.selectSection("08 НЕОБРАБОТАННЫЕ ШКУРЫ, ВЫДЕЛАННАЯ КОЖА, НАТУРАЛЬНЫЙ МЕХ И ИЗДЕЛИЯ ИЗ НИХ; ШОРНО-СЕДЕЛЬНЫЕ ИЗДЕЛИЯ И УПРЯЖЬ; ДОРОЖНЫЕ ПРИНАДЛЕЖНОСТИ, СУМКИ И АНАЛОГИЧНЫЕ ИМ ТОВАРЫ; ИЗДЕЛИЯ ИЗ ВНУТРЕННИХ ОРГАНОВ ЖИВОТНЫХ (КРОМЕ ШЕЛКООТДЕЛИТЕЛЬНЫХ ЖЕЛЕЗ ШЕЛКОПРЯДА)");
+        test.setActiveSection("08 НЕОБРАБОТАННЫЕ ШКУРЫ, ВЫДЕЛАННАЯ КОЖА, НАТУРАЛЬНЫЙ МЕХ И ИЗДЕЛИЯ ИЗ НИХ; ШОРНО-СЕДЕЛЬНЫЕ ИЗДЕЛИЯ И УПРЯЖЬ; ДОРОЖНЫЕ ПРИНАДЛЕЖНОСТИ, СУМКИ И АНАЛОГИЧНЫЕ ИМ ТОВАРЫ; ИЗДЕЛИЯ ИЗ ВНУТРЕННИХ ОРГАНОВ ЖИВОТНЫХ (КРОМЕ ШЕЛКООТДЕЛИТЕЛЬНЫХ ЖЕЛЕЗ ШЕЛКОПРЯДА)");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("09 ДРЕВЕСИНА И ИЗДЕЛИЯ ИЗ НЕЕ; ДРЕВЕСНЫЙ УГОЛЬ; ПРОБКА И ИЗДЕЛИЯ ИЗ НЕЕ; ИЗДЕЛИЯ ИЗ СОЛОМЫ, АЛЬФЫ ИЛИ ИЗ ПРОЧИХ МАТЕРИАЛОВ ДЛЯ ПЛЕТЕНИЯ; КОРЗИНОЧНЫЕ И ДРУГИЕ ПЛЕТЕНЫЕ ИЗДЕЛИЯ");
+        test.setActiveSection("09 ДРЕВЕСИНА И ИЗДЕЛИЯ ИЗ НЕЕ; ДРЕВЕСНЫЙ УГОЛЬ; ПРОБКА И ИЗДЕЛИЯ ИЗ НЕЕ; ИЗДЕЛИЯ ИЗ СОЛОМЫ, АЛЬФЫ ИЛИ ИЗ ПРОЧИХ МАТЕРИАЛОВ ДЛЯ ПЛЕТЕНИЯ; КОРЗИНОЧНЫЕ И ДРУГИЕ ПЛЕТЕНЫЕ ИЗДЕЛИЯ");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("10 МАССА ИЗ ДРЕВЕСИНЫ ИЛИ ИЗ ДРУГИХ ВОЛОКНИСТЫХ ЦЕЛЛЮЛОЗНЫХ МАТЕРИАЛОВ; РЕГЕНЕРИРУЕМЫЕ БУМАГА ИЛИ КАРТОН (МАКУЛАТУРА И ОТХОДЫ); БУМАГА, КАРТОН И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveSection("10 МАССА ИЗ ДРЕВЕСИНЫ ИЛИ ИЗ ДРУГИХ ВОЛОКНИСТЫХ ЦЕЛЛЮЛОЗНЫХ МАТЕРИАЛОВ; РЕГЕНЕРИРУЕМЫЕ БУМАГА ИЛИ КАРТОН (МАКУЛАТУРА И ОТХОДЫ); БУМАГА, КАРТОН И ИЗДЕЛИЯ ИЗ НИХ");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("11 ТЕКСТИЛЬНЫЕ МАТЕРИАЛЫ И ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ");
+        test.setActiveSection("11 ТЕКСТИЛЬНЫЕ МАТЕРИАЛЫ И ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ");
         MatcherAssert.assertThat(test.getGroupList().length, is(14));
-        test.selectSection("12 ОБУВЬ, ГОЛОВНЫЕ УБОРЫ, ЗОНТЫ, СОЛНЦЕЗАЩИТНЫЕ ЗОНТЫ, ТРОСТИ, ТРОСТИ-СИДЕНЬЯ, ХЛЫСТЫ, КНУТЫ И ИХ ЧАСТИ; ОБРАБОТАННЫЕ ПЕРЬЯ И ИЗДЕЛИЯ ИЗ НИХ; ИСКУССТВЕННЫЕ ЦВЕТЫ; ИЗДЕЛИЯ ИЗ ЧЕЛОВЕЧЕСКОГО ВОЛОСА");
+        test.setActiveSection("12 ОБУВЬ, ГОЛОВНЫЕ УБОРЫ, ЗОНТЫ, СОЛНЦЕЗАЩИТНЫЕ ЗОНТЫ, ТРОСТИ, ТРОСТИ-СИДЕНЬЯ, ХЛЫСТЫ, КНУТЫ И ИХ ЧАСТИ; ОБРАБОТАННЫЕ ПЕРЬЯ И ИЗДЕЛИЯ ИЗ НИХ; ИСКУССТВЕННЫЕ ЦВЕТЫ; ИЗДЕЛИЯ ИЗ ЧЕЛОВЕЧЕСКОГО ВОЛОСА");
         MatcherAssert.assertThat(test.getGroupList().length, is(4));
-        test.selectSection("13 ИЗДЕЛИЯ ИЗ КАМНЯ, ГИПСА, ЦЕМЕНТА, АСБЕСТА, СЛЮДЫ ИЛИ АНАЛОГИЧНЫХ МАТЕРИАЛОВ; КЕРАМИЧЕСКИЕ ИЗДЕЛИЯ; СТЕКЛО И ИЗДЕЛИЯ ИЗ НЕГО");
+        test.setActiveSection("13 ИЗДЕЛИЯ ИЗ КАМНЯ, ГИПСА, ЦЕМЕНТА, АСБЕСТА, СЛЮДЫ ИЛИ АНАЛОГИЧНЫХ МАТЕРИАЛОВ; КЕРАМИЧЕСКИЕ ИЗДЕЛИЯ; СТЕКЛО И ИЗДЕЛИЯ ИЗ НЕГО");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("14 ЖЕМЧУГ ПРИРОДНЫЙ ИЛИ КУЛЬТИВИРОВАННЫЙ, ДРАГОЦЕННЫЕ ИЛИ ПОЛУДРАГОЦЕННЫЕ КАМНИ, ДРАГОЦЕННЫЕ МЕТАЛЛЫ, МЕТАЛЛЫ, ПЛАКИРОВАННЫЕ ДРАГОЦЕННЫМИ МЕТАЛЛАМИ, И ИЗДЕЛИЯ ИЗ НИХ; БИЖУТЕРИЯ; МОНЕТЫ");
+        test.setActiveSection("14 ЖЕМЧУГ ПРИРОДНЫЙ ИЛИ КУЛЬТИВИРОВАННЫЙ, ДРАГОЦЕННЫЕ ИЛИ ПОЛУДРАГОЦЕННЫЕ КАМНИ, ДРАГОЦЕННЫЕ МЕТАЛЛЫ, МЕТАЛЛЫ, ПЛАКИРОВАННЫЕ ДРАГОЦЕННЫМИ МЕТАЛЛАМИ, И ИЗДЕЛИЯ ИЗ НИХ; БИЖУТЕРИЯ; МОНЕТЫ");
         MatcherAssert.assertThat(test.getGroupList().length, is(1));
-        test.selectSection("15 НЕДРАГОЦЕННЫЕ МЕТАЛЛЫ И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveSection("15 НЕДРАГОЦЕННЫЕ МЕТАЛЛЫ И ИЗДЕЛИЯ ИЗ НИХ");
         MatcherAssert.assertThat(test.getGroupList().length, is(11));
-        test.selectSection("16 МАШИНЫ, ОБОРУДОВАНИЕ И МЕХАНИЗМЫ; ЭЛЕКТРОТЕХНИЧЕСКОЕ ОБОРУДОВАНИЕ; ИХ ЧАСТИ; ЗВУКОЗАПИСЫВАЮЩАЯ И ЗВУКОВОСПРОИЗВОДЯЩАЯ АППАРАТУРА, АППАРАТУРА ДЛЯ ЗАПИСИ И ВОСПРОИЗВЕДЕНИЯ ТЕЛЕВИЗИОННОГО ИЗОБРАЖЕНИЯ И ЗВУКА, ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveSection("16 МАШИНЫ, ОБОРУДОВАНИЕ И МЕХАНИЗМЫ; ЭЛЕКТРОТЕХНИЧЕСКОЕ ОБОРУДОВАНИЕ; ИХ ЧАСТИ; ЗВУКОЗАПИСЫВАЮЩАЯ И ЗВУКОВОСПРОИЗВОДЯЩАЯ АППАРАТУРА, АППАРАТУРА ДЛЯ ЗАПИСИ И ВОСПРОИЗВЕДЕНИЯ ТЕЛЕВИЗИОННОГО ИЗОБРАЖЕНИЯ И ЗВУКА, ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getGroupList().length, is(2));
-        test.selectSection("17 СРЕДСТВА НАЗЕМНОГО ТРАНСПОРТА, ЛЕТАТЕЛЬНЫЕ АППАРАТЫ, ПЛАВУЧИЕ СРЕДСТВА И ОТНОСЯЩИЕСЯ К ТРАНСПОРТУ УСТРОЙСТВА И ОБОРУДОВАНИЕ");
+        test.setActiveSection("17 СРЕДСТВА НАЗЕМНОГО ТРАНСПОРТА, ЛЕТАТЕЛЬНЫЕ АППАРАТЫ, ПЛАВУЧИЕ СРЕДСТВА И ОТНОСЯЩИЕСЯ К ТРАНСПОРТУ УСТРОЙСТВА И ОБОРУДОВАНИЕ");
         MatcherAssert.assertThat(test.getGroupList().length, is(4));
-        test.selectSection("18 ИНСТРУМЕНТЫ И АППАРАТЫ ОПТИЧЕСКИЕ, ФОТОГРАФИЧЕСКИЕ, КИНЕМАТОГРАФИЧЕСКИЕ, ИЗМЕРИТЕЛЬНЫЕ, КОНТРОЛЬНЫЕ, ПРЕЦИЗИОННЫЕ, МЕДИЦИНСКИЕ ИЛИ ХИРУРГИЧЕСКИЕ; ЧАСЫ ВСЕХ ВИДОВ; МУЗЫКАЛЬНЫЕ ИНСТРУМЕНТЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveSection("18 ИНСТРУМЕНТЫ И АППАРАТЫ ОПТИЧЕСКИЕ, ФОТОГРАФИЧЕСКИЕ, КИНЕМАТОГРАФИЧЕСКИЕ, ИЗМЕРИТЕЛЬНЫЕ, КОНТРОЛЬНЫЕ, ПРЕЦИЗИОННЫЕ, МЕДИЦИНСКИЕ ИЛИ ХИРУРГИЧЕСКИЕ; ЧАСЫ ВСЕХ ВИДОВ; МУЗЫКАЛЬНЫЕ ИНСТРУМЕНТЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("19 ОРУЖИЕ И БОЕПРИПАСЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveSection("19 ОРУЖИЕ И БОЕПРИПАСЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getGroupList().length, is(1));
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
         MatcherAssert.assertThat(test.getGroupList().length, is(3));
-        test.selectSection("21 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
+        test.setActiveSection("21 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
         MatcherAssert.assertThat(test.getGroupList().length, is(1));
-        test.selectSection("22 FIFA2018");
+        test.setActiveSection("22 FIFA2018");
         MatcherAssert.assertThat(test.getGroupList().length, is(1));
     }
 
     @Test
     void getPositionList() {
-        test.selectSection("01 ЖИВЫЕ ЖИВОТНЫЕ; ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ");
-        test.selectGroup("01 ЖИВЫЕ ЖИВОТНЫЕ");
+        test.setActiveSection("01 ЖИВЫЕ ЖИВОТНЫЕ; ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveGroup("01 ЖИВЫЕ ЖИВОТНЫЕ");
         MatcherAssert.assertThat(test.getPositionList().length, is(6));
-        test.selectGroup("05 ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ, В ДРУГОМ МЕСТЕ НЕ ПОИМЕНОВАННЫЕ ИЛИ НЕ ВКЛЮЧЕННЫЕ");
+        test.setActiveGroup("05 ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ, В ДРУГОМ МЕСТЕ НЕ ПОИМЕНОВАННЫЕ ИЛИ НЕ ВКЛЮЧЕННЫЕ");
         MatcherAssert.assertThat(test.getPositionList().length, is(5));
 
-        test.selectSection("02 ПРОДУКТЫ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
-        test.selectGroup("06 ЖИВЫЕ ДЕРЕВЬЯ И ДРУГИЕ РАСТЕНИЯ; ЛУКОВИЦЫ, КОРНИ И ПРОЧИЕ АНАЛОГИЧНЫЕ ЧАСТИ РАСТЕНИЙ; СРЕЗАННЫЕ ЦВЕТЫ И ДЕКОРАТИВНАЯ ЗЕЛЕНЬ");
+        test.setActiveSection("02 ПРОДУКТЫ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveGroup("06 ЖИВЫЕ ДЕРЕВЬЯ И ДРУГИЕ РАСТЕНИЯ; ЛУКОВИЦЫ, КОРНИ И ПРОЧИЕ АНАЛОГИЧНЫЕ ЧАСТИ РАСТЕНИЙ; СРЕЗАННЫЕ ЦВЕТЫ И ДЕКОРАТИВНАЯ ЗЕЛЕНЬ");
         MatcherAssert.assertThat(test.getPositionList().length, is(4));
-        test.selectGroup("14 РАСТИТЕЛЬНЫЕ МАТЕРИАЛЫ ДЛЯ ИЗГОТОВЛЕНИЯ ПЛЕТЕНЫХ ИЗДЕЛИЙ; ПРОЧИЕ ПРОДУКТЫ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ, В ДРУГОМ МЕСТЕ НЕ ПОИМЕНОВАННЫЕ ИЛИ НЕ ВКЛЮЧЕННЫЕ");
+        test.setActiveGroup("14 РАСТИТЕЛЬНЫЕ МАТЕРИАЛЫ ДЛЯ ИЗГОТОВЛЕНИЯ ПЛЕТЕНЫХ ИЗДЕЛИЙ; ПРОЧИЕ ПРОДУКТЫ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ, В ДРУГОМ МЕСТЕ НЕ ПОИМЕНОВАННЫЕ ИЛИ НЕ ВКЛЮЧЕННЫЕ");
         MatcherAssert.assertThat(test.getPositionList().length, is(2));
 
-        test.selectSection("03 ЖИРЫ И МАСЛА ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ И ПРОДУКТЫ ИХ РАСЩЕПЛЕНИЯ; ГОТОВЫЕ ПИЩЕВЫЕ ЖИРЫ; ВОСКИ ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
-        test.selectGroup("15 ЖИРЫ И МАСЛА ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ И ПРОДУКТЫ ИХ РАСЩЕПЛЕНИЯ; ГОТОВЫЕ ПИЩЕВЫЕ ЖИРЫ; ВОСКИ ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveSection("03 ЖИРЫ И МАСЛА ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ И ПРОДУКТЫ ИХ РАСЩЕПЛЕНИЯ; ГОТОВЫЕ ПИЩЕВЫЕ ЖИРЫ; ВОСКИ ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
+        test.setActiveGroup("15 ЖИРЫ И МАСЛА ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ И ПРОДУКТЫ ИХ РАСЩЕПЛЕНИЯ; ГОТОВЫЕ ПИЩЕВЫЕ ЖИРЫ; ВОСКИ ЖИВОТНОГО ИЛИ РАСТИТЕЛЬНОГО ПРОИСХОЖДЕНИЯ");
         MatcherAssert.assertThat(test.getPositionList().length, is(14));
 
-        test.selectSection("04 ГОТОВЫЕ ПИЩЕВЫЕ ПРОДУКТЫ; АЛКОГОЛЬНЫЕ И БЕЗАЛКОГОЛЬНЫЕ НАПИТКИ И УКСУС; ТАБАК И ЕГО ЗАМЕНИТЕЛИ");
-        test.selectGroup("16 ГОТОВЫЕ ПРОДУКТЫ ИЗ МЯСА, РЫБЫ ИЛИ РАКООБРАЗНЫХ, МОЛЛЮСКОВ ИЛИ ПРОЧИХ ВОДНЫХ БЕСПОЗВОНОЧНЫХ");
+        test.setActiveSection("04 ГОТОВЫЕ ПИЩЕВЫЕ ПРОДУКТЫ; АЛКОГОЛЬНЫЕ И БЕЗАЛКОГОЛЬНЫЕ НАПИТКИ И УКСУС; ТАБАК И ЕГО ЗАМЕНИТЕЛИ");
+        test.setActiveGroup("16 ГОТОВЫЕ ПРОДУКТЫ ИЗ МЯСА, РЫБЫ ИЛИ РАКООБРАЗНЫХ, МОЛЛЮСКОВ ИЛИ ПРОЧИХ ВОДНЫХ БЕСПОЗВОНОЧНЫХ");
         MatcherAssert.assertThat(test.getPositionList().length, is(3));
-        test.selectGroup("24 ТАБАК И ПРОМЫШЛЕННЫЕ ЗАМЕНИТЕЛИ ТАБАКА");
+        test.setActiveGroup("24 ТАБАК И ПРОМЫШЛЕННЫЕ ЗАМЕНИТЕЛИ ТАБАКА");
         MatcherAssert.assertThat(test.getPositionList().length, is(3));
 
-        test.selectSection("05 МИНЕРАЛЬНЫЕ ПРОДУКТЫ");
-        test.selectGroup("25 СОЛЬ; СЕРА; ЗЕМЛИ И КАМЕНЬ; ШТУКАТУРНЫЕ МАТЕРИАЛЫ, ИЗВЕСТЬ И ЦЕМЕНТ");
+        test.setActiveSection("05 МИНЕРАЛЬНЫЕ ПРОДУКТЫ");
+        test.setActiveGroup("25 СОЛЬ; СЕРА; ЗЕМЛИ И КАМЕНЬ; ШТУКАТУРНЫЕ МАТЕРИАЛЫ, ИЗВЕСТЬ И ЦЕМЕНТ");
         MatcherAssert.assertThat(test.getPositionList().length, is(20));
-        test.selectGroup("27 ТОПЛИВО МИНЕРАЛЬНОЕ, НЕФТЬ И ПРОДУКТЫ ИХ ПЕРЕГОНКИ; БИТУМИНОЗНЫЕ ВЕЩЕСТВА; ВОСКИ МИНЕРАЛЬНЫЕ");
+        test.setActiveGroup("27 ТОПЛИВО МИНЕРАЛЬНОЕ, НЕФТЬ И ПРОДУКТЫ ИХ ПЕРЕГОНКИ; БИТУМИНОЗНЫЕ ВЕЩЕСТВА; ВОСКИ МИНЕРАЛЬНЫЕ");
         MatcherAssert.assertThat(test.getPositionList().length, is(9));
 
-        test.selectSection("06 ПРОДУКЦИЯ ХИМИЧЕСКОЙ И СВЯЗАННЫХ С НЕЙ ОТРАСЛЕЙ ПРОМЫШЛЕННОСТИ");
-        test.selectGroup("28 ПРОДУКТЫ НЕОРГАНИЧЕСКОЙ ХИМИИ; СОЕДИНЕНИЯ НЕОРГАНИЧЕСКИЕ ИЛИ ОРГАНИЧЕСКИЕ ДРАГОЦЕННЫХ МЕТАЛЛОВ, РЕДКОЗЕМЕЛЬНЫХ МЕТАЛЛОВ, РАДИОАКТИВНЫХ ЭЛЕМЕНТОВ ИЛИ ИЗОТОПОВ");
+        test.setActiveSection("06 ПРОДУКЦИЯ ХИМИЧЕСКОЙ И СВЯЗАННЫХ С НЕЙ ОТРАСЛЕЙ ПРОМЫШЛЕННОСТИ");
+        test.setActiveGroup("28 ПРОДУКТЫ НЕОРГАНИЧЕСКОЙ ХИМИИ; СОЕДИНЕНИЯ НЕОРГАНИЧЕСКИЕ ИЛИ ОРГАНИЧЕСКИЕ ДРАГОЦЕННЫХ МЕТАЛЛОВ, РЕДКОЗЕМЕЛЬНЫХ МЕТАЛЛОВ, РАДИОАКТИВНЫХ ЭЛЕМЕНТОВ ИЛИ ИЗОТОПОВ");
         MatcherAssert.assertThat(test.getPositionList().length, is(40));
-        test.selectGroup("38 ПРОЧИЕ ХИМИЧЕСКИЕ ПРОДУКТЫ");
+        test.setActiveGroup("38 ПРОЧИЕ ХИМИЧЕСКИЕ ПРОДУКТЫ");
         MatcherAssert.assertThat(test.getPositionList().length, is(13));
 
-        test.selectSection("07 ПЛАСТМАССЫ И ИЗДЕЛИЯ ИЗ НИХ; КАУЧУК, РЕЗИНА И ИЗДЕЛИЯ ИЗ НИХ");
-        test.selectGroup("39 ПЛАСТМАССЫ И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveSection("07 ПЛАСТМАССЫ И ИЗДЕЛИЯ ИЗ НИХ; КАУЧУК, РЕЗИНА И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveGroup("39 ПЛАСТМАССЫ И ИЗДЕЛИЯ ИЗ НИХ");
         MatcherAssert.assertThat(test.getPositionList().length, is(24));
-        test.selectGroup("40 КАУЧУК, РЕЗИНА И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveGroup("40 КАУЧУК, РЕЗИНА И ИЗДЕЛИЯ ИЗ НИХ");
         MatcherAssert.assertThat(test.getPositionList().length, is(13));
 
-        test.selectSection("08 НЕОБРАБОТАННЫЕ ШКУРЫ, ВЫДЕЛАННАЯ КОЖА, НАТУРАЛЬНЫЙ МЕХ И ИЗДЕЛИЯ ИЗ НИХ; ШОРНО-СЕДЕЛЬНЫЕ ИЗДЕЛИЯ И УПРЯЖЬ; ДОРОЖНЫЕ ПРИНАДЛЕЖНОСТИ, СУМКИ И АНАЛОГИЧНЫЕ ИМ ТОВАРЫ; ИЗДЕЛИЯ ИЗ ВНУТРЕННИХ ОРГАНОВ ЖИВОТНЫХ (КРОМЕ ШЕЛКООТДЕЛИТЕЛЬНЫХ ЖЕЛЕЗ ШЕЛКОПРЯДА)");
-        test.selectGroup("41 НЕОБРАБОТАННЫЕ ШКУРЫ (КРОМЕ НАТУРАЛЬНОГО МЕХА) И ВЫДЕЛАННАЯ КОЖА");
+        test.setActiveSection("08 НЕОБРАБОТАННЫЕ ШКУРЫ, ВЫДЕЛАННАЯ КОЖА, НАТУРАЛЬНЫЙ МЕХ И ИЗДЕЛИЯ ИЗ НИХ; ШОРНО-СЕДЕЛЬНЫЕ ИЗДЕЛИЯ И УПРЯЖЬ; ДОРОЖНЫЕ ПРИНАДЛЕЖНОСТИ, СУМКИ И АНАЛОГИЧНЫЕ ИМ ТОВАРЫ; ИЗДЕЛИЯ ИЗ ВНУТРЕННИХ ОРГАНОВ ЖИВОТНЫХ (КРОМЕ ШЕЛКООТДЕЛИТЕЛЬНЫХ ЖЕЛЕЗ ШЕЛКОПРЯДА)");
+        test.setActiveGroup("41 НЕОБРАБОТАННЫЕ ШКУРЫ (КРОМЕ НАТУРАЛЬНОГО МЕХА) И ВЫДЕЛАННАЯ КОЖА");
         MatcherAssert.assertThat(test.getPositionList().length, is(10));
-        test.selectGroup("43 НАТУРАЛЬНЫЙ И ИСКУССТВЕННЫЙ МЕХ; ИЗДЕЛИЯ ИЗ НЕГО");
+        test.setActiveGroup("43 НАТУРАЛЬНЫЙ И ИСКУССТВЕННЫЙ МЕХ; ИЗДЕЛИЯ ИЗ НЕГО");
         MatcherAssert.assertThat(test.getPositionList().length, is(3));
 
-        test.selectSection("09 ДРЕВЕСИНА И ИЗДЕЛИЯ ИЗ НЕЕ; ДРЕВЕСНЫЙ УГОЛЬ; ПРОБКА И ИЗДЕЛИЯ ИЗ НЕЕ; ИЗДЕЛИЯ ИЗ СОЛОМЫ, АЛЬФЫ ИЛИ ИЗ ПРОЧИХ МАТЕРИАЛОВ ДЛЯ ПЛЕТЕНИЯ; КОРЗИНОЧНЫЕ И ДРУГИЕ ПЛЕТЕНЫЕ ИЗДЕЛИЯ");
-        test.selectGroup("44 ДРЕВЕСИНА И ИЗДЕЛИЯ ИЗ НЕЕ; ДРЕВЕСНЫЙ УГОЛЬ");
+        test.setActiveSection("09 ДРЕВЕСИНА И ИЗДЕЛИЯ ИЗ НЕЕ; ДРЕВЕСНЫЙ УГОЛЬ; ПРОБКА И ИЗДЕЛИЯ ИЗ НЕЕ; ИЗДЕЛИЯ ИЗ СОЛОМЫ, АЛЬФЫ ИЛИ ИЗ ПРОЧИХ МАТЕРИАЛОВ ДЛЯ ПЛЕТЕНИЯ; КОРЗИНОЧНЫЕ И ДРУГИЕ ПЛЕТЕНЫЕ ИЗДЕЛИЯ");
+        test.setActiveGroup("44 ДРЕВЕСИНА И ИЗДЕЛИЯ ИЗ НЕЕ; ДРЕВЕСНЫЙ УГОЛЬ");
         MatcherAssert.assertThat(test.getPositionList().length, is(16));
-        test.selectGroup("46 ИЗДЕЛИЯ ИЗ СОЛОМЫ, АЛЬФЫ ИЛИ ПРОЧИХ МАТЕРИАЛОВ ДЛЯ ПЛЕТЕНИЯ; КОРЗИНОЧНЫЕ ИЗДЕЛИЯ И ПЛЕТЕНЫЕ ИЗДЕЛИЯ");
+        test.setActiveGroup("46 ИЗДЕЛИЯ ИЗ СОЛОМЫ, АЛЬФЫ ИЛИ ПРОЧИХ МАТЕРИАЛОВ ДЛЯ ПЛЕТЕНИЯ; КОРЗИНОЧНЫЕ ИЗДЕЛИЯ И ПЛЕТЕНЫЕ ИЗДЕЛИЯ");
         MatcherAssert.assertThat(test.getPositionList().length, is(2));
 
-        test.selectSection("10 МАССА ИЗ ДРЕВЕСИНЫ ИЛИ ИЗ ДРУГИХ ВОЛОКНИСТЫХ ЦЕЛЛЮЛОЗНЫХ МАТЕРИАЛОВ; РЕГЕНЕРИРУЕМЫЕ БУМАГА ИЛИ КАРТОН (МАКУЛАТУРА И ОТХОДЫ); БУМАГА, КАРТОН И ИЗДЕЛИЯ ИЗ НИХ");
-        test.selectGroup("47 МАССА ИЗ ДРЕВЕСИНЫ ИЛИ ИЗ ДРУГИХ ВОЛОКНИСТЫХ ЦЕЛЛЮЛОЗНЫХ МАТЕРИАЛОВ; РЕГЕНЕРИРУЕМЫЕ БУМАГА ИЛИ КАРТОН (МАКУЛАТУРА И ОТХОДЫ)");
+        test.setActiveSection("10 МАССА ИЗ ДРЕВЕСИНЫ ИЛИ ИЗ ДРУГИХ ВОЛОКНИСТЫХ ЦЕЛЛЮЛОЗНЫХ МАТЕРИАЛОВ; РЕГЕНЕРИРУЕМЫЕ БУМАГА ИЛИ КАРТОН (МАКУЛАТУРА И ОТХОДЫ); БУМАГА, КАРТОН И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveGroup("47 МАССА ИЗ ДРЕВЕСИНЫ ИЛИ ИЗ ДРУГИХ ВОЛОКНИСТЫХ ЦЕЛЛЮЛОЗНЫХ МАТЕРИАЛОВ; РЕГЕНЕРИРУЕМЫЕ БУМАГА ИЛИ КАРТОН (МАКУЛАТУРА И ОТХОДЫ)");
         MatcherAssert.assertThat(test.getPositionList().length, is(4));
-        test.selectGroup("49 ПЕЧАТНЫЕ КНИГИ, ГАЗЕТЫ, РЕПРОДУКЦИИ И ДРУГИЕ ИЗДЕЛИЯ ПОЛИГРАФИЧЕСКОЙ ПРОМЫШЛЕННОСТИ; РУКОПИСИ, МАШИНОПИСНЫЕ ТЕКСТЫ И ПЛАНЫ");
+        test.setActiveGroup("49 ПЕЧАТНЫЕ КНИГИ, ГАЗЕТЫ, РЕПРОДУКЦИИ И ДРУГИЕ ИЗДЕЛИЯ ПОЛИГРАФИЧЕСКОЙ ПРОМЫШЛЕННОСТИ; РУКОПИСИ, МАШИНОПИСНЫЕ ТЕКСТЫ И ПЛАНЫ");
         MatcherAssert.assertThat(test.getPositionList().length, is(5));
 
-        test.selectSection("11 ТЕКСТИЛЬНЫЕ МАТЕРИАЛЫ И ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ");
-        test.selectGroup("50 ШЕЛК");
+        test.setActiveSection("11 ТЕКСТИЛЬНЫЕ МАТЕРИАЛЫ И ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ");
+        test.setActiveGroup("50 ШЕЛК");
         MatcherAssert.assertThat(test.getPositionList().length, is(1));
-        test.selectGroup("63 ПРОЧИЕ ГОТОВЫЕ ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ; НАБОРЫ; ОДЕЖДА И ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ, БЫВШИЕ В УПОТРЕБЛЕНИИ; ТРЯПЬЕ");
+        test.setActiveGroup("63 ПРОЧИЕ ГОТОВЫЕ ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ; НАБОРЫ; ОДЕЖДА И ТЕКСТИЛЬНЫЕ ИЗДЕЛИЯ, БЫВШИЕ В УПОТРЕБЛЕНИИ; ТРЯПЬЕ");
         MatcherAssert.assertThat(test.getPositionList().length, is(8));
 
-        test.selectSection("12 ОБУВЬ, ГОЛОВНЫЕ УБОРЫ, ЗОНТЫ, СОЛНЦЕЗАЩИТНЫЕ ЗОНТЫ, ТРОСТИ, ТРОСТИ-СИДЕНЬЯ, ХЛЫСТЫ, КНУТЫ И ИХ ЧАСТИ; ОБРАБОТАННЫЕ ПЕРЬЯ И ИЗДЕЛИЯ ИЗ НИХ; ИСКУССТВЕННЫЕ ЦВЕТЫ; ИЗДЕЛИЯ ИЗ ЧЕЛОВЕЧЕСКОГО ВОЛОСА");
-        test.selectGroup("64 ОБУВЬ, ГЕТРЫ И АНАЛОГИЧНЫЕ ИЗДЕЛИЯ; ИХ ДЕТАЛИ");
+        test.setActiveSection("12 ОБУВЬ, ГОЛОВНЫЕ УБОРЫ, ЗОНТЫ, СОЛНЦЕЗАЩИТНЫЕ ЗОНТЫ, ТРОСТИ, ТРОСТИ-СИДЕНЬЯ, ХЛЫСТЫ, КНУТЫ И ИХ ЧАСТИ; ОБРАБОТАННЫЕ ПЕРЬЯ И ИЗДЕЛИЯ ИЗ НИХ; ИСКУССТВЕННЫЕ ЦВЕТЫ; ИЗДЕЛИЯ ИЗ ЧЕЛОВЕЧЕСКОГО ВОЛОСА");
+        test.setActiveGroup("64 ОБУВЬ, ГЕТРЫ И АНАЛОГИЧНЫЕ ИЗДЕЛИЯ; ИХ ДЕТАЛИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(6));
-        test.selectGroup("67 ОБРАБОТАННЫЕ ПЕРЬЯ И ПУХ И ИЗДЕЛИЯ ИЗ ПЕРЬЕВ ИЛИ ПУХА; ИСКУССТВЕННЫЕ ЦВЕТЫ; ИЗДЕЛИЯ ИЗ ЧЕЛОВЕЧЕСКОГО ВОЛОСА");
+        test.setActiveGroup("67 ОБРАБОТАННЫЕ ПЕРЬЯ И ПУХ И ИЗДЕЛИЯ ИЗ ПЕРЬЕВ ИЛИ ПУХА; ИСКУССТВЕННЫЕ ЦВЕТЫ; ИЗДЕЛИЯ ИЗ ЧЕЛОВЕЧЕСКОГО ВОЛОСА");
         MatcherAssert.assertThat(test.getPositionList().length, is(2));
 
-        test.selectSection("13 ИЗДЕЛИЯ ИЗ КАМНЯ, ГИПСА, ЦЕМЕНТА, АСБЕСТА, СЛЮДЫ ИЛИ АНАЛОГИЧНЫХ МАТЕРИАЛОВ; КЕРАМИЧЕСКИЕ ИЗДЕЛИЯ; СТЕКЛО И ИЗДЕЛИЯ ИЗ НЕГО");
-        test.selectGroup("68 ИЗДЕЛИЯ ИЗ КАМНЯ, ГИПСА, ЦЕМЕНТА, АСБЕСТА, СЛЮДЫ ИЛИ АНАЛОГИЧНЫХ МАТЕРИАЛОВ");
+        test.setActiveSection("13 ИЗДЕЛИЯ ИЗ КАМНЯ, ГИПСА, ЦЕМЕНТА, АСБЕСТА, СЛЮДЫ ИЛИ АНАЛОГИЧНЫХ МАТЕРИАЛОВ; КЕРАМИЧЕСКИЕ ИЗДЕЛИЯ; СТЕКЛО И ИЗДЕЛИЯ ИЗ НЕГО");
+        test.setActiveGroup("68 ИЗДЕЛИЯ ИЗ КАМНЯ, ГИПСА, ЦЕМЕНТА, АСБЕСТА, СЛЮДЫ ИЛИ АНАЛОГИЧНЫХ МАТЕРИАЛОВ");
         MatcherAssert.assertThat(test.getPositionList().length, is(12));
-        test.selectGroup("70 СТЕКЛО И ИЗДЕЛИЯ ИЗ НЕГО");
+        test.setActiveGroup("70 СТЕКЛО И ИЗДЕЛИЯ ИЗ НЕГО");
         MatcherAssert.assertThat(test.getPositionList().length, is(14));
 
-        test.selectSection("14 ЖЕМЧУГ ПРИРОДНЫЙ ИЛИ КУЛЬТИВИРОВАННЫЙ, ДРАГОЦЕННЫЕ ИЛИ ПОЛУДРАГОЦЕННЫЕ КАМНИ, ДРАГОЦЕННЫЕ МЕТАЛЛЫ, МЕТАЛЛЫ, ПЛАКИРОВАННЫЕ ДРАГОЦЕННЫМИ МЕТАЛЛАМИ, И ИЗДЕЛИЯ ИЗ НИХ; БИЖУТЕРИЯ; МОНЕТЫ");
-        test.selectGroup("71 ЖЕМЧУГ ПРИРОДНЫЙ ИЛИ КУЛЬТИВИРОВАННЫЙ, ДРАГОЦЕННЫЕ ИЛИ ПОЛУДРАГОЦЕННЫЕ КАМНИ, ДРАГОЦЕННЫЕ МЕТАЛЛЫ, МЕТАЛЛЫ, ПЛАКИРОВАННЫЕ ДРАГОЦЕННЫМИ МЕТАЛЛАМИ, И ИЗДЕЛИЯ ИЗ НИХ; БИЖУТЕРИЯ; МОНЕТЫ");
+        test.setActiveSection("14 ЖЕМЧУГ ПРИРОДНЫЙ ИЛИ КУЛЬТИВИРОВАННЫЙ, ДРАГОЦЕННЫЕ ИЛИ ПОЛУДРАГОЦЕННЫЕ КАМНИ, ДРАГОЦЕННЫЕ МЕТАЛЛЫ, МЕТАЛЛЫ, ПЛАКИРОВАННЫЕ ДРАГОЦЕННЫМИ МЕТАЛЛАМИ, И ИЗДЕЛИЯ ИЗ НИХ; БИЖУТЕРИЯ; МОНЕТЫ");
+        test.setActiveGroup("71 ЖЕМЧУГ ПРИРОДНЫЙ ИЛИ КУЛЬТИВИРОВАННЫЙ, ДРАГОЦЕННЫЕ ИЛИ ПОЛУДРАГОЦЕННЫЕ КАМНИ, ДРАГОЦЕННЫЕ МЕТАЛЛЫ, МЕТАЛЛЫ, ПЛАКИРОВАННЫЕ ДРАГОЦЕННЫМИ МЕТАЛЛАМИ, И ИЗДЕЛИЯ ИЗ НИХ; БИЖУТЕРИЯ; МОНЕТЫ");
         MatcherAssert.assertThat(test.getPositionList().length, is(15));
 
-        test.selectSection("15 НЕДРАГОЦЕННЫЕ МЕТАЛЛЫ И ИЗДЕЛИЯ ИЗ НИХ");
-        test.selectGroup("72 ЧЕРНЫЕ МЕТАЛЛЫ");
+        test.setActiveSection("15 НЕДРАГОЦЕННЫЕ МЕТАЛЛЫ И ИЗДЕЛИЯ ИЗ НИХ");
+        test.setActiveGroup("72 ЧЕРНЫЕ МЕТАЛЛЫ");
         MatcherAssert.assertThat(test.getPositionList().length, is(27));
-        test.selectGroup("83 ПРОЧИЕ ИЗДЕЛИЯ ИЗ НЕДРАГОЦЕННЫХ МЕТАЛЛОВ");
+        test.setActiveGroup("83 ПРОЧИЕ ИЗДЕЛИЯ ИЗ НЕДРАГОЦЕННЫХ МЕТАЛЛОВ");
         MatcherAssert.assertThat(test.getPositionList().length, is(8));
 
-        test.selectSection("16 МАШИНЫ, ОБОРУДОВАНИЕ И МЕХАНИЗМЫ; ЭЛЕКТРОТЕХНИЧЕСКОЕ ОБОРУДОВАНИЕ; ИХ ЧАСТИ; ЗВУКОЗАПИСЫВАЮЩАЯ И ЗВУКОВОСПРОИЗВОДЯЩАЯ АППАРАТУРА, АППАРАТУРА ДЛЯ ЗАПИСИ И ВОСПРОИЗВЕДЕНИЯ ТЕЛЕВИЗИОННОГО ИЗОБРАЖЕНИЯ И ЗВУКА, ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
-        test.selectGroup("84 РЕАКТОРЫ ЯДЕРНЫЕ, КОТЛЫ, ОБОРУДОВАНИЕ И МЕХАНИЧЕСКИЕ УСТРОЙСТВА; ИХ ЧАСТИ");
+        test.setActiveSection("16 МАШИНЫ, ОБОРУДОВАНИЕ И МЕХАНИЗМЫ; ЭЛЕКТРОТЕХНИЧЕСКОЕ ОБОРУДОВАНИЕ; ИХ ЧАСТИ; ЗВУКОЗАПИСЫВАЮЩАЯ И ЗВУКОВОСПРОИЗВОДЯЩАЯ АППАРАТУРА, АППАРАТУРА ДЛЯ ЗАПИСИ И ВОСПРОИЗВЕДЕНИЯ ТЕЛЕВИЗИОННОГО ИЗОБРАЖЕНИЯ И ЗВУКА, ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveGroup("84 РЕАКТОРЫ ЯДЕРНЫЕ, КОТЛЫ, ОБОРУДОВАНИЕ И МЕХАНИЧЕСКИЕ УСТРОЙСТВА; ИХ ЧАСТИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(83));
-        test.selectGroup("85 ЭЛЕКТРИЧЕСКИЕ МАШИНЫ И ОБОРУДОВАНИЕ, ИХ ЧАСТИ; ЗВУКОЗАПИСЫВАЮЩАЯ И ЗВУКОВОСПРОИЗВОДЯЩАЯ АППАРАТУРА, АППАРАТУРА ДЛЯ ЗАПИСИ И ВОСПРОИЗВЕДЕНИЯ ТЕЛЕВИЗИОННОГО ИЗОБРАЖЕНИЯ И ЗВУКА, ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveGroup("85 ЭЛЕКТРИЧЕСКИЕ МАШИНЫ И ОБОРУДОВАНИЕ, ИХ ЧАСТИ; ЗВУКОЗАПИСЫВАЮЩАЯ И ЗВУКОВОСПРОИЗВОДЯЩАЯ АППАРАТУРА, АППАРАТУРА ДЛЯ ЗАПИСИ И ВОСПРОИЗВЕДЕНИЯ ТЕЛЕВИЗИОННОГО ИЗОБРАЖЕНИЯ И ЗВУКА, ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(44));
 
-        test.selectSection("17 СРЕДСТВА НАЗЕМНОГО ТРАНСПОРТА, ЛЕТАТЕЛЬНЫЕ АППАРАТЫ, ПЛАВУЧИЕ СРЕДСТВА И ОТНОСЯЩИЕСЯ К ТРАНСПОРТУ УСТРОЙСТВА И ОБОРУДОВАНИЕ");
-        test.selectGroup("86 ЖЕЛЕЗНОДОРОЖНЫЕ ЛОКОМОТИВЫ ИЛИ МОТОРНЫЕ ВАГОНЫ ТРАМВАЯ, ПОДВИЖНОЙ СОСТАВ И ИХ ЧАСТИ; ПУТЕВОЕ ОБОРУДОВАНИЕ И УСТРОЙСТВА ДЛЯ ЖЕЛЕЗНЫХ ДОРОГ ИЛИ ТРАМВАЙНЫХ ПУТЕЙ И ИХ ЧАСТИ; МЕХАНИЧЕСКОЕ (ВКЛЮЧАЯ ЭЛЕКТРОМЕХАНИЧЕСКОЕ) СИГНАЛЬНОЕ ОБОРУДОВАНИЕ ВСЕХ ВИДОВ");
+        test.setActiveSection("17 СРЕДСТВА НАЗЕМНОГО ТРАНСПОРТА, ЛЕТАТЕЛЬНЫЕ АППАРАТЫ, ПЛАВУЧИЕ СРЕДСТВА И ОТНОСЯЩИЕСЯ К ТРАНСПОРТУ УСТРОЙСТВА И ОБОРУДОВАНИЕ");
+        test.setActiveGroup("86 ЖЕЛЕЗНОДОРОЖНЫЕ ЛОКОМОТИВЫ ИЛИ МОТОРНЫЕ ВАГОНЫ ТРАМВАЯ, ПОДВИЖНОЙ СОСТАВ И ИХ ЧАСТИ; ПУТЕВОЕ ОБОРУДОВАНИЕ И УСТРОЙСТВА ДЛЯ ЖЕЛЕЗНЫХ ДОРОГ ИЛИ ТРАМВАЙНЫХ ПУТЕЙ И ИХ ЧАСТИ; МЕХАНИЧЕСКОЕ (ВКЛЮЧАЯ ЭЛЕКТРОМЕХАНИЧЕСКОЕ) СИГНАЛЬНОЕ ОБОРУДОВАНИЕ ВСЕХ ВИДОВ");
         MatcherAssert.assertThat(test.getPositionList().length, is(5));
-        test.selectGroup("89 СУДА, ЛОДКИ И ПЛАВУЧИЕ КОНСТРУКЦИИ");
+        test.setActiveGroup("89 СУДА, ЛОДКИ И ПЛАВУЧИЕ КОНСТРУКЦИИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(5));
 
-        test.selectSection("18 ИНСТРУМЕНТЫ И АППАРАТЫ ОПТИЧЕСКИЕ, ФОТОГРАФИЧЕСКИЕ, КИНЕМАТОГРАФИЧЕСКИЕ, ИЗМЕРИТЕЛЬНЫЕ, КОНТРОЛЬНЫЕ, ПРЕЦИЗИОННЫЕ, МЕДИЦИНСКИЕ ИЛИ ХИРУРГИЧЕСКИЕ; ЧАСЫ ВСЕХ ВИДОВ; МУЗЫКАЛЬНЫЕ ИНСТРУМЕНТЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
-        test.selectGroup("90 ИНСТРУМЕНТЫ И АППАРАТЫ ОПТИЧЕСКИЕ, ФОТОГРАФИЧЕСКИЕ, КИНЕМАТОГРАФИЧЕСКИЕ, ИЗМЕРИТЕЛЬНЫЕ, КОНТРОЛЬНЫЕ, ПРЕЦИЗИОННЫЕ, МЕДИЦИНСКИЕ ИЛИ ХИРУРГИЧЕСКИЕ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveSection("18 ИНСТРУМЕНТЫ И АППАРАТЫ ОПТИЧЕСКИЕ, ФОТОГРАФИЧЕСКИЕ, КИНЕМАТОГРАФИЧЕСКИЕ, ИЗМЕРИТЕЛЬНЫЕ, КОНТРОЛЬНЫЕ, ПРЕЦИЗИОННЫЕ, МЕДИЦИНСКИЕ ИЛИ ХИРУРГИЧЕСКИЕ; ЧАСЫ ВСЕХ ВИДОВ; МУЗЫКАЛЬНЫЕ ИНСТРУМЕНТЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveGroup("90 ИНСТРУМЕНТЫ И АППАРАТЫ ОПТИЧЕСКИЕ, ФОТОГРАФИЧЕСКИЕ, КИНЕМАТОГРАФИЧЕСКИЕ, ИЗМЕРИТЕЛЬНЫЕ, КОНТРОЛЬНЫЕ, ПРЕЦИЗИОННЫЕ, МЕДИЦИНСКИЕ ИЛИ ХИРУРГИЧЕСКИЕ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(28));
-        test.selectGroup("92 ИНСТРУМЕНТЫ МУЗЫКАЛЬНЫЕ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveGroup("92 ИНСТРУМЕНТЫ МУЗЫКАЛЬНЫЕ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(6));
 
-        test.selectSection("19 ОРУЖИЕ И БОЕПРИПАСЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
-        test.selectGroup("93 ОРУЖИЕ И БОЕПРИПАСЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveSection("19 ОРУЖИЕ И БОЕПРИПАСЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
+        test.setActiveGroup("93 ОРУЖИЕ И БОЕПРИПАСЫ; ИХ ЧАСТИ И ПРИНАДЛЕЖНОСТИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(4));
 
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("94 МЕБЕЛЬ; ПОСТЕЛЬНЫЕ ПРИНАДЛЕЖНОСТИ, МАТРАЦЫ, ОСНОВЫ МАТРАЦНЫЕ, ДИВАННЫЕ ПОДУШКИ И АНАЛОГИЧНЫЕ НАБИВНЫЕ ПРИНАДЛЕЖНОСТИ МЕБЕЛИ; ЛАМПЫ И ОСВЕТИТЕЛЬНОЕ ОБОРУДОВАНИЕ, В ДРУГОМ МЕСТЕ НЕ ПОИМЕНОВАННЫЕ ИЛИ НЕ ВКЛЮЧЕННЫЕ; СВЕТОВЫЕ ВЫВЕСКИ, СВЕТОВЫЕ ТАБЛИЧКИ С ИМЕНЕМ ИЛИ НАЗВАНИЕМ, ИЛИ АДРЕСОМ И АНАЛОГИЧНЫЕ ИЗДЕЛИЯ; СБОРНЫЕ СТРОИТЕЛЬНЫЕ КОНСТРУКЦИИ");
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.setActiveGroup("94 МЕБЕЛЬ; ПОСТЕЛЬНЫЕ ПРИНАДЛЕЖНОСТИ, МАТРАЦЫ, ОСНОВЫ МАТРАЦНЫЕ, ДИВАННЫЕ ПОДУШКИ И АНАЛОГИЧНЫЕ НАБИВНЫЕ ПРИНАДЛЕЖНОСТИ МЕБЕЛИ; ЛАМПЫ И ОСВЕТИТЕЛЬНОЕ ОБОРУДОВАНИЕ, В ДРУГОМ МЕСТЕ НЕ ПОИМЕНОВАННЫЕ ИЛИ НЕ ВКЛЮЧЕННЫЕ; СВЕТОВЫЕ ВЫВЕСКИ, СВЕТОВЫЕ ТАБЛИЧКИ С ИМЕНЕМ ИЛИ НАЗВАНИЕМ, ИЛИ АДРЕСОМ И АНАЛОГИЧНЫЕ ИЗДЕЛИЯ; СБОРНЫЕ СТРОИТЕЛЬНЫЕ КОНСТРУКЦИИ");
         MatcherAssert.assertThat(test.getPositionList().length, is(6));
-        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.setActiveGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
         MatcherAssert.assertThat(test.getPositionList().length, is(11));
 
-        test.selectSection("21 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
-        test.selectGroup("97 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
+        test.setActiveSection("21 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
+        test.setActiveGroup("97 ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДМЕТЫ КОЛЛЕКЦИОНИРОВАНИЯ И АНТИКВАРИАТ");
         MatcherAssert.assertThat(test.getPositionList().length, is(1));
-        test.selectSection("22 FIFA2018");
-        test.selectGroup("99 FIFA2018");
+        test.setActiveSection("22 FIFA2018");
+        test.setActiveGroup("99 FIFA2018");
         MatcherAssert.assertThat(test.getPositionList().length, is(1));
     }
 
     @Test
     void getSubPositionList() {
-        test.selectPosition("2620 ШЛАК, ЗОЛА И ОСТАТКИ (КРОМЕ ОБРАЗУЮЩИХСЯ В ПРОИЗВОДСТВЕ ЧЕРНЫХ МЕТАЛЛОВ), СОДЕРЖАЩИЕ МЕТАЛЛЫ, МЫШЬЯК ИЛИ ИХ СОЕДИНЕНИЯ");
+        test.setActivePosition("2620 ШЛАК, ЗОЛА И ОСТАТКИ (КРОМЕ ОБРАЗУЮЩИХСЯ В ПРОИЗВОДСТВЕ ЧЕРНЫХ МЕТАЛЛОВ), СОДЕРЖАЩИЕ МЕТАЛЛЫ, МЫШЬЯК ИЛИ ИХ СОЕДИНЕНИЯ");
         String[] subPositionList = test.getSubPositionList();
         for (String testPosition:subPositionList
         ) {
@@ -211,8 +211,8 @@ class ModelTest {
 
     @Test
     void selectSection() {
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        MatcherAssert.assertThat(test.getSectionList()[test.getSelectedSection()],is("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ"));
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        MatcherAssert.assertThat(test.getSectionList()[test.getActiveSection()],is("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ"));
         String[] groupList = test.getGroupList();
         MatcherAssert.assertThat(groupList.length, is(3));
         /*
@@ -227,9 +227,9 @@ class ModelTest {
 
     @Test
     void selectGroup() {
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
-        MatcherAssert.assertThat(test.getGroupList()[test.getSelectedGroup()], is("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ"));
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.setActiveGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        MatcherAssert.assertThat(test.getGroupList()[test.getActiveGroup()], is("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ"));
 
         String[] positionList = test.getPositionList();
         /*
@@ -244,10 +244,10 @@ class ModelTest {
 
     @Test
     void selectPosition() {
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
-        test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
-        MatcherAssert.assertThat(test.getPositionList()[test.getSelectedPosition()], is("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ"));
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.setActiveGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.setActivePosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
+        MatcherAssert.assertThat(test.getPositionList()[test.getActivePosition()], is("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ"));
 
         String[] subPositionList = test.getSubPositionList();
         MatcherAssert.assertThat(subPositionList.length, is(4));
@@ -259,12 +259,12 @@ class ModelTest {
 
     @Test
     void selectSubPosition() {
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
-        test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
-        test.selectSubPosition("9607209000 - - прочие");
-        MatcherAssert.assertThat(test.getSubPositionList()[test.getSelectedSubPosition()],is ("9607209000 - - прочие"));
-        MatcherAssert.assertThat(test.getDescription(), is(
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.setActiveGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.setActivePosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
+        test.setActiveSubPosition("9607209000 - - прочие");
+        MatcherAssert.assertThat(test.getSubPositionList()[test.getActiveSubPosition()],is ("9607209000 - - прочие"));
+        MatcherAssert.assertThat(test.getFinalDescription(), is(
                 "РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
                         "\tРАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ\n" +
                         "\t\tЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ\n" +
@@ -274,24 +274,24 @@ class ModelTest {
 
     @Test
     void getGroupNote() {
-        test.selectSection("22 FIFA2018");
-        test.selectGroup("99 FIFA2018");
+        test.setActiveSection("22 FIFA2018");
+        test.setActiveGroup("99 FIFA2018");
         MatcherAssert.assertThat(test.getGroupNote(), is ("ТОВАРЫ ДЛЯ FIFA2018"));
     }
 
     @Test
     void getSectionNote() {
-        test.selectSection("22 FIFA2018");
+        test.setActiveSection("22 FIFA2018");
         MatcherAssert.assertThat(test.getSectionNote(), is ("товары для FIFA"));
     }
 
     @Test
     void getDescription() {
-        test.selectSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
-        test.selectGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
-        test.selectPosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
-        test.selectSubPosition("9607209000 - - прочие");
-        MatcherAssert.assertThat(test.getDescription(), is("РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
+        test.setActiveSection("20 РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ");
+        test.setActiveGroup("96 РАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ");
+        test.setActivePosition("9607 ЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ");
+        test.setActiveSubPosition("9607209000 - - прочие");
+        MatcherAssert.assertThat(test.getFinalDescription(), is("РАЗНЫЕ ПРОМЫШЛЕННЫЕ ТОВАРЫ\n" +
                 "\tРАЗНЫЕ ГОТОВЫЕ ИЗДЕЛИЯ\n" +
                 "\t\tЗАСТЕЖКИ-МОЛНИИ И ИХ ЧАСТИ\n" +
                 "\t\t\t- - прочие"));
