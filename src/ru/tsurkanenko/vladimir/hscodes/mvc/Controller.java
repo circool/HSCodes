@@ -20,9 +20,10 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     Model model;
     @FXML
-    TreeView<String> mainTree, rootView;
-    TreeItem<String> rootTreeItem;
-    MultipleSelectionModel<TreeItem<String>> selectionModel;
+    TreeView<String> mainTreeView; // элемент в view.fxml
+    //TreeView<String> rootTreeView;
+    //TreeItem<String> rootTreeItem;
+    //MultipleSelectionModel<TreeItem<String>> selectionModel;
     MenuItem menuShowNote;
 
     @FXML
@@ -32,28 +33,15 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         model= new Model();
         // Создание корневого узла дерева
-        rootTreeItem = model.getTreeIterable();
-        rootView = new TreeView<>(rootTreeItem);
-        // передаем корневой узел в компоненту
-        mainTree.setRoot(rootView.getRoot());
-        mainTree.setShowRoot(false);
-        model.setActiveSection(mainTree.getRoot().getChildren().get(0).getValue());
-        // раскрываем узел
+        TreeItem<String> rootTreeItem = model.getTreeIterable();
+        // раскрываем дерево
         rootTreeItem.setExpanded(true);
-        selectionModel = rootView.getSelectionModel();
-        /*
-        selectionModel.selectedItemProperty().addListener(o -> {
-            //TODO Сделать обработчик событий
-
-
-        });
-
-         */
-        selectionModel.selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>(){
-            public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldValue, TreeItem<String> newValue){
-                model.setActiveSection(newValue.getValue());
-            }
-        });
+        // устанавливаем корневой узел для TreeView
+        TreeView<String> rootTreeView = new TreeView<>(rootTreeItem);
+        // делаем корневой rootTreeView узел корневым для mainTreeView
+        mainTreeView.setRoot(rootTreeView.getRoot());
+        // скрываем корневой узел дерева
+        mainTreeView.setShowRoot(false);
     }
 
     @FXML
@@ -69,8 +57,10 @@ public class Controller implements Initializable {
 
     @FXML
     void mouseClickOnTree(){
-        System.out.println("Контроллер: Вызван метод mouseClickOnTree");
-        //TODO Сделать обработчик событий
+        // для выбора элемента сначала получаем модель дерева
+        SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
+        // передать в модель выбраный пункт дерева
+        model.setActiveSection(treeSelectionModel.getSelectedItem().getValue());
     }
 
     @FXML

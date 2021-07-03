@@ -21,7 +21,6 @@ class Model extends ModelCommon{
      */
     Model() {
         super();
-        setActiveSection("01 ЖИВЫЕ ЖИВОТНЫЕ; ПРОДУКТЫ ЖИВОТНОГО ПРОИСХОЖДЕНИЯ");
     }
 
     /**
@@ -29,8 +28,7 @@ class Model extends ModelCommon{
      * @return Дерево элементов справочника ТНВЭД
      */
     TreeItem<String> getTree() {
-
-        System.out.println("Start getTree");
+        //System.out.println("Start getTree");
         TreeItem<String> result = new TreeItem<>();
         result.setValue("Справочник ТН ВЭД");
         // Разделы
@@ -70,7 +68,7 @@ class Model extends ModelCommon{
                 }
             }
         }
-        System.out.println("End getTree");
+        //System.out.println("End getTree");
         return result;
     }
 
@@ -81,7 +79,7 @@ class Model extends ModelCommon{
      * @return Дерево с корневым узлом parent и его дочерними элементами (и их дочерними элементами, вплоть до последнего листа)
      */
     TreeItem<String> getTreeIterable() {
-        System.out.println("Start getTreeIterable");
+        //System.out.println("Start getTreeIterable");
         TreeItem<String> result = new TreeItem<>();
         result.setValue("Справочник ТН ВЭД");
         // Разделы XX
@@ -334,7 +332,7 @@ class Model extends ModelCommon{
                 }
             }
         }
-        System.out.println("End getTreeIterable");
+        //System.out.println("End getTreeIterable");
         return result;
     }
 

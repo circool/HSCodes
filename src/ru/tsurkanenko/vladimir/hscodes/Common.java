@@ -1,6 +1,8 @@
 package ru.tsurkanenko.vladimir.hscodes;
 
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
+
+import com.sun.istack.internal.NotNull;
 
 /**
  * Класс инкапсулирующий общие для всех элементов справочника параметры

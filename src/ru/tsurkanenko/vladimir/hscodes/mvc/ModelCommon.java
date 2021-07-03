@@ -59,7 +59,7 @@ public class ModelCommon {
      * @param section Строковое представление текущего раздела
      */
     public void setActiveSection(String section) {
-        System.out.println("Раздел " + section + " установлен как активный.");
+        System.out.println("Пункт " + section + " установлен как активный.");
         this.activeSection = section;
     }
 
