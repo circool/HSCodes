@@ -1,12 +1,11 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,13 +18,16 @@ import java.util.ResourceBundle;
  * @since 0.5.5
  */
 public class Controller implements Initializable {
-    public static Stage helpStage;
-
     Model model;
     @FXML
-    TreeView<String> mainTreeView;
-    @FXML
+    TreeView<String> mainTreeView; // элемент в view.fxml
+    //TreeView<String> rootTreeView;
+    //TreeItem<String> rootTreeItem;
+    //MultipleSelectionModel<TreeItem<String>> selectionModel;
     MenuItem menuShowNote;
+
+    @FXML
+    public Label helpMessageLabel, helpDetailsLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,39 +51,21 @@ public class Controller implements Initializable {
 
     @FXML
     void buttonDetailsMoreOnActions() {
-        //System.out.println("Контроллер: Вызван метод buttonDetailsMoreOnActions");
+        System.out.println("Контроллер: Вызван метод buttonDetailsMoreOnActions");
         menuShowNoteOnAction();
     }
 
     @FXML
     void mouseClickOnTree(){
-        // для выбора/получения активного элемента сначала получаем модель дерева
+        // для выбора элемента сначала получаем модель дерева
         SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
-        // получаем активный элемент из модели дерева и передаем их в модель MVC
-        if(treeSelectionModel.isEmpty()) {
-            model.setActiveSection("");
-            menuShowNote.setDisable(true);
-        }
-        else {
-            model.setActiveSection(treeSelectionModel.getSelectedItem().getValue());
-            menuShowNote.setDisable(false);
-        }
-        menuShowNote.setText("Примечание для " + model.getActiveSection()) ;
+        // передать в модель выбраный пункт дерева
+        model.setActiveSection(treeSelectionModel.getSelectedItem().getValue());
     }
 
     @FXML
     void menuShowNoteOnAction() {
-        try {
-            FXMLLoader helpLoader = new FXMLLoader(getClass().getResource("help.fxml"));
-            Parent helpRoot = helpLoader.load();
-            helpStage = new Stage();
-            helpStage.setTitle("Примечания");
-            helpStage.setScene(new Scene(helpRoot));
-            helpStage.show();
-        }
-        catch (Exception e) {
-            System.err.println("Не удалось открыть окно примечаний");
-        }
+        //TODO Сделать модальное окно
+        System.out.println("Контроллер: Вызван метод menuShowNoteOnAction");
     }
-
 }
