@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Контроллер (ControllerTree) Model-View-ControllerTree
+ * Контроллер (ControllerTree) Model-View-Controller
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
  * Предназначен для представления view_cb.fxml использующего выпадающие списки для отображения данных
  * @author Vladimir Tsurkanenko
