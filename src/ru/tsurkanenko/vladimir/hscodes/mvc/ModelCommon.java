@@ -61,13 +61,10 @@ public class ModelCommon {
 
     /**
      * Устанавливает выбранный раздел как текущий
-     * @param section Строковое представление текущего раздела
+     * @param selection Строковое представление текущего раздела
      */
-    public void setActiveSection(String section) {
-        if(!section.equals(activeSection)){
-            //System.out.println("Пункт " + section + " установлен как активный.");
-            this.activeSection = section;
-        }
+    public void setActiveSection(String selection) {
+        activeSection = selection;
     }
 
     /**
@@ -99,9 +96,9 @@ public class ModelCommon {
      * @return Строка с примечаниями
      */
     public String getGroupNote() {
-        //TODO Сделать правильный ответ
-        System.out.println("Вызван метод getGroupNote");
-        return null;
+        if(groups.startsWith(activeGroup).length==1)
+            return groups.startsWith(activeSection)[0].getPrim();
+        return "";
     }
 
     /**
@@ -109,8 +106,18 @@ public class ModelCommon {
      * @return Строка с примечанием (PRIM)
      */
     public String getSectionNote() {
-        System.out.println("Вызван метод getSectionNote");
         if(sections.startsWith(activeSection).length==1)
+            return sections.startsWith(activeSection)[0].getPrim();
+        return "";
+    }
+    /**
+     * Возвращает примечание для текущего раздела или группы ТНВЭД
+     * @return Строка с примечанием (PRIM)
+     */
+    public String getNote() {
+        if (activeGroup != "")
+            return groups.startsWith(activeGroup)[0].getPrim();
+        if (activeSection != "")
             return sections.startsWith(activeSection)[0].getPrim();
         return "";
     }

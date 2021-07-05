@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Тестирование класса Model
+ * Тестирование класса ModelCB
  * @author Vladimir Tsurkanenko
  * @version 0.5.3
  * @since 0.4

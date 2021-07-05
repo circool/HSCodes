@@ -8,9 +8,9 @@
  * @see ru.tsurkanenko.vladimir.hscodes.mvc.ControllerCB - ControllerTree
  *
  * - дерево
- * Данные о элементах справочника предоставляются моделью Model:
+ * Данные о элементах справочника предоставляются моделью ModelTree:
  * @see ru.tsurkanenko.vladimir.hscodes.mvc.MainAppTree - Main Application
- * @see ru.tsurkanenko.vladimir.hscodes.mvc.Model - Model
+ * @see ru.tsurkanenko.vladimir.hscodes.mvc.ModelTree - Model
  * ru.tsurkanenko.vladimir.hscodes.mvc.view.fxml - View
  * @see ru.tsurkanenko.vladimir.hscodes.mvc.ControllerTree - ControllerTree
  *

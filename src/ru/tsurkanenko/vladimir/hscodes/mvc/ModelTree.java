@@ -1,4 +1,6 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
@@ -11,13 +13,15 @@ import ru.tsurkanenko.vladimir.hscodes.*;
  * @since 0.5.5
  * TODO Рекурсивный способ работает значительно дольше, нужно оптимизировать его логику
  */
-class Model extends ModelCommon{
+class ModelTree extends ModelCommon{
+    private String activeTreeItem;
 
     /**
      * Создание новой модели.
      */
-    Model() {
+    ModelTree() {
         super();
+        activeTreeItem = "";
     }
 
     /**
@@ -346,4 +350,36 @@ class Model extends ModelCommon{
         return result;
     }
 
+    /**
+     * Этот метод вызывается при взаимодейсивии с деревом ТНВЭД
+     * @param selectedItem
+     */
+    void mouseClickOnTreeAction(TreeItem<String> selectedItem){
+        String selection;
+        if (selectedItem != null) {
+            selection = selectedItem.getValue();
+            if (!activeTreeItem.equals(selection)) {
+                activeTreeItem = selection;
+
+                int selectionCodeLength = selection.indexOf(" ");
+                this.setActiveSection("");
+                this.setActiveGroup("");
+
+                if (selectionCodeLength == 4) {
+                    this.setActiveSection("");
+                    this.setActiveGroup(activeTreeItem);
+
+                }
+                if (selectionCodeLength == 2) {
+                    this.setActiveSection(activeTreeItem);
+                    this.setActiveGroup("");
+                }
+
+            }
+        }
+    }
+
+    String getActiveTree(){
+        return activeTreeItem;
+    }
 }

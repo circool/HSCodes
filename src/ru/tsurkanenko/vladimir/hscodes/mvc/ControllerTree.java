@@ -21,15 +21,18 @@ import java.util.ResourceBundle;
 public class ControllerTree implements Initializable {
     public static Stage infoStage;
 
-    Model model;
+    ModelTree model;
     @FXML
     TreeView<String> mainTreeView;
     @FXML
     MenuItem menuShowNote;
+    @FXML
+    public Button buttonDetailsMore;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        model= new Model();
+        model= new ModelTree();
         // Создание корневого узла дерева
         TreeItem<String> rootTreeItem = model.getTreeIterable();
         // раскрываем дерево
@@ -40,6 +43,7 @@ public class ControllerTree implements Initializable {
         mainTreeView.setRoot(rootTreeView.getRoot());
         // скрываем корневой узел дерева
         mainTreeView.setShowRoot(false);
+        buttonDetailsMore.setDisable(true);
     }
 
     @FXML
@@ -57,16 +61,23 @@ public class ControllerTree implements Initializable {
     void mouseClickOnTree(){
         // для выбора/получения активного элемента сначала получаем модель дерева
         SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
-        // получаем активный элемент из модели дерева и передаем их в модель MVC
-        if(treeSelectionModel.isEmpty()) {
-            model.setActiveSection("");
-            menuShowNote.setDisable(true);
+        if(treeSelectionModel.getSelectedItem()!=null) {
+            if (!model.getActiveTree().equals(treeSelectionModel.getSelectedItem().getValue())) {
+                String selectedItem = treeSelectionModel.getSelectedItem().getValue();
+                // получаем активный элемент из модели дерева и передаем их в модель MVC
+                model.mouseClickOnTreeAction(treeSelectionModel.getSelectedItem());
+                int codeLength = selectedItem.indexOf(" ");
+                if (codeLength == 2)
+                    buttonDetailsMore.setDisable(false);
+                else
+                    if (treeSelectionModel.getSelectedItem().getParent().getValue().indexOf(" ") == 2)
+                        buttonDetailsMore.setDisable(false);
+                    else
+                        buttonDetailsMore.setDisable(true);
+            }
+        } else {
+            buttonDetailsMore.setDisable(true);
         }
-        else {
-            model.setActiveSection(treeSelectionModel.getSelectedItem().getValue());
-            menuShowNote.setDisable(false);
-        }
-        menuShowNote.setText("Примечание для " + model.getActiveSection()) ;
     }
 
     @FXML
@@ -75,10 +86,15 @@ public class ControllerTree implements Initializable {
         catch (Exception e){
             System.out.println("Попытка закрыть несуществующее окно");
         }
-        if( !model.getActiveSection().equals("") || !model.getSectionNote().equals("")){
+        if( !model.getNote().equals("")){
             try {
                 FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
-                infoLoader.setController(new ControllerInfo(model.getActiveSection().substring(3), model.getSectionNote()));
+                String header, prim;
+                if((model.getActiveGroup() != "") || (model.getActiveSection() != "")) {
+                    header = model.getActiveGroup() + model.getActiveSection();
+                    infoLoader.setController(new ControllerInfo(header, model.getNote()));
+                }
+
                 Parent infoRoot = infoLoader.load();
                 infoStage = new Stage();
                 infoStage.setTitle("Примечания");
@@ -90,5 +106,4 @@ public class ControllerTree implements Initializable {
             }
         }
     }
-
 }
