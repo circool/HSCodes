@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Модель MVC (Model-View-Controller)
+ * Модель MVC (Model-View-ControllerTree)
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
  * @author Vladimir Tsurkanenko
  * @version 0.5.3

@@ -1,7 +1,4 @@
 package ru.tsurkanenko.vladimir.hscodes;
-
-//import org.jetbrains.annotations.NotNull;
-
 import com.sun.istack.internal.NotNull;
 
 /**

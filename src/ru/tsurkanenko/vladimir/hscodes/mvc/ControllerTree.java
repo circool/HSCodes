@@ -11,15 +11,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Контроллер (Controller) Model-View-Controller
+ * Контроллер (ControllerTree) Model-View-ControllerTree
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
  * Предназначен для представления view.fxml использующего дерево для отображения данных
  * @author Vladimir Tsurkanenko
  * @version 0.5.5
  * @since 0.5.5
  */
-public class Controller implements Initializable {
-    public static Stage helpStage;
+public class ControllerTree implements Initializable {
+    public static Stage infoStage;
 
     Model model;
     @FXML
@@ -71,16 +71,23 @@ public class Controller implements Initializable {
 
     @FXML
     void menuShowNoteOnAction() {
-        try {
-            FXMLLoader helpLoader = new FXMLLoader(getClass().getResource("help.fxml"));
-            Parent helpRoot = helpLoader.load();
-            helpStage = new Stage();
-            helpStage.setTitle("Примечания");
-            helpStage.setScene(new Scene(helpRoot));
-            helpStage.show();
+        try{infoStage.close();}
+        catch (Exception e){
+            System.out.println("Попытка закрыть несуществующее окно");
         }
-        catch (Exception e) {
-            System.err.println("Не удалось открыть окно примечаний");
+        if( !model.getActiveSection().equals("") || !model.getSectionNote().equals("")){
+            try {
+                FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
+                infoLoader.setController(new ControllerInfo(model.getActiveSection().substring(3), model.getSectionNote()));
+                Parent infoRoot = infoLoader.load();
+                infoStage = new Stage();
+                infoStage.setTitle("Примечания");
+                infoStage.setScene(new Scene(infoRoot));
+                infoStage.show();
+            }
+            catch (Exception e) {
+                System.err.println("Не удалось открыть окно примечаний");
+            }
         }
     }
 

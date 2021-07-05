@@ -2,7 +2,7 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import ru.tsurkanenko.vladimir.hscodes.ScopeGroups;
 import ru.tsurkanenko.vladimir.hscodes.ScopeItems;
 /**
- * Модель MVC (Model-View-Controller) - методы, общие для всех моделей независимо от их реализации
+ * Модель MVC (Model-View-ControllerTree) - методы, общие для всех моделей независимо от их реализации
  * @author Vladimir Tsurkanenko
  * @version 0.5.5
  * @since 0.5.5
@@ -21,6 +21,8 @@ public class ModelCommon {
         positions.add("dic/TNVED3.ADD.TXT");
         items = new ScopeItems("dic/TNVED4.TXT");
         items.add("dic/TNVED4.ADD.TXT");
+        activeSection = "";
+        activeGroup = "";
     }
 
     // Методы, общие для всех моделей, работающих с справочником ТНВЭД, независимо от реализации
@@ -107,7 +109,6 @@ public class ModelCommon {
      * @return Строка с примечанием (PRIM)
      */
     public String getSectionNote() {
-        //TODO Сделать правильный ответ
         System.out.println("Вызван метод getSectionNote");
         if(sections.startsWith(activeSection).length==1)
             return sections.startsWith(activeSection)[0].getPrim();

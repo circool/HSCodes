@@ -3,7 +3,7 @@ import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
 /**
- * Модель MVC (Model-View-Controller)
+ * Модель MVC (Model-View-ControllerTree)
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
  * Для формирования дерева товарных позиций используется рекурсивный подход (getTreeRecursive и nestedChildRecursive) или итерационный 10-ти уровневый (getTreeIterable)
  * @author Vladimir Tsurkanenko
