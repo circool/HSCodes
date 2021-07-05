@@ -70,10 +70,7 @@ public class ControllerTree implements Initializable {
                 if (codeLength == 2)
                     buttonDetailsMore.setDisable(false);
                 else
-                    if (treeSelectionModel.getSelectedItem().getParent().getValue().indexOf(" ") == 2)
-                        buttonDetailsMore.setDisable(false);
-                    else
-                        buttonDetailsMore.setDisable(true);
+                    buttonDetailsMore.setDisable(treeSelectionModel.getSelectedItem().getParent().getValue().indexOf(" ") != 2);
             }
         } else {
             buttonDetailsMore.setDisable(true);

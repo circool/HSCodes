@@ -1,6 +1,4 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
@@ -360,11 +358,9 @@ class ModelTree extends ModelCommon{
             selection = selectedItem.getValue();
             if (!activeTreeItem.equals(selection)) {
                 activeTreeItem = selection;
-
                 int selectionCodeLength = selection.indexOf(" ");
                 this.setActiveSection("");
                 this.setActiveGroup("");
-
                 if (selectionCodeLength == 4) {
                     this.setActiveSection("");
                     this.setActiveGroup(activeTreeItem);
@@ -374,7 +370,6 @@ class ModelTree extends ModelCommon{
                     this.setActiveSection(activeTreeItem);
                     this.setActiveGroup("");
                 }
-
             }
         }
     }
