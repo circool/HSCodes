@@ -66,6 +66,22 @@ public class ModelCommon {
     public void setActiveSection(String selection) {
         activeSection = selection;
     }
+    /**
+     * Возвращает текущий активный раздел
+     * @return Строковое представление текущего раздела
+     */
+    public String getActiveSection() {
+        return activeSection;
+    }
+    /**
+     * Возвращает примечание для текущего раздела ТНВЭД
+     * @return Строка с примечанием (PRIM)
+     */
+    public String getSectionNote() {
+        if(sections.startsWith(getActiveSection()).length==1)
+            return sections.startsWith(getActiveSection())[0].getPrim();
+        return "";
+    }
 
     /**
      * Устанавливает выбранную группу как текущую
@@ -74,15 +90,6 @@ public class ModelCommon {
     public void setActiveGroup(String group) {
         this.activeGroup = group;
     }
-
-    /**
-     * Возвращает текущий активный раздел
-     * @return Строковое представление текущего раздела
-     */
-    public String getActiveSection() {
-        return activeSection;
-    }
-
     /**
      * Возвращает текущую активную группу
      * @return Строковое представление текущей группы
@@ -90,35 +97,26 @@ public class ModelCommon {
     public String getActiveGroup() {
         return activeGroup;
     }
-
     /**
      * Возвращает примечание к текущей группе
      * @return Строка с примечаниями
      */
     public String getGroupNote() {
-        if(groups.startsWith(activeGroup).length==1)
-            return groups.startsWith(activeSection)[0].getPrim();
+        if(groups.startsWith(getActiveGroup()).length==1)
+            return groups.startsWith(getActiveSection())[0].getPrim();
         return "";
     }
 
-    /**
-     * Возвращает примечание для текущего раздела ТНВЭД
-     * @return Строка с примечанием (PRIM)
-     */
-    public String getSectionNote() {
-        if(sections.startsWith(activeSection).length==1)
-            return sections.startsWith(activeSection)[0].getPrim();
-        return "";
-    }
+
     /**
      * Возвращает примечание для текущего раздела или группы ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
     public String getNote() {
-        if (activeGroup != "")
-            return groups.startsWith(activeGroup)[0].getPrim();
-        if (activeSection != "")
-            return sections.startsWith(activeSection)[0].getPrim();
+        if (getActiveGroup() != "")
+            return getGroupNote();
+        if (getActiveSection() != "")
+            return getSectionNote();
         return "";
     }
 
@@ -128,7 +126,9 @@ public class ModelCommon {
      */
     public String getFinalDescription() {
         //TODO Сделать правильный ответ
-        System.out.println("Вызван метод getFinalDescription");
-        return null;
+        String result = getActiveSection() + "/n" +
+                getActiveGroup() + "/n/n" ;
+
+        return result;
     }
 }

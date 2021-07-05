@@ -359,16 +359,16 @@ class ModelTree extends ModelCommon{
             if (!activeTreeItem.equals(selection)) {
                 activeTreeItem = selection;
                 int selectionCodeLength = selection.indexOf(" ");
-                this.setActiveSection("");
-                this.setActiveGroup("");
+                //this.setActiveSection("");
+                //this.setActiveGroup("");
                 if (selectionCodeLength == 4) {
-                    this.setActiveSection("");
+                    //this.setActiveSection("");
                     this.setActiveGroup(activeTreeItem);
 
                 }
                 if (selectionCodeLength == 2) {
                     this.setActiveSection(activeTreeItem);
-                    this.setActiveGroup("");
+                    //this.setActiveGroup("");
                 }
             }
         }

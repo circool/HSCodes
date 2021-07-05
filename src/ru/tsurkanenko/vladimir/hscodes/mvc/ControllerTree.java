@@ -61,20 +61,34 @@ public class ControllerTree implements Initializable {
     void mouseClickOnTree(){
         // для выбора/получения активного элемента сначала получаем модель дерева
         SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
-        if(treeSelectionModel.getSelectedItem()!=null) {
+        TreeItem<String> selectedItem = treeSelectionModel.getSelectedItem();
+        /*
+        Теперь разбираемся, что делать дальше:
+            1. Если выбранный элемент не изменился: не делаем ничего
+
+            2. установить элемент как активный
+                2.1. Если у выбранного элемента нет дочерних элементов: вывести полное описание элемента
+                2.2. Если у выбранного элемента есть дети:
+                    2.2.1. Если это раздел или группа: вывести соответствующее примечание если оно есть
+                    2.2.2. Если нет - ничего не делать
+         */
+        if(selectedItem!=null) {
             if (!model.getActiveTree().equals(treeSelectionModel.getSelectedItem().getValue())) {
-                String selectedItem = treeSelectionModel.getSelectedItem().getValue();
+                String selectedItemValue = selectedItem.getValue();
                 // получаем активный элемент из модели дерева и передаем их в модель MVC
-                model.mouseClickOnTreeAction(treeSelectionModel.getSelectedItem());
-                int codeLength = selectedItem.indexOf(" ");
+                model.mouseClickOnTreeAction(selectedItem);
+                int codeLength = selectedItemValue.indexOf(" ");
                 if (codeLength == 2)
                     buttonDetailsMore.setDisable(false);
                 else
-                    buttonDetailsMore.setDisable(treeSelectionModel.getSelectedItem().getParent().getValue().indexOf(" ") != 2);
+                    buttonDetailsMore.setDisable(selectedItem.getParent().getValue().indexOf(" ") != 2);
             }
         } else {
             buttonDetailsMore.setDisable(true);
         }
+
+        if(treeSelectionModel.getSelectedItem().getChildren().size()==0)
+            showItemDescription(treeSelectionModel.getSelectedItem());
     }
 
     @FXML
@@ -102,5 +116,32 @@ public class ControllerTree implements Initializable {
                 System.err.println("Не удалось открыть окно примечаний");
             }
         }
+    }
+
+    /**
+     * Отображает окно с информацией о выбранном коде
+     * @param selectedItem
+     */
+    void showItemDescription(TreeItem<String> selectedItem){
+        try{infoStage.close();}
+        catch (Exception e){
+            System.out.println("Попытка закрыть несуществующее окно");
+        }
+        try {
+            FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
+            String header = "Полное описание:";
+            String descr = model.getFinalDescription();
+            infoLoader.setController(new ControllerInfo(header, model.getNote()));
+
+            Parent infoRoot = infoLoader.load();
+            infoStage = new Stage();
+            infoStage.setTitle("Подробности");
+            infoStage.setScene(new Scene(infoRoot));
+            infoStage.show();
+        }
+        catch (Exception e) {
+            System.err.println("Не удалось открыть окно примечаний");
+            }
+
     }
 }
