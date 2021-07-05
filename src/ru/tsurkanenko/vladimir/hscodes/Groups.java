@@ -22,7 +22,8 @@ public class Groups extends Common {
                 .replaceAll("(\\s)([0-9]+\\.\\s)([А-Яа-я]+)", "\n$2$3")
                 .replaceAll("([:;]\\s*и*)\\s+(\\([а-я]\\))", "$1\n\t$2")
                 .replaceAll("([а-я]\\.) (\\([А-Я]\\))","$1\n\t$2")
-                .replaceAll("([0-9]\\.)(\\s+)(\\([А-Я]\\))","$1\t$3");
+                .replaceAll("([0-9]\\.)(\\s+)(\\([А-Я]\\))","$1\t$3")
+                .replaceAll(" Н "," ");
     }
 
     /**
