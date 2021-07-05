@@ -18,10 +18,11 @@ public class Groups extends Common {
         super(rawLine);
 
         String regexPrim  = "^[0-9|]*\\|.*?\\|(.*?)\\|([0-9.|]+)$";
-        String tmp = rawLine.replaceAll(regexPrim,"$1");
-        tmp = tmp.replaceAll("(\\s)([0-9]+\\.\\s)([А-Яа-я]+)", "\n$2$3");
-        prim = tmp.replaceAll("([:;]\\s*и*)\\s+(\\([а-я]\\))", "$1\n\t$2");
-
+        prim = rawLine.replaceAll(regexPrim,"$1")
+                .replaceAll("(\\s)([0-9]+\\.\\s)([А-Яа-я]+)", "\n$2$3")
+                .replaceAll("([:;]\\s*и*)\\s+(\\([а-я]\\))", "$1\n\t$2")
+                .replaceAll("([а-я]\\.) (\\([А-Я]\\))","$1\n\t$2")
+                .replaceAll("([0-9]\\.)(\\s+)(\\([А-Я]\\))","$1\t$3");
     }
 
     /**
