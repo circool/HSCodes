@@ -45,7 +45,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </VBox.margin>
         <TreeView fx:id="mainTreeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                  nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#mouseClickOnTree" HBox.hgrow="ALWAYS"/>
+                  nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#mainTreeViewOnAction" HBox.hgrow="ALWAYS"/>
     </HBox>
     <FlowPane hgap="20.0" maxHeight="35.0" prefHeight="35.0" vgap="20.0" VBox.vgrow="ALWAYS">
         <VBox.margin>
