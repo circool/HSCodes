@@ -1,14 +1,11 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
-
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerInfo implements Initializable {
+
+public class ControllerInfo extends ViewInfo implements Initializable {
     final String message;
     final String details;
 
@@ -17,26 +14,16 @@ public class ControllerInfo implements Initializable {
         details = helpDetails;
     }
 
-
-
-
-    @FXML
-    private Label helpMessageLabel;
-
-    @FXML
-    private Label helpDetailsLabel;
-
-    @FXML
-    private Button infoCloseButton;
-
-    void closeWindow(){
-        ControllerTree.infoStage.hide();
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         helpMessageLabel.setText(message);
         helpDetailsLabel.setText(details);
         infoCloseButton.setOnAction(e -> closeWindow());
+    }
+    void closeWindow(){
+        try{infoStage.close();}
+        catch (Exception e){
+            System.out.println("Попытка закрыть несуществующее окно");
+        }
     }
 }

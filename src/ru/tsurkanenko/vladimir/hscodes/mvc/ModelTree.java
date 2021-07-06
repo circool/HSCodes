@@ -1,6 +1,9 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
+
 import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
+
+import javax.swing.text.TabableView;
 
 /**
  * Модель MVC (Model-View-ControllerTree)
@@ -12,18 +15,22 @@ import ru.tsurkanenko.vladimir.hscodes.*;
  * TODO Рекурсивный способ работает значительно дольше, нужно оптимизировать его логику
  */
 class ModelTree extends ModelCommon{
-    private String activeTreeItem;
+
+    /**
+     * Хранение автивного элемента дерева
+     */
+    private TreeItem<String> activeTreeItem;
 
     /**
      * Создание новой модели.
      */
     ModelTree() {
         super();
-        activeTreeItem = "";
+        activeTreeItem = null;
     }
 
     /**
-     * Возвращает полное дерево ТНВЭД
+     * Возвращает полное дерево ТНВЭД используя рекурсивный вызов
      * @return Дерево элементов справочника ТНВЭД
      */
     TreeItem<String> getTreeRecursive() {
@@ -349,32 +356,77 @@ class ModelTree extends ModelCommon{
     }
 
     /**
-     * Этот метод вызывается при взаимодейсивии с деревом ТНВЭД
-     * @param selectedItem
+     * Возвращает элемент дерева, выбранный как активный
+     * @return Ссылка на активный TreeItem
      */
-    void mouseClickOnTreeAction(TreeItem<String> selectedItem){
-        String selection;
-        if (selectedItem != null) {
-            selection = selectedItem.getValue();
-            if (!activeTreeItem.equals(selection)) {
-                activeTreeItem = selection;
-                int selectionCodeLength = selection.indexOf(" ");
-                //this.setActiveSection("");
-                //this.setActiveGroup("");
-                if (selectionCodeLength == 4) {
-                    //this.setActiveSection("");
-                    this.setActiveGroup(activeTreeItem);
-
-                }
-                if (selectionCodeLength == 2) {
-                    this.setActiveSection(activeTreeItem);
-                    //this.setActiveGroup("");
-                }
-            }
-        }
+    TreeItem<String> getActiveTreeItem(){
+        return activeTreeItem;
     }
 
-    String getActiveTree(){
-        return activeTreeItem;
+    /**
+     * Сохраняет у себя информацию о выбранном элементе дерева
+     * Также обновляет информацию в переменных activeSectionValue и activeGroupValue
+     * @param treeItem Ссылка на активный TreeItem
+     */
+    void setActiveTreeItem(TreeItem<String> treeItem){
+        activeTreeItem = treeItem;
+        int nestingLevel = getNestingLevel(treeItem);
+        if (nestingLevel == 1)
+            setActiveSectionValue(treeItem.getValue());
+        if(nestingLevel == 2)
+            setActiveGroupValue(treeItem.getValue());
+    }
+
+    /**
+     * Определяет, есть ли у выбранного элемента дерева примечание
+     * @return Истина если есть, ложь - если нет
+     */
+    boolean activeSelectionIsHaveNote(){
+        if(getNestingLevel(activeTreeItem)==2)
+            return true;
+        if(getNestingLevel(activeTreeItem)==1){
+            Groups[] a = getSections().startsWith(activeTreeItem.getValue());
+            if(a[0].getPrim().length() > 0)
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Информирует, является ли активный элемент дерева конечным в иерархии
+     * @return истина, если у элемента нет дочерних элементов, ложь - если есть
+     */
+    boolean activeSelectionIsItem(){
+        return activeTreeItem.getChildren().size()==0;
+    }
+
+    /**
+     * Возвращает полное описание выбранного кода ТНВЭД
+     * @return Строка описаниями родителей и выбранного кода
+     */
+    public String getFinalDescription(TreeItem<String> treeItem) {
+        String result = treeItem.getValue();
+        if(treeItem.getParent().getParent() != null)
+            result = getFinalDescription(treeItem.getParent()) + "\n" + result;
+        else
+            return "\n" + result ;
+        return result;
+    }
+
+    int getNestingLevel(TreeItem<String> treeItem){
+        int result = 0;
+        TreeItem<String> tmp = treeItem;
+        while(tmp.getParent() != null){
+            result++;
+            tmp = tmp.getParent();
+        }
+        return result;
+    }
+    @Override
+    public String getGroupNote() {
+        //TODO вместо примечания выдает описание
+        if(getGroups().startsWith(getActiveSectionValue().substring(0,2) + getActiveGroupValue()).length==1)
+            return getGroups().startsWith(getActiveSectionValue().substring(0,2) + getActiveGroupValue())[0].getPrim();
+        return "";
     }
 }

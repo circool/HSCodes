@@ -8,12 +8,18 @@ import ru.tsurkanenko.vladimir.hscodes.ScopeItems;
  * @since 0.5.5
  */
 public class ModelCommon {
-    private final ScopeGroups sections, groups;
-    private final ScopeItems positions;
-    private final ScopeItems items;
-    private String activeSection;
-    private String activeGroup;
 
+    // Массивы с данными о разделах, группах, товарных позициях и товарных под-суб-позициях и товарных кодах
+    private final ScopeGroups sections, groups;
+    private final ScopeItems positions, items;
+
+    // Строковое представление выбранного раздела и выбранной группы (без учета кода раздела)
+    private String activeSectionValue, activeGroupValue;
+
+    /**
+     * Конструктор для создания новой модели
+     *
+     */
     public ModelCommon() {
         sections = new ScopeGroups("dic/TNVED1.TXT");
         groups = new ScopeGroups("dic/TNVED2.TXT");
@@ -21,8 +27,8 @@ public class ModelCommon {
         positions.add("dic/TNVED3.ADD.TXT");
         items = new ScopeItems("dic/TNVED4.TXT");
         items.add("dic/TNVED4.ADD.TXT");
-        activeSection = "";
-        activeGroup = "";
+        activeSectionValue = "";
+        activeGroupValue = "";
     }
 
     // Методы, общие для всех моделей, работающих с справочником ТНВЭД, независимо от реализации
@@ -63,23 +69,25 @@ public class ModelCommon {
      * Устанавливает выбранный раздел как текущий
      * @param selection Строковое представление текущего раздела
      */
-    public void setActiveSection(String selection) {
-        activeSection = selection;
+    public void setActiveSectionValue(String selection) {
+        activeSectionValue = selection;
     }
+
     /**
      * Возвращает текущий активный раздел
      * @return Строковое представление текущего раздела
      */
-    public String getActiveSection() {
-        return activeSection;
+    public String getActiveSectionValue() {
+        return activeSectionValue;
     }
+
     /**
      * Возвращает примечание для текущего раздела ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
     public String getSectionNote() {
-        if(sections.startsWith(getActiveSection()).length==1)
-            return sections.startsWith(getActiveSection())[0].getPrim();
+        if(sections.startsWith(getActiveSectionValue()).length==1)
+            return sections.startsWith(getActiveSectionValue())[0].getPrim();
         return "";
     }
 
@@ -87,48 +95,36 @@ public class ModelCommon {
      * Устанавливает выбранную группу как текущую
      * @param group Строковое представление текущей группы
      */
-    public void setActiveGroup(String group) {
-        this.activeGroup = group;
+    public void setActiveGroupValue(String group) {
+        activeGroupValue = group;
     }
+
     /**
      * Возвращает текущую активную группу
      * @return Строковое представление текущей группы
      */
-    public String getActiveGroup() {
-        return activeGroup;
+    public String getActiveGroupValue() {
+        return activeGroupValue;
     }
     /**
      * Возвращает примечание к текущей группе
      * @return Строка с примечаниями
      */
     public String getGroupNote() {
-        if(groups.startsWith(getActiveGroup()).length==1)
-            return groups.startsWith(getActiveSection())[0].getPrim();
+        if(groups.startsWith(getActiveGroupValue()).length==1)
+            return groups.startsWith(getActiveSectionValue())[0].getPrim();
         return "";
     }
-
 
     /**
      * Возвращает примечание для текущего раздела или группы ТНВЭД
      * @return Строка с примечанием (PRIM)
      */
     public String getNote() {
-        if (getActiveGroup() != "")
+        if (getActiveGroupValue() != "")
             return getGroupNote();
-        if (getActiveSection() != "")
+        if (getActiveSectionValue() != "")
             return getSectionNote();
         return "";
-    }
-
-    /**
-     * Возвращает полное описание выбранного кода ТНВЭД
-     * @return Строка описаниями родителей и выбранного кода
-     */
-    public String getFinalDescription() {
-        //TODO Сделать правильный ответ
-        String result = getActiveSection() + "/n" +
-                getActiveGroup() + "/n/n" ;
-
-        return result;
     }
 }
