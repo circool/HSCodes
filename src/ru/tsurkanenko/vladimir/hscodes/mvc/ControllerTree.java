@@ -13,37 +13,23 @@ import java.util.ResourceBundle;
 /**
  * Контроллер (ControllerTree) Model-View-ControllerTree
  * интерпретирует действия пользователя, оповещая модель о необходимости изменений
- * Предназначен для представления view.fxml использующего дерево для отображения данных
+ * Предназначен для представления tree.fxml использующего дерево для отображения данных
+ * Управление элементами представления выполняется классом TreeView.
+ * @see TreeView
  * @author Vladimir Tsurkanenko
- * @version 0.5.5
- * @since 0.5.5
+ * @version 0.5.6
+ * @since 0.5.6
  */
-public class ControllerTree implements Initializable {
+public class ControllerTree extends ViewTree implements Initializable {
     public static Stage infoStage;
 
     ModelTree model;
-    @FXML
-    TreeView<String> mainTreeView;
-    @FXML
-    MenuItem menuShowNote;
-    @FXML
-    public Button buttonDetailsMore;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         model= new ModelTree();
-        // Создание корневого узла дерева
-        TreeItem<String> rootTreeItem = model.getTreeIterable();
-        // раскрываем дерево
-        rootTreeItem.setExpanded(true);
-        // устанавливаем корневой узел для TreeView
-        TreeView<String> rootTreeView = new TreeView<>(rootTreeItem);
-        // делаем корневой rootTreeView узел корневым для mainTreeView
-        mainTreeView.setRoot(rootTreeView.getRoot());
-        // скрываем корневой узел дерева
-        mainTreeView.setShowRoot(false);
-        buttonDetailsMore.setDisable(true);
+        createTree(model.getTreeIterable());
+        notesIsAvailable(false);
     }
 
     @FXML
@@ -57,20 +43,25 @@ public class ControllerTree implements Initializable {
         menuShowNoteOnAction();
     }
 
+    /**
+     * Метод выполняется при взаимодействии с древом кодов ТНВЭД
+     */
     @FXML
-    void mouseClickOnTree(){
+    void mainTreeViewOnAction(){
         // для выбора/получения активного элемента сначала получаем модель дерева
         SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
+        // получаем выбранный элемент дерева
         TreeItem<String> selectedItem = treeSelectionModel.getSelectedItem();
         /*
         Теперь разбираемся, что делать дальше:
             1. Если выбранный элемент не изменился: не делаем ничего
-
-            2. установить элемент как активный
-                2.1. Если у выбранного элемента нет дочерних элементов: вывести полное описание элемента
-                2.2. Если у выбранного элемента есть дети:
-                    2.2.1. Если это раздел или группа: вывести соответствующее примечание если оно есть
-                    2.2.2. Если нет - ничего не делать
+                2. Отметить или снять в модели отметку о выбранном элементе
+                2.0 если никакой элемент не выбран сделать недоступной кнопку и меню "подробности"
+                2.1 иначе установить элемент как активный
+                    2.1.1 Если у выбранного элемента нет дочерних элементов: вывести полное описание элемента
+                    2.1.2. Если у выбранного элемента есть дети:
+                        2.1.2.1. Если это раздел или группа: вывести соответствующее примечание если оно есть
+                        2.1.2.2. Если нет - ничего не делать
          */
         if(selectedItem!=null) {
             if (!model.getActiveTree().equals(treeSelectionModel.getSelectedItem().getValue())) {
@@ -79,12 +70,12 @@ public class ControllerTree implements Initializable {
                 model.mouseClickOnTreeAction(selectedItem);
                 int codeLength = selectedItemValue.indexOf(" ");
                 if (codeLength == 2)
-                    buttonDetailsMore.setDisable(false);
+                    notesIsAvailable(true);
                 else
                     buttonDetailsMore.setDisable(selectedItem.getParent().getValue().indexOf(" ") != 2);
             }
         } else {
-            buttonDetailsMore.setDisable(true);
+            notesIsAvailable(false);
         }
 
         if(treeSelectionModel.getSelectedItem().getChildren().size()==0)
@@ -120,7 +111,7 @@ public class ControllerTree implements Initializable {
 
     /**
      * Отображает окно с информацией о выбранном коде
-     * @param selectedItem
+     * @param selectedItem Выбранный элемент дерева
      */
     void showItemDescription(TreeItem<String> selectedItem){
         try{infoStage.close();}
