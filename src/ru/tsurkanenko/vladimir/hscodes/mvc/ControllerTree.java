@@ -65,8 +65,6 @@ public class ControllerTree extends ViewTree implements Initializable {
             // Если у элемента есть примечания, установить кнопку и меню "подробности" как доступные
             notesIsAvailable(model.activeSelectionIsHaveNote());
         }
-
-        //System.out.println("Debug: Selected item has " + model.getNestingLevel(selectedItem) + " nesting level");
     }
 
     @FXML

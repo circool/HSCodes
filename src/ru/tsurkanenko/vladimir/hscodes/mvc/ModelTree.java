@@ -3,7 +3,6 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
-import javax.swing.text.TabableView;
 
 /**
  * Модель MVC (Model-View-ControllerTree)
@@ -379,6 +378,7 @@ class ModelTree extends ModelCommon{
 
     /**
      * Определяет, есть ли у выбранного элемента дерева примечание
+     * или является ли выбранный элемент последним в иерархии
      * @return Истина если есть, ложь - если нет
      */
     boolean activeSelectionIsHaveNote(){
@@ -389,6 +389,8 @@ class ModelTree extends ModelCommon{
             if(a[0].getPrim().length() > 0)
                 return true;
         }
+        if(activeSelectionIsItem())
+            return true;
         return false;
     }
 
@@ -422,11 +424,5 @@ class ModelTree extends ModelCommon{
         }
         return result;
     }
-    @Override
-    public String getGroupNote() {
-        //TODO вместо примечания выдает описание
-        if(getGroups().startsWith(getActiveSectionValue().substring(0,2) + getActiveGroupValue()).length==1)
-            return getGroups().startsWith(getActiveSectionValue().substring(0,2) + getActiveGroupValue())[0].getPrim();
-        return "";
-    }
+
 }

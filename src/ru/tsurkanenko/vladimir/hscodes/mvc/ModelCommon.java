@@ -110,9 +110,11 @@ public class ModelCommon {
      * Возвращает примечание к текущей группе
      * @return Строка с примечаниями
      */
+
     public String getGroupNote() {
-        if(groups.startsWith(getActiveGroupValue()).length==1)
-            return groups.startsWith(getActiveSectionValue())[0].getPrim();
+
+        if(getGroups().startsWith(getActiveGroupValue()).length==1)
+            return getGroups().startsWith(getActiveGroupValue())[0].getPrim();
         return "";
     }
 
