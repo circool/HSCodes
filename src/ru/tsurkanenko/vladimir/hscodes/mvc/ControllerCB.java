@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
  * @version 0.5.2
  * @since 0.4
  */
+//TODO выбрасывает исключение IndexOutOfBoundsException при переборе разделов 4-й раздел так как в списке субпозиций пусто
 public class ControllerCB implements Initializable {
     @FXML ComboBox<String> comboBoxSection,comboBoxGroup, comboBoxPosition, comboBoxSubPosition;
     @FXML Label labelSectionNote, labelGroupNote, labelDescription;
