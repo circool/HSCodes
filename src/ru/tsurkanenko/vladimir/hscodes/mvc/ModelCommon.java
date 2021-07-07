@@ -117,16 +117,4 @@ public class ModelCommon {
             return getGroups().startsWith(getActiveGroupValue())[0].getPrim();
         return "";
     }
-
-    /**
-     * Возвращает примечание для текущего раздела или группы ТНВЭД
-     * @return Строка с примечанием (PRIM)
-     */
-    public String getNote() {
-        if (getActiveGroupValue() != "")
-            return getGroupNote();
-        if (getActiveSectionValue() != "")
-            return getSectionNote();
-        return "";
-    }
 }

@@ -3,7 +3,7 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,8 +18,8 @@ import java.util.ResourceBundle;
  * @since 0.5.6
  */
 public class ControllerTree extends ViewTree implements Initializable {
-    public static Stage infoStage;
     ModelTree model;
+    InfoWindow infoWindow;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,19 +80,24 @@ public class ControllerTree extends ViewTree implements Initializable {
      *  3.
      */
     void showInfo(){
-        if(model.activeSelectionIsHaveNote()){
-            String activeSelection = model.getActiveTreeItem().getValue();
-
-            String s = model.getActiveSectionValue();
-            if(activeSelection.equals(model.getActiveSectionValue()))
-                showInfo("Примечания к разделу", model.getActiveSectionValue(), model.getSectionNote());
-
-            if(activeSelection.equals(model.getActiveGroupValue())) {
-                showInfo("Примечания к товарной группе", model.getActiveGroupValue(), model.getGroupNote());
+        if(model.activeSelectionIsHaveNote()) {
+            String title = "";
+            String body = "";
+            String header = model.getActiveTreeItem().getValue();
+            if (header.equals(model.getActiveSectionValue())) {
+                title = "Примечания к разделу";
+                body = model.getSectionNote();
+            } else if (header.equals(model.getActiveGroupValue())) {
+                title = "Примечания к товарной группе";
+                body = model.getGroupNote();
+            } else if (model.activeSelectionIsItem()) {
+                title = "Информация о коде ТНВЭД";
+                body = model.getFinalDescription(model.getActiveTreeItem());
             }
+            if(infoWindow != null)
+                infoWindow.close();
+            infoWindow = new InfoWindow(title, header, body);
         }
-        if(model.activeSelectionIsItem())
-            showInfo("Информация о коде ТНВЭД", model.getActiveTreeItem().getValue(), model.getFinalDescription(model.getActiveTreeItem()));
     }
 
 }

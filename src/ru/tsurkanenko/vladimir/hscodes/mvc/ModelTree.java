@@ -389,9 +389,7 @@ class ModelTree extends ModelCommon{
             if(a[0].getPrim().length() > 0)
                 return true;
         }
-        if(activeSelectionIsItem())
-            return true;
-        return false;
+        return activeSelectionIsItem();
     }
 
     /**

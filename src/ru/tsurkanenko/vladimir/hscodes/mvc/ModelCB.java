@@ -3,7 +3,7 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import ru.tsurkanenko.vladimir.hscodes.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//TODO расширить ModelCommon
 /**
  * Модель MVC (Model-View-ControllerTree)
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
