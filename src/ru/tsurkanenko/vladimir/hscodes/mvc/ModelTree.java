@@ -3,6 +3,9 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Модель MVC (Model-View-ControllerTree)
@@ -19,13 +22,18 @@ class ModelTree extends ModelCommon{
      * Хранение автивного элемента дерева
      */
     private TreeItem<String> activeTreeItem;
-
+    Map<String, String> groups_tree;
     /**
      * Создание новой модели.
      */
     ModelTree() {
         super();
         activeTreeItem = null;
+        groups_tree = new HashMap<>();
+        for (Groups g:getGroups().get()
+             ) {
+           groups_tree.put(g.toString().substring(2), g.getPrim());
+        }
     }
 
     /**
@@ -86,7 +94,7 @@ class ModelTree extends ModelCommon{
                     .getChildren().size() - 1;
             // Товарные группы ХХ ХХ
             for (Groups currGroup : getGroups().startsWith(currSection.getCode())) {
-                result.getChildren().get(i0).getChildren().add(new TreeItem<>(currGroup.toString()));
+                result.getChildren().get(i0).getChildren().add(new TreeItem<>(currGroup.toString().substring(2)));
                 int i1 = result
                         .getChildren().get(i0)
                         .getChildren().size() - 1;
@@ -389,15 +397,7 @@ class ModelTree extends ModelCommon{
             if(a[0].getPrim().length() > 0)
                 return true;
         }
-        return activeSelectionIsItem();
-    }
-
-    /**
-     * Информирует, является ли активный элемент дерева конечным в иерархии
-     * @return истина, если у элемента нет дочерних элементов, ложь - если есть
-     */
-    boolean activeSelectionIsItem(){
-        return activeTreeItem.getChildren().size()==0;
+        return activeTreeItem.isLeaf();
     }
 
     /**
@@ -422,5 +422,22 @@ class ModelTree extends ModelCommon{
         }
         return result;
     }
+
+    @Override
+    /**
+     * Возвращает примечание к текущей группе
+     * @return Строка с примечаниями
+     */
+    public String getGroupNote() {
+
+        return groups_tree.get(getActiveGroupValue());
+/*
+        if(getGroups().startsWith(getActiveGroupValue()).length==1)
+            return getGroups().startsWith(getActiveGroupValue())[0].getPrim();
+        return ""; */
+    }
+
+
+
 
 }

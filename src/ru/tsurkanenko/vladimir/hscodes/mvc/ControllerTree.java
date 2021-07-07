@@ -90,7 +90,7 @@ public class ControllerTree extends ViewTree implements Initializable {
             } else if (header.equals(model.getActiveGroupValue())) {
                 title = "Примечания к товарной группе";
                 body = model.getGroupNote();
-            } else if (model.activeSelectionIsItem()) {
+            } else if (model.getActiveTreeItem().isLeaf()) {
                 title = "Информация о коде ТНВЭД";
                 body = model.getFinalDescription(model.getActiveTreeItem());
             }

@@ -3,6 +3,9 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -23,14 +26,15 @@ public class InfoWindow {
      */
     InfoWindow(String title, String header, String body){
         try {
+
             FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
             ControllerInfo ctrl = new ControllerInfo();
             infoLoader.setController(ctrl);
-
             Parent infoRoot = infoLoader.load();
             infoStage = new Stage();
             infoStage.setTitle(title);
-            infoStage.setScene(new Scene(infoRoot));
+            Scene mainScene = new Scene(infoRoot);
+            infoStage.setScene(mainScene);
             ctrl.setStage(infoStage);
             ctrl.setHeader(header);
             ctrl.setBody(body);

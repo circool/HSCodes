@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.tsurkanenko.vladimir.hscodes.mvc.ControllerTree">
+<VBox prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tsurkanenko.vladimir.hscodes.mvc.ControllerTree">
     <MenuBar VBox.vgrow="ALWAYS">
         <Menu mnemonicParsing="false" text="File">
             <!--MenuItem mnemonicParsing="false" text="New"/-->
@@ -19,39 +18,38 @@
             <!--MenuItem mnemonicParsing="false" text="Save As…"/-->
             <!--MenuItem mnemonicParsing="false" text="Revert"/-->
             <!--SeparatorMenuItem mnemonicParsing="false"/-->
-            <MenuItem mnemonicParsing="false" text="Preferences…"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Quit" onAction="#buttonCloseOnAction"/>
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Quit" />
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
-            <MenuItem mnemonicParsing="false" text="Undo"/>
-            <MenuItem mnemonicParsing="false" text="Redo"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Cut"/>
-            <MenuItem mnemonicParsing="false" text="Copy"/>
-            <MenuItem mnemonicParsing="false" text="Paste"/>
-            <MenuItem mnemonicParsing="false" text="Delete"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Select All"/>
-            <MenuItem mnemonicParsing="false" text="Unselect All"/>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About HSCode app"/>
-            <MenuItem fx:id="menuShowNote" mnemonicParsing="false" onAction="#menuShowNoteOnAction" text="Show Notes"/>
+            <MenuItem mnemonicParsing="false" text="About HSCode app" />
+            <MenuItem fx:id="menuShowNote" mnemonicParsing="false" onAction="#menuShowNoteOnAction" text="Show Notes" />
         </Menu>
     </MenuBar>
     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </VBox.margin>
-        <TreeView fx:id="mainTreeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                  nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#mainTreeViewOnAction" HBox.hgrow="ALWAYS"/>
+        <TreeView fx:id="mainTreeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" onInputMethodTextChanged="#mainTreeViewOnAction" onKeyPressed="#mainTreeViewOnAction" onKeyReleased="#mainTreeViewOnAction" onMouseClicked="#mainTreeViewOnAction" onTouchPressed="#mainTreeViewOnAction" HBox.hgrow="ALWAYS" />
     </HBox>
     <FlowPane hgap="20.0" maxHeight="35.0" prefHeight="35.0" vgap="20.0" VBox.vgrow="ALWAYS">
         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </VBox.margin>
-        <Button fx:id="buttonDetailsMore" mnemonicParsing="false" onAction="#buttonDetailsMoreOnActions" text="Details"/>
-        <Button mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close"/>
+        <Button fx:id="buttonDetailsMore" mnemonicParsing="false" onAction="#buttonDetailsMoreOnActions" text="Details" />
+        <Button mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close" />
     </FlowPane>
 </VBox>

@@ -106,11 +106,11 @@ public class ModelCommon {
     public String getActiveGroupValue() {
         return activeGroupValue;
     }
+
     /**
      * Возвращает примечание к текущей группе
      * @return Строка с примечаниями
      */
-
     public String getGroupNote() {
 
         if(getGroups().startsWith(getActiveGroupValue()).length==1)
