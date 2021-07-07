@@ -2,10 +2,8 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 
 import javafx.scene.control.TreeItem;
 import ru.tsurkanenko.vladimir.hscodes.*;
-
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * Модель MVC (Model-View-ControllerTree)
@@ -413,14 +411,27 @@ class ModelTree extends ModelCommon{
         return result;
     }
 
+    /**
+     * Возвращает уровень вложенности элемента древа
+     * @param treeItem Элемент дерева, уровень которого нужно получить
+     * @return Целое число с уровнем вложенности
+     */
     int getNestingLevel(TreeItem<String> treeItem){
-        int result = 0;
-        TreeItem<String> tmp = treeItem;
-        while(tmp.getParent() != null){
+        if(treeItem != null){
+            int result = 0;
+            TreeItem<String> tmp = treeItem;
+            while(tmp.getParent() != null){
+                result++;
+                tmp = tmp.getParent();
+            }
+            return result;
+        }
+        return -1;
+        /* или так:
+        while(tmp != null){
             result++;
             tmp = tmp.getParent();
-        }
-        return result;
+        }*/
     }
 
     @Override
@@ -429,15 +440,6 @@ class ModelTree extends ModelCommon{
      * @return Строка с примечаниями
      */
     public String getGroupNote() {
-
         return groups_tree.get(getActiveGroupValue());
-/*
-        if(getGroups().startsWith(getActiveGroupValue()).length==1)
-            return getGroups().startsWith(getActiveGroupValue())[0].getPrim();
-        return ""; */
     }
-
-
-
-
 }

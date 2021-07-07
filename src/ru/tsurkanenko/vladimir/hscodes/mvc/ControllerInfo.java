@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +25,6 @@ public class ControllerInfo implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         infoCloseButton.setOnAction(e -> infoCloseButtonOnAction());
-
     }
 
     void infoCloseButtonOnAction(){

@@ -3,7 +3,6 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,12 +19,15 @@ import java.util.ResourceBundle;
 public class ControllerTree extends ViewTree implements Initializable {
     ModelTree model;
     InfoWindow infoWindow;
+    @FXML
+    Button buttonDetailsMore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         model= new ModelTree();
         createTree(model.getTreeIterable());
         notesIsAvailable(false);
+        buttonDetailsMore.setTooltip(new Tooltip("Нажмите для отображения примечания"));
     }
 
     /**
@@ -67,6 +69,9 @@ public class ControllerTree extends ViewTree implements Initializable {
         }
     }
 
+    /**
+     * Метод выполняется при выборе меню Show Notes
+     */
     @FXML
     void menuShowNoteOnAction() {
         showInfo();
