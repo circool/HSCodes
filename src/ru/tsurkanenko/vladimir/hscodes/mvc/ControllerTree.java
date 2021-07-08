@@ -96,23 +96,31 @@ public class ControllerTree extends ViewTree implements Initializable {
 
     @FXML
     void menuCopyItemDescriptionOnAction(){
-        putToClipboard(model.getFinalDescription(model.getActiveTreeItem()));
+        if(model.getActiveTreeItem()!=null)
+            putToClipboard(model.getFinalDescription(model.getActiveTreeItem()));
     }
     @FXML
     void menuCopyGroupNotesOnAction(){
-        int level = model.getNestingLevel(model.getActiveTreeItem());
-        TreeItem<String> tmp = model.getActiveTreeItem();
-        while(2 != model.getNestingLevel((tmp)))
-            tmp = tmp.getParent();
-        putToClipboard(model.getGroupNote(tmp));
+        if(model.getActiveTreeItem()!=null){
+            int level = model.getNestingLevel(model.getActiveTreeItem());
+            if (level > 1){
+                TreeItem<String> tmp = model.getActiveTreeItem();
+                while(2 != model.getNestingLevel((tmp)))
+                    tmp = tmp.getParent();
+                putToClipboard(model.getGroupNote(tmp));
+            }
+        }
     }
     @FXML
     void menuCopySectionNotesOnAction(){
-        int level = model.getNestingLevel(model.getActiveTreeItem());
-        TreeItem<String> tmp = model.getActiveTreeItem();
-        while(model.getNestingLevel((tmp)) != 1)
-            tmp = tmp.getParent();
-        putToClipboard(model.getSectionNote(tmp));
+        if(model.getActiveTreeItem()!=null){
+            int level = model.getNestingLevel(model.getActiveTreeItem());
+            TreeItem<String> tmp = model.getActiveTreeItem();
+            while(model.getNestingLevel((tmp)) != 1)
+                tmp = tmp.getParent();
+            putToClipboard(model.getSectionNote(tmp));
+        }
+
     }
     void putToClipboard(String s){
         Clipboard clipboard = Clipboard.getSystemClipboard();
