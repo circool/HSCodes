@@ -10,14 +10,18 @@ import javafx.scene.control.*;
  * @version 0.5.6
  * @since 0.5.6
  */
+
 public class ViewTree {
+
+
+    @SuppressWarnings("unused")
+    @FXML
+    Button buttonDetailsMore;
+    @SuppressWarnings("unused")
     @FXML
     TreeView<String> mainTreeView;
     @FXML
     MenuItem menuShowNote;
-    @FXML
-    Button buttonDetailsMore;
-
 
     /**
      * Включает или выключает отображение элементов, вызывающих показ примечаний

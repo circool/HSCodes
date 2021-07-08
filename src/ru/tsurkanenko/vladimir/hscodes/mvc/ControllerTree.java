@@ -19,8 +19,12 @@ import java.util.ResourceBundle;
 public class ControllerTree extends ViewTree implements Initializable {
     ModelTree model;
     InfoWindow infoWindow;
+
     @FXML
     Button buttonDetailsMore;
+
+    @FXML
+    TreeView<String> mainTreeView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
