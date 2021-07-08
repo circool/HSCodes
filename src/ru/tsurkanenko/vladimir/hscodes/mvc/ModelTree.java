@@ -10,7 +10,7 @@ import java.util.Map;
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
  * Для формирования дерева товарных позиций используется итерационный 10-ти уровневый (getTreeIterable)
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.5
  */
 class ModelTree {
@@ -393,7 +393,7 @@ class ModelTree {
         if(treeItem.getParent().getParent() != null)
             result = getFinalDescription(treeItem.getParent()) + "\n" + result;
         else
-            return "\n" + result ;
+            return result ;
         return result;
     }
 
@@ -423,8 +423,15 @@ class ModelTree {
     public String getGroupNote() {
         return group_notes.get(getActiveGroupValue());
     }
+    public String getGroupNote(TreeItem<String> t) {
+        return group_notes.get(t.getValue());
+    }
 
     public String getSectionNote() {
         return section_notes.get(getActiveSectionValue());
     }
+    public String getSectionNote(TreeItem<String> t) {
+        return section_notes.get(t.getValue());
+    }
+
 }

@@ -3,6 +3,9 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,18 +16,19 @@ import java.util.ResourceBundle;
  * Управление элементами представления выполняется классом TreeView.
  * @see TreeView
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.6
  */
 public class ControllerTree extends ViewTree implements Initializable {
     ModelTree model;
-    InfoWindow infoWindow;
+    InfoWindow infoWindow, aboutWindow;
 
     @FXML
     Button buttonDetailsMore;
 
     @FXML
     TreeView<String> mainTreeView;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,6 +83,42 @@ public class ControllerTree extends ViewTree implements Initializable {
     @FXML
     void menuShowNoteOnAction() {
         showInfo();
+    }
+
+    /**
+     * Отображает информацию о программе
+     */
+    @FXML
+    void menuAboutOnAction(){
+        aboutWindow = new InfoWindow("О программе", "HS Code",
+                "Программа предназначена для отображения справочника ТНВЭД в древовихной форме");
+    }
+
+    @FXML
+    void menuCopyItemDescriptionOnAction(){
+        putToClipboard(model.getFinalDescription(model.getActiveTreeItem()));
+    }
+    @FXML
+    void menuCopyGroupNotesOnAction(){
+        int level = model.getNestingLevel(model.getActiveTreeItem());
+        TreeItem<String> tmp = model.getActiveTreeItem();
+        while(2 != model.getNestingLevel((tmp)))
+            tmp = tmp.getParent();
+        putToClipboard(model.getGroupNote(tmp));
+    }
+    @FXML
+    void menuCopySectionNotesOnAction(){
+        int level = model.getNestingLevel(model.getActiveTreeItem());
+        TreeItem<String> tmp = model.getActiveTreeItem();
+        while(model.getNestingLevel((tmp)) != 1)
+            tmp = tmp.getParent();
+        putToClipboard(model.getSectionNote(tmp));
+    }
+    void putToClipboard(String s){
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        ClipboardContent content = new ClipboardContent();
+        content.putString(s);
+        clipboard.setContent(content);
     }
 
     /**

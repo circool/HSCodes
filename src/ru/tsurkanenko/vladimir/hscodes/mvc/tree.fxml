@@ -10,32 +10,34 @@
     <MenuBar VBox.vgrow="ALWAYS">
         <Menu mnemonicParsing="false" text="File">
             <!--MenuItem mnemonicParsing="false" text="New"/-->
-            <!--MenuItem mnemonicParsing="false" text="Open…"/-->
+            <MenuItem mnemonicParsing="false" text="Open…"/>
             <!--Menu mnemonicParsing="false" text="Open Recent"/-->
-            <!--SeparatorMenuItem mnemonicParsing="false"/-->
-            <!--MenuItem mnemonicParsing="false" text="Close"/-->
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Close"/>
             <!--MenuItem mnemonicParsing="false" text="Save"/-->
             <!--MenuItem mnemonicParsing="false" text="Save As…"/-->
             <!--MenuItem mnemonicParsing="false" text="Revert"/-->
             <!--SeparatorMenuItem mnemonicParsing="false"/-->
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" disable="true"/>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Quit" />
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
+        <Menu mnemonicParsing="false" text="Edit" >
+            <MenuItem mnemonicParsing="false" text="Undo" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Redo" disable="true"/>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
+            <MenuItem mnemonicParsing="false" text="Cut" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Copy item description" onAction="#menuCopyItemDescriptionOnAction"/>
+            <MenuItem mnemonicParsing="false" text="Copy group notes" onAction="#menuCopyGroupNotesOnAction"/>
+            <MenuItem mnemonicParsing="false" text="Copy section notes" onAction="#menuCopySectionNotesOnAction"/>
+            <MenuItem mnemonicParsing="false" text="Paste" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Delete" disable="true"/>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            <MenuItem mnemonicParsing="false" text="Select All" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Unselect All" disable="true"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About HSCode app" />
+            <MenuItem mnemonicParsing="false" text="About HSCode app" onAction="#menuAboutOnAction"/>
             <MenuItem fx:id="menuShowNote" mnemonicParsing="false" onAction="#menuShowNoteOnAction" text="Show Notes" />
         </Menu>
     </MenuBar>
