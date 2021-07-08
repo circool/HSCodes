@@ -49,7 +49,7 @@
         <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </VBox.margin>
-        <Button fx:id="buttonDetailsMore" mnemonicParsing="false" onAction="#buttonDetailsMoreOnActions" text="Details" />
-        <Button mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close" />
+        <Button fx:id="buttonDetailsMore" id="buttonDetailsMore" mnemonicParsing="false" onAction="#buttonDetailsMoreOnActions" text="Details" />
+        <Button id="buttonClose" mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close" />
     </FlowPane>
 </VBox>

@@ -30,13 +30,6 @@ public class Common implements CommonCompatible,Comparable<CommonCompatible> {
      */
     public String getCode() {return code;}
 
-    /**
-     * Возвращает наименование элемента ТНВЭД
-     * @return Строка с наименованием
-     */
-    public String getNaim() {
-            return naim;
-    }
 
     /**
      * Возвращает  код и наименование элемента ТНВЭД одной строкой

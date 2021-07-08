@@ -8,7 +8,6 @@ package ru.tsurkanenko.vladimir.hscodes;
  */
 @SuppressWarnings("unused")
 public interface CommonCompatible {
-    String getNaim();
     String toString();
     String getCode();
 }

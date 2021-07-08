@@ -4,21 +4,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
  * Контроллер для управления информационным окном
+ * @version 0.5.6
+ * @since 0.4
+ * @author Vladimir Tsurkanenko
  */
 public class ControllerInfo implements Initializable {
     @FXML
     Button infoCloseButton;
     @FXML
-    Label helpMessageLabel;
+    Label infoMessageLabel;
     @FXML
-    Label helpDetailsLabel;
+    Label infoDetailsLabel;
 
     Stage stage;
 
@@ -30,13 +32,16 @@ public class ControllerInfo implements Initializable {
     void infoCloseButtonOnAction(){
         stage.close();
     }
+
     void setStage(Stage stage){
         this.stage=stage;
     }
+
     void setBody(String body){
-        helpDetailsLabel.setText(body);
+        infoDetailsLabel.setText(body);
     }
+
     void setHeader(String header){
-        helpMessageLabel.setText(header);
+        infoMessageLabel.setText(header);
     }
 }

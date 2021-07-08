@@ -9,6 +9,9 @@ import java.util.Objects;
 
 /**
  * Основной класс для запуска MVC использующей дерево для отображения элементов справочника
+ * @version 0.5.6
+ * @since 0.4
+ * @author Vladimir Tsurkanenko
  */
 public class MainAppTree extends Application {
     @Override
