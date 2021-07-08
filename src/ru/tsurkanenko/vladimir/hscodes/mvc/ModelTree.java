@@ -8,13 +8,14 @@ import java.util.Map;
 /**
  * Модель MVC (Model-View-ControllerTree)
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
- * Для формирования дерева товарных позиций используется рекурсивный подход (getTreeRecursive и nestedChildRecursive) или итерационный 10-ти уровневый (getTreeIterable)
+ * Для формирования дерева товарных позиций используется итерационный 10-ти уровневый (getTreeIterable)
  * @author Vladimir Tsurkanenko
  * @version 0.5.6
  * @since 0.5.5
- * TODO Рекурсивный способ работает значительно дольше, нужно оптимизировать его логику
  */
-class ModelTree extends ModelCommon{
+class ModelTree {
+    // Строковое представление выбранного раздела и выбранной группы (без учета кода раздела)
+    private String activeSectionValue, activeGroupValue;
 
     /**
      * Хранение автивного элемента дерева
@@ -27,7 +28,8 @@ class ModelTree extends ModelCommon{
      * Создание новой модели.
      */
     ModelTree() {
-        super();
+        activeSectionValue = "";
+        activeGroupValue = "";
         activeTreeItem = null;
         // Создать Map для хранения примечаний к разделам
         section_notes = new HashMap<>();
@@ -315,6 +317,37 @@ class ModelTree extends ModelCommon{
         return result;
     }
 
+    /**
+     * Устанавливает выбранный раздел как текущий
+     * @param selection Строковое представление текущего раздела
+     */
+    public void setActiveSectionValue(String selection) {
+        activeSectionValue = selection;
+    }
+
+    /**
+     * Возвращает текущий активный раздел
+     * @return Строковое представление текущего раздела
+     */
+    public String getActiveSectionValue() {
+        return activeSectionValue;
+    }
+
+    /**
+     * Устанавливает выбранную группу как текущую
+     * @param group Строковое представление текущей группы
+     */
+    public void setActiveGroupValue(String group) {
+        activeGroupValue = group;
+    }
+
+    /**
+     * Возвращает текущую активную группу
+     * @return Строковое представление текущей группы
+     */
+    public String getActiveGroupValue() {
+        return activeGroupValue;
+    }
 
     /**
      * Возвращает элемент дерева, выбранный как активный

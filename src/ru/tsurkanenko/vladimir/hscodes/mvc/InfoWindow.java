@@ -6,7 +6,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Представление для MVC использующего tree.fxml
+ * Формирует и отображает информационное окна использующее fxml-файл info_dialog.fxml
+ * Назначает представлению окна новый контроллер класса ControllerInfo,
+ * передавая ему информацию о том, что следует показать в качестве заголовка и содержимого окна.
+ * Также содержит метод, закрывающий созданное окно, используемое для закрытия при создании нового окна из вызывающего контекста (ControllerTree).
+ *
+ * @see ControllerInfo
+ * @see ControllerTree
  * @author Vladimir Tsurkanenko
  * @version 0.5.6
  * @since 0.5.6
@@ -23,7 +29,6 @@ public class InfoWindow {
      */
     InfoWindow(String title, String header, String body){
         try {
-
             FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
             ControllerInfo ctrl = new ControllerInfo();
             infoLoader.setController(ctrl);
