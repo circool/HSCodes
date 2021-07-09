@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @see ControllerInfo
  * @see ControllerTree
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.6
  */
 public class InfoWindow {
@@ -40,6 +40,7 @@ public class InfoWindow {
             ctrl.setStage(infoStage);
             ctrl.setHeader(header);
             ctrl.setBody(body);
+
             infoStage.show();
         }
         catch (Exception e) {

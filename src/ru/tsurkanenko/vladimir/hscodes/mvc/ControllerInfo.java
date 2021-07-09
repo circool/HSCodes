@@ -12,14 +12,14 @@ import java.util.ResourceBundle;
  * Контроллер для управления элементами информационного окна, запускаемого классом InfoWindow
  * Для отображения представления используется info_dialog.fxml
  * @see InfoWindow
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
 public class ControllerInfo implements Initializable {
     @SuppressWarnings("unused")
     @FXML
-    Button infoCloseButton;
+    Button infoCloseButton, infoCopyButton;
     @SuppressWarnings("unused")
     @FXML
     Label infoMessageLabel, infoDetailsLabel;
@@ -28,12 +28,20 @@ public class ControllerInfo implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         infoCloseButton.setOnAction(e -> infoCloseButtonOnAction());
+        infoCopyButton.setOnAction(e -> infoCopyButtonOnAction());
+        infoCopyButton.setText("Copy to clipboard & Close");
+        infoCopyButton.setVisible(true);
     }
 
     /**
      * Вызывается при нажатии кнопки infoCloseButton и закрывает текущее окно
      */
     void infoCloseButtonOnAction(){
+        stage.close();
+    }
+
+    void infoCopyButtonOnAction(){
+        ClipBoard.put(infoMessageLabel.getText() + "\n" + infoDetailsLabel.getText());
         stage.close();
     }
 
