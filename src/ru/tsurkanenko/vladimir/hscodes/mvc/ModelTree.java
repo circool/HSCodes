@@ -10,12 +10,11 @@ import java.util.Map;
  * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
  * Для формирования дерева товарных позиций используется итерационный 10-ти уровневый (getTreeIterable)
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.5
  */
 class ModelTree {
-    // Строковое представление выбранного раздела и выбранной группы (без учета кода раздела)
-    private String activeSectionValue, activeGroupValue;
+
 
     /**
      * Хранение автивного элемента дерева
@@ -28,8 +27,6 @@ class ModelTree {
      * Создание новой модели.
      */
     ModelTree() {
-        activeSectionValue = "";
-        activeGroupValue = "";
         activeTreeItem = null;
         // Создать Map для хранения примечаний к разделам
         section_notes = new HashMap<>();
@@ -317,37 +314,7 @@ class ModelTree {
         return result;
     }
 
-    /**
-     * Устанавливает выбранный раздел как текущий
-     * @param selection Строковое представление текущего раздела
-     */
-    public void setActiveSectionValue(String selection) {
-        activeSectionValue = selection;
-    }
 
-    /**
-     * Возвращает текущий активный раздел
-     * @return Строковое представление текущего раздела
-     */
-    public String getActiveSectionValue() {
-        return activeSectionValue;
-    }
-
-    /**
-     * Устанавливает выбранную группу как текущую
-     * @param group Строковое представление текущей группы
-     */
-    public void setActiveGroupValue(String group) {
-        activeGroupValue = group;
-    }
-
-    /**
-     * Возвращает текущую активную группу
-     * @return Строковое представление текущей группы
-     */
-    public String getActiveGroupValue() {
-        return activeGroupValue;
-    }
 
     /**
      * Возвращает элемент дерева, выбранный как активный
@@ -359,29 +326,25 @@ class ModelTree {
 
     /**
      * Сохраняет у себя информацию о выбранном элементе дерева
-     * Также обновляет информацию в переменных activeSectionValue и activeGroupValue
      * @param treeItem Ссылка на активный TreeItem
      */
     void setActiveTreeItem(TreeItem<String> treeItem){
         activeTreeItem = treeItem;
-        int nestingLevel = getNestingLevel(treeItem);
-        if (nestingLevel == 1)
-            setActiveSectionValue(treeItem.getValue());
-        if(nestingLevel == 2)
-            setActiveGroupValue(treeItem.getValue());
     }
 
     /**
-     * Определяет, есть ли у выбранного элемента дерева примечание
+     * Определяет, есть ли у элемента дерева примечание
      * или является ли выбранный элемент последним в иерархии
      * @return Истина если есть, ложь - если нет
      */
-    boolean activeSelectionIsHaveNote(){
-        if(getNestingLevel(activeTreeItem)==2)
-            return (group_notes.get(activeTreeItem.getValue()).length() > 0);
-        if(getNestingLevel(activeTreeItem)==1)
-           return (section_notes.get(activeTreeItem.getValue()).length() > 0);
-        return activeTreeItem.isLeaf();
+    boolean isHaveNotes(TreeItem<String> element){
+        int nestingLevel = getNestingLevel(element);
+        String activeItemValue = element.getValue();
+        if(nestingLevel == 2)
+            return (group_notes.get(activeItemValue).length() > 0);
+        if(nestingLevel == 1)
+            return (section_notes.get(activeItemValue).length() > 0);
+        return element.isLeaf();
     }
 
     /**
@@ -393,7 +356,7 @@ class ModelTree {
         if(treeItem.getParent().getParent() != null)
             result = getFinalDescription(treeItem.getParent()) + "\n" + result;
         else
-            return "\n" + result ;
+            return result ;
         return result;
     }
 
@@ -420,11 +383,39 @@ class ModelTree {
         }*/
     }
 
-    public String getGroupNote() {
-        return group_notes.get(getActiveGroupValue());
+    /**
+     * Возвращает родительский раздел для элемента дерева
+     *
+     * @param treeItem элемент, для которого нужно найти раздел
+     * @return раздел, являющийся для элемента родительским или сам элемент,
+     * если для него нельзя получить раздел (например, если он сам раздел)
+     */
+    TreeItem<String> getParentSection(TreeItem<String> treeItem){
+        int nestingLevel = getNestingLevel(treeItem);
+        for(int i = 1; i < nestingLevel; i++)
+            treeItem = treeItem.getParent();
+        return treeItem;
+    }
+    /**
+     * Возвращает родительскую группу для элемента дерева
+     *
+     * @param treeItem элемент, для которого нужно найти группу
+     * @return группа, являющаяся для элемента родительской
+     * или сам элемент, если для него нельзя получить группу (например, если он сам группа), или null, если элеменр - раздел
+     */
+    TreeItem<String> getParentGroup(TreeItem<String> treeItem){
+        int nestingLevel = getNestingLevel(treeItem);
+        if(nestingLevel < 2) return null;
+        for(int i = 2; i < nestingLevel; i++)
+            treeItem = treeItem.getParent();
+        return treeItem;
     }
 
-    public String getSectionNote() {
-        return section_notes.get(getActiveSectionValue());
+    public String getGroupNote(TreeItem<String> treeItem) {
+        return group_notes.get(getParentGroup(treeItem).getValue());
+    }
+
+    public String getSectionNote(TreeItem<String> treeItem) {
+        return section_notes.get(getParentSection(treeItem).getValue());
     }
 }

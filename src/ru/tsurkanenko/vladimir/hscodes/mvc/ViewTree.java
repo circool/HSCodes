@@ -3,16 +3,14 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-
 /**
  * Представление для MVC использующего tree.fxml
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.6
  */
 
 public class ViewTree {
-
 
     @SuppressWarnings("unused")
     @FXML
@@ -27,7 +25,7 @@ public class ViewTree {
      * Включает или выключает отображение элементов, вызывающих показ примечаний
      * @param isEnabled Значение, которое следует установить
      */
-    void notesIsAvailable(boolean isEnabled){
+    void setNotesIsAvailable(boolean isEnabled){
         menuShowNote.setDisable(!isEnabled);
         buttonDetailsMore.setDisable(!isEnabled);
     }

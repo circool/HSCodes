@@ -13,12 +13,16 @@ import java.util.ResourceBundle;
  * Управление элементами представления выполняется классом TreeView.
  * @see TreeView
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.6
  */
 public class ControllerTree extends ViewTree implements Initializable {
     ModelTree model;
-    InfoWindow infoWindow;
+    @SuppressWarnings("unused")
+    InfoWindow infoWindow, aboutWindow;
+
+    @FXML
+    MenuItem menuCopyItemDescription, menuCopyGroupNotes, menuCopySectionNotes;
 
     @FXML
     Button buttonDetailsMore;
@@ -26,13 +30,56 @@ public class ControllerTree extends ViewTree implements Initializable {
     @FXML
     TreeView<String> mainTreeView;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         model= new ModelTree();
         createTree(model.getTreeIterable());
-        notesIsAvailable(false);
+        setNotesIsAvailable(false);
         buttonDetailsMore.setTooltip(new Tooltip("Нажмите для отображения примечания"));
+        model.setActiveTreeItem(null);
+        menuCopyItemDescription.setDisable(true);
+        menuCopyGroupNotes.setDisable(true);
+        menuCopySectionNotes.setDisable(true);
     }
+
+    /**
+     * Метод выполняется при взаимодействии с древом кодов ТНВЭД
+     */
+    @FXML
+    void mainTreeViewOnAction(){
+        // для выбора/получения активного элемента сначала получаем модель дерева
+        SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
+        // получаем выбранный элемент дерева
+        TreeItem<String> selectedItem = treeSelectionModel.getSelectedItem();
+
+        // Если ни один элемент не выбран
+        if(selectedItem == null) {
+            model.setActiveTreeItem(null);
+            // если никакой элемент не выбран сделать недоступными зависимые элементы сцены
+            buttonDetailsMore.setDisable(true);
+            menuShowNote.setDisable(true);
+            menuCopyItemDescription.setDisable(true);
+            menuCopyGroupNotes.setDisable(true);
+            menuCopySectionNotes.setDisable(true);
+            return;
+        }
+
+        // Если выбран уже выбранный элемент, не делаем ничего
+        if(selectedItem.equals(model.getActiveTreeItem()))
+            return;
+
+        // Если активный элемент изменился, сообщаем об этом модели
+        model.setActiveTreeItem(selectedItem);
+
+        // Если у элемента есть примечания, установить кнопку и меню "подробности" как доступные
+        setNotesIsAvailable(model.isHaveNotes(selectedItem));
+        int treeLevel = model.getNestingLevel(selectedItem);
+        menuCopySectionNotes.setDisable(!model.isHaveNotes(model.getParentSection(selectedItem)));
+        menuCopyGroupNotes.setDisable(treeLevel < 2);
+        menuCopyItemDescription.setDisable(treeLevel < 3);
+    }
+
 
     /**
      * Выполняется при нажатии кнопки buttonClose
@@ -50,28 +97,6 @@ public class ControllerTree extends ViewTree implements Initializable {
         showInfo();
     }
 
-    /**
-     * Метод выполняется при взаимодействии с древом кодов ТНВЭД
-     */
-    @FXML
-    void mainTreeViewOnAction(){
-        // для выбора/получения активного элемента сначала получаем модель дерева
-        SelectionModel<TreeItem<String>> treeSelectionModel = mainTreeView.getSelectionModel();
-        // получаем выбранный элемент дерева
-        TreeItem<String> selectedItem = treeSelectionModel.getSelectedItem();
-        if(selectedItem == null) {
-            model.setActiveTreeItem(null);
-            // если никакой элемент не выбран сделать недоступной кнопку и меню "подробности"
-            notesIsAvailable(false);
-        }
-        else
-        if(!selectedItem.equals(model.getActiveTreeItem())) {
-            // Если активный элемент изменился, сообщаем об этом модели
-            model.setActiveTreeItem(selectedItem);
-            // Если у элемента есть примечания, установить кнопку и меню "подробности" как доступные
-            notesIsAvailable(model.activeSelectionIsHaveNote());
-        }
-    }
 
     /**
      * Метод выполняется при выборе меню Show Notes
@@ -82,6 +107,30 @@ public class ControllerTree extends ViewTree implements Initializable {
     }
 
     /**
+     * Отображает информацию о программе
+     */
+    @FXML
+    void menuAboutOnAction(){
+        aboutWindow = new InfoWindow("О программе", "HS Code",
+                "Программа предназначена для отображения справочника ТНВЭД в древовихной форме");
+    }
+
+    @FXML
+    void menuCopyItemDescriptionOnAction(){
+        if(model.getActiveTreeItem()!=null)
+            ClipBoard.put(model.getFinalDescription(model.getActiveTreeItem()));
+    }
+    @FXML
+    void menuCopyGroupNotesOnAction(){
+        ClipBoard.put(model.getGroupNote(model.getParentGroup(model.getActiveTreeItem())));
+    }
+    @FXML
+    void menuCopySectionNotesOnAction(){
+        ClipBoard.put(model.getSectionNote(model.getParentSection(model.getActiveTreeItem())));
+
+    }
+
+    /**
      * Анализирует обстоятельства и в зависимости от них дает представлению команду вывести информационное окно.
      * Обстоятельства:
      *  1. Если выбран раздел или группа, вывести примечания к ним.
@@ -89,23 +138,26 @@ public class ControllerTree extends ViewTree implements Initializable {
      *  3.
      */
     void showInfo(){
-        if(model.activeSelectionIsHaveNote()) {
+        TreeItem<String> activeItem = model.getActiveTreeItem();
+        int nestingLevel = model.getNestingLevel(activeItem);
+
+        if(model.isHaveNotes(activeItem ) ) {
             String title = "";
             String body = "";
-            String header = model.getActiveTreeItem().getValue();
-            if (header.equals(model.getActiveSectionValue())) {
+            String header = activeItem.getValue();
+            if (nestingLevel == 1) {
                 title = "Примечания к разделу";
-                body = model.getSectionNote();
-            } else if (header.equals(model.getActiveGroupValue())) {
+                body = model.getSectionNote(activeItem);
+            } else if (nestingLevel == 2) {
                 title = "Примечания к товарной группе";
-                body = model.getGroupNote();
-            } else if (model.getActiveTreeItem().isLeaf()) {
+                body = model.getGroupNote(activeItem);
+            } else if (activeItem.isLeaf()) {
                 title = "Информация о коде ТНВЭД";
-                body = model.getFinalDescription(model.getActiveTreeItem());
+                body = model.getFinalDescription(activeItem);
             }
             if(infoWindow != null)
                 infoWindow.close();
-            infoWindow = new InfoWindow(title, header, body);
+            infoWindow = new InfoWindow(title, header, body, true);
         }
     }
 

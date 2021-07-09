@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @see ControllerInfo
  * @see ControllerTree
  * @author Vladimir Tsurkanenko
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.5.6
  */
 public class InfoWindow {
@@ -28,6 +28,10 @@ public class InfoWindow {
      * @param body Тело сообщения
      */
     InfoWindow(String title, String header, String body){
+        this(title,header,body,false);
+    }
+
+    InfoWindow(String title, String header, String body, boolean showClipboardButton){
         try {
             FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
             ControllerInfo ctrl = new ControllerInfo();
@@ -40,12 +44,15 @@ public class InfoWindow {
             ctrl.setStage(infoStage);
             ctrl.setHeader(header);
             ctrl.setBody(body);
+            ctrl.showClipboardButton(showClipboardButton);
             infoStage.show();
         }
         catch (Exception e) {
             System.err.println("Не удалось открыть окно примечаний");
         }
     }
+
+
 
     /**
      * Закрывает окно

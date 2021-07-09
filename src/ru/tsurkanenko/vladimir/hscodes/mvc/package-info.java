@@ -6,7 +6,7 @@
  * ru.tsurkanenko.vladimir.hscodes.mvc.tree.fxml - Представление
  * @see ru.tsurkanenko.vladimir.hscodes.mvc.ControllerTree - Контроллер
  *
- * @version 0.5.6
+ * @version 0.5.7
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
