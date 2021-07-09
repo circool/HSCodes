@@ -27,9 +27,9 @@
             <MenuItem mnemonicParsing="false" text="Redo" disable="true"/>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Cut" disable="true"/>
-            <MenuItem mnemonicParsing="false" text="Copy item description" onAction="#menuCopyItemDescriptionOnAction"/>
-            <MenuItem mnemonicParsing="false" text="Copy group notes" onAction="#menuCopyGroupNotesOnAction"/>
-            <MenuItem mnemonicParsing="false" text="Copy section notes" onAction="#menuCopySectionNotesOnAction"/>
+            <MenuItem mnemonicParsing="false" text="Copy item description" onAction="#menuCopyItemDescriptionOnAction" fx:id="menuCopyItemDescription"/>
+            <MenuItem mnemonicParsing="false" text="Copy group notes" onAction="#menuCopyGroupNotesOnAction" fx:id="menuCopyGroupNotes"/>
+            <MenuItem mnemonicParsing="false" text="Copy section notes" onAction="#menuCopySectionNotesOnAction" fx:id="menuCopySectionNotes"/>
             <MenuItem mnemonicParsing="false" text="Paste" disable="true"/>
             <MenuItem mnemonicParsing="false" text="Delete" disable="true"/>
             <SeparatorMenuItem mnemonicParsing="false" />
