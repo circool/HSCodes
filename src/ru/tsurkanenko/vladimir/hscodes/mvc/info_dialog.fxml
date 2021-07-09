@@ -41,7 +41,7 @@
             </HBox.margin>
         </HBox>
         <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
-        <Button id="infoCopyButton" fx:id="infoCopyButton" cancelButton="false" minWidth="80.0" mnemonicParsing="false" text="Copy" HBox.hgrow="NEVER" visible="false">
+        <Button id="infoCopyButton" fx:id="infoCopyButton" minWidth="80.0" mnemonicParsing="false" text="Copy" HBox.hgrow="NEVER" visible="false">
             <HBox.margin><Insets /></HBox.margin>
         </Button>
         <Button id="infoCloseButton" fx:id="infoCloseButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="Close" HBox.hgrow="NEVER">

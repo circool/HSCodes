@@ -30,7 +30,7 @@ public class ControllerInfo implements Initializable {
         infoCloseButton.setOnAction(e -> infoCloseButtonOnAction());
         infoCopyButton.setOnAction(e -> infoCopyButtonOnAction());
         infoCopyButton.setText("Copy to clipboard & Close");
-        infoCopyButton.setVisible(true);
+
     }
 
     /**
@@ -64,5 +64,9 @@ public class ControllerInfo implements Initializable {
      */
     void setHeader(String header){
         infoMessageLabel.setText(header);
+    }
+
+    void showClipboardButton(boolean val){
+        infoCopyButton.setVisible(val);
     }
 }
