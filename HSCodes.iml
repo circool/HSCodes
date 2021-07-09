@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/dic" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -19,30 +20,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library name="JUnit5.7.0">
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.m2/repository/org/junit/jupiter/junit-jupiter/5.7.0/junit-jupiter-5.7.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.0/junit-jupiter-api-5.7.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.7.0/junit-jupiter-params-5.7.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.0/junit-jupiter-engine-5.7.0.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/junit/platform/junit-platform-engine/1.7.0/junit-platform-engine-1.7.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.m2/repository/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="JavaFX 11.0.2" level="project" />
+    <orderEntry type="library" name="org.jetbrains:annotations:16.0.2" level="project" />
   </component>
 </module>
