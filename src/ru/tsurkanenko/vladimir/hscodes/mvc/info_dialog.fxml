@@ -21,10 +21,10 @@
     <ImageView id="icon" fitHeight="60.0" fitWidth="60.0" opacity="0.13" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
         <Image url="@about.png" />
     </ImageView>
-    <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
+    <VBox maxHeight="+Infinity" maxWidth="1000" minHeight="-Infinity"  spacing="7.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS">
         <Label fx:id="infoMessageLabel" text="message" wrapText="true">
             <font>
-                <Font name="System Bold" size="13.0" />
+                <Font name="System Bold" size="18.0" />
             </font>
         </Label>
         <Label fx:id="infoDetailsLabel" text="details" wrapText="true">
