@@ -18,7 +18,7 @@ public class MainAppTree extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("tree.fxml")));
         primaryStage.setTitle("Справочник ТНВЭД");
-        primaryStage.setScene(new Scene(root, 1000,800));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

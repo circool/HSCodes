@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Формирует и отображает информационное окна использующее fxml-файл info_dialog.fxml
@@ -41,6 +42,8 @@ public class InfoWindow {
             infoStage.setTitle(title);
             Scene mainScene = new Scene(infoRoot);
             infoStage.setScene(mainScene);
+            infoStage.setResizable(false);
+
             ctrl.setStage(infoStage);
             ctrl.setHeader(header);
             ctrl.setBody(body);
