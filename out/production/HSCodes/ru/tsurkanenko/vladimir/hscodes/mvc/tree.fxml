@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Использование древрвидного списка для отображения элементов справочника -->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tsurkanenko.vladimir.hscodes.mvc.ControllerTree">
+    <MenuBar VBox.vgrow="ALWAYS">
+        <Menu mnemonicParsing="false" text="File">
+            <!--MenuItem mnemonicParsing="false" text="New"/-->
+            <MenuItem mnemonicParsing="false" text="Open…"/>
+            <!--Menu mnemonicParsing="false" text="Open Recent"/-->
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Close"/>
+            <!--MenuItem mnemonicParsing="false" text="Save"/-->
+            <!--MenuItem mnemonicParsing="false" text="Save As…"/-->
+            <!--MenuItem mnemonicParsing="false" text="Revert"/-->
+            <!--SeparatorMenuItem mnemonicParsing="false"/-->
+            <MenuItem mnemonicParsing="false" text="Preferences…" disable="true"/>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Quit" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit" >
+            <MenuItem mnemonicParsing="false" text="Undo" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Redo" disable="true"/>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Copy item description" onAction="#menuCopyItemDescriptionOnAction" fx:id="menuCopyItemDescription"/>
+            <MenuItem mnemonicParsing="false" text="Copy group notes" onAction="#menuCopyGroupNotesOnAction" fx:id="menuCopyGroupNotes"/>
+            <MenuItem mnemonicParsing="false" text="Copy section notes" onAction="#menuCopySectionNotesOnAction" fx:id="menuCopySectionNotes"/>
+            <MenuItem mnemonicParsing="false" text="Paste" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Delete" disable="true"/>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" disable="true"/>
+            <MenuItem mnemonicParsing="false" text="Unselect All" disable="true"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" text="About HSCode app" onAction="#menuAboutOnAction"/>
+            <MenuItem fx:id="menuShowNote" mnemonicParsing="false" onAction="#menuShowNoteOnAction" text="Show Notes" />
+        </Menu>
+    </MenuBar>
+    <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </VBox.margin>
+        <TreeView fx:id="mainTreeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" onInputMethodTextChanged="#mainTreeViewOnAction" onKeyPressed="#mainTreeViewOnAction" onKeyReleased="#mainTreeViewOnAction" onMouseClicked="#mainTreeViewOnAction" onTouchPressed="#mainTreeViewOnAction" HBox.hgrow="ALWAYS" />
+    </HBox>
+    <FlowPane hgap="20.0" maxHeight="35.0" prefHeight="35.0" vgap="20.0" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </VBox.margin>
+        <Button fx:id="buttonDetailsMore" id="buttonDetailsMore" mnemonicParsing="false" onAction="#buttonDetailsMoreOnActions" text="Details" />
+        <Button id="buttonClose" mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close" />
+    </FlowPane>
+</VBox>
