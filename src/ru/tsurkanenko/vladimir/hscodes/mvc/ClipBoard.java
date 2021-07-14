@@ -10,6 +10,10 @@ import javafx.scene.input.ClipboardContent;
  * @author Vladimir Tsurkanenko
  */
 interface ClipBoard {
+    /**
+     * Помещает в буфер обмена полученный в качестве параметра текст
+     * @param s Текст, который следует поместить в буфер обмена
+     */
     static void put(String s){
         Clipboard clipboard = Clipboard.getSystemClipboard();
         ClipboardContent content = new ClipboardContent();
