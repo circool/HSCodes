@@ -6,13 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Позволяет вызывающему контексту создавать и закрывать новое информационное окно.
  * Формирует и отображает информационное окна использующее fxml-файл info_dialog.fxml
- * Назначает представлению окна новый контроллер класса ControllerInfo,
+ * Назначает представлению окна новый контроллер класса {@link ControllerInfo},
  * передавая ему информацию о том, что следует показать в качестве заголовка и содержимого окна.
- * Также содержит метод, закрывающий созданное окно, используемое для закрытия при создании нового окна из вызывающего контекста (ControllerTree).
  *
  * @see ControllerInfo
- * @see ControllerTree
  * @author Vladimir Tsurkanenko
  * @version 0.5.7
  * @since 0.5.6
@@ -20,9 +19,13 @@ import javafx.stage.Stage;
 public class InfoWindow {
     Stage infoStage;
 
+    /*
+     * Конструкторы:
+     * Создают и отображают информационное окно формируя его содержимое из полученных параметров
+     */
+
     /**
-     * Конструктор
-     * Создает и отображает информационное окно
+     * Создает диалоговое окно с единственной кнопкой "закрыть"
      * @param title Заголовок окна
      * @param header Заголовок сообщения
      * @param body Тело сообщения
@@ -31,6 +34,13 @@ public class InfoWindow {
         this(title,header,body,false);
     }
 
+    /**
+     * Создает диалоговое окно с возможностью отображения дополнительной кнопки
+     * @param title Заголовок окна
+     * @param header Заголовок сообщения
+     * @param body Тело сообщения
+     * @param showClipboardButton Определяет, нужно ли отображать доп. кнопку
+     */
     InfoWindow(String title, String header, String body, boolean showClipboardButton){
         try {
             FXMLLoader infoLoader = new FXMLLoader(getClass().getResource("info_dialog.fxml"));
@@ -60,6 +70,6 @@ public class InfoWindow {
      * Закрывает окно
      */
     void close(){
-        infoStage.close();
+        this.infoStage.close();
     }
 }

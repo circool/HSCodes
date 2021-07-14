@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tsurkanenko.vladimir.hscodes.mvc.ControllerTree">
+<VBox prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tsurkanenko.vladimir.hscodes.mvc.Controller">
     <MenuBar VBox.vgrow="ALWAYS">
         <Menu mnemonicParsing="false" text="File">
             <!--MenuItem mnemonicParsing="false" text="New"/-->

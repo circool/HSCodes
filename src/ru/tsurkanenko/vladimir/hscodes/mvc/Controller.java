@@ -3,21 +3,24 @@ package ru.tsurkanenko.vladimir.hscodes.mvc;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Контроллер (ControllerTree) Model-View-ControllerTree
- * интерпретирует действия пользователя, оповещая модель о необходимости изменений
+ * Контроллер {@link Controller} MVC (Model-View-Controller)
+ * интерпретирует действия пользователя,
+ * запрашивает данные у модели {@link Model}
+ * информирует модель о необходимости изменения данных
  * Предназначен для представления tree.fxml использующего дерево для отображения данных
- * Управление элементами представления выполняется классом TreeView.
+ * Управление элементами представления выполняется классом {@link TreeView}.
  * @see TreeView
  * @author Vladimir Tsurkanenko
  * @version 0.5.7
  * @since 0.5.6
  */
-public class ControllerTree extends ViewTree implements Initializable {
-    ModelTree model;
+public class Controller extends ViewTree implements Initializable {
+    Model model;
     @SuppressWarnings("unused")
     InfoWindow infoWindow, aboutWindow;
 
@@ -33,7 +36,7 @@ public class ControllerTree extends ViewTree implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        model= new ModelTree();
+        model= new Model();
         createTree(model.getTreeIterable());
         setNotesIsAvailable(false);
         buttonDetailsMore.setTooltip(new Tooltip("Нажмите для отображения примечания"));

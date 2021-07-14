@@ -13,7 +13,7 @@ import java.util.Objects;
  * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-public class MainAppTree extends Application {
+public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("tree.fxml")));

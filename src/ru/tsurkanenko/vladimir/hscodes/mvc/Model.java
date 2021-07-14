@@ -1,19 +1,22 @@
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
 import javafx.scene.control.TreeItem;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.tsurkanenko.vladimir.hscodes.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
- * Модель MVC (Model-View-ControllerTree)
- * Модель хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
+ * Модель MVC (Model-View-Controller)
+ * Модель {@link Model} хранит исходные данные и предоставляет их Контроллеру, когда у него возникает в них необходимость
  * Для формирования дерева товарных позиций используется итерационный 10-ти уровневый (getTreeIterable)
  * @author Vladimir Tsurkanenko
  * @version 0.5.7
  * @since 0.5.5
  */
-class ModelTree {
+class Model {
 
 
     /**
@@ -26,7 +29,7 @@ class ModelTree {
     /**
      * Создание новой модели.
      */
-    ModelTree() {
+    Model() {
         activeTreeItem = null;
         // Создать Map для хранения примечаний к разделам
         section_notes = new HashMap<>();
@@ -337,7 +340,7 @@ class ModelTree {
      * или является ли выбранный элемент последним в иерархии
      * @return Истина если есть, ложь - если нет
      */
-    boolean isHaveNotes(TreeItem<String> element){
+    boolean isHaveNotes(@NotNull TreeItem<String> element){
         int nestingLevel = getNestingLevel(element);
         String activeItemValue = element.getValue();
         if(nestingLevel == 2)
@@ -351,7 +354,7 @@ class ModelTree {
      * Возвращает полное описание выбранного кода ТНВЭД
      * @return Строка описаниями родителей и выбранного кода
      */
-    public String getFinalDescription(TreeItem<String> treeItem) {
+    public String getFinalDescription(@NotNull TreeItem<String> treeItem) {
         String result = treeItem.getValue();
         if(treeItem.getParent().getParent() != null)
             result = getFinalDescription(treeItem.getParent()) + "\n" + result;
@@ -365,7 +368,7 @@ class ModelTree {
      * @param treeItem Элемент дерева, уровень которого нужно получить
      * @return Целое число с уровнем вложенности
      */
-    int getNestingLevel(TreeItem<String> treeItem){
+    int getNestingLevel(@Nullable TreeItem<String> treeItem){
         if(treeItem != null){
             int result = 0;
             TreeItem<String> tmp = treeItem;
@@ -390,7 +393,7 @@ class ModelTree {
      * @return раздел, являющийся для элемента родительским или сам элемент,
      * если для него нельзя получить раздел (например, если он сам раздел)
      */
-    TreeItem<String> getParentSection(TreeItem<String> treeItem){
+    @NotNull TreeItem<String> getParentSection(@NotNull TreeItem<String> treeItem){
         int nestingLevel = getNestingLevel(treeItem);
         for(int i = 1; i < nestingLevel; i++)
             treeItem = treeItem.getParent();
@@ -403,7 +406,7 @@ class ModelTree {
      * @return группа, являющаяся для элемента родительской
      * или сам элемент, если для него нельзя получить группу (например, если он сам группа), или null, если элеменр - раздел
      */
-    TreeItem<String> getParentGroup(TreeItem<String> treeItem){
+    @Nullable TreeItem<String> getParentGroup(@NotNull TreeItem<String> treeItem){
         int nestingLevel = getNestingLevel(treeItem);
         if(nestingLevel < 2) return null;
         for(int i = 2; i < nestingLevel; i++)
@@ -411,11 +414,14 @@ class ModelTree {
         return treeItem;
     }
 
-    public String getGroupNote(TreeItem<String> treeItem) {
-        return group_notes.get(getParentGroup(treeItem).getValue());
+    public String getGroupNote(@NotNull TreeItem<String> treeItem) {
+        //TreeItem<String> parent = getParentGroup(treeItem);
+        //if(parent != null)
+            return group_notes.get(Objects.requireNonNull(getParentGroup(treeItem)).getValue());
+        //return "";
     }
 
-    public String getSectionNote(TreeItem<String> treeItem) {
+    public String getSectionNote(@NotNull TreeItem<String> treeItem) {
         return section_notes.get(getParentSection(treeItem).getValue());
     }
 }
