@@ -24,27 +24,37 @@
 
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import org.jetbrains.annotations.Nullable;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
- * Используется для копирования в буфер обмена
+ * Основной класс для запуска MVC использующей дерево для отображения элементов справочника
  * @version 0.6
- * @since 0.5.7
+ * @since 0.4
  * @author Vladimir Tsurkanenko
  */
-interface ClipBoard {
-    /**
-     * Помещает в буфер обмена полученный в качестве параметра текст
-     * @param s Текст, который следует поместить в буфер обмена
-     */
-    static void put(@Nullable String s){
-        if (s == null) return;
-
-        Clipboard clipboard = Clipboard.getSystemClipboard();
-        ClipboardContent content = new ClipboardContent();
-        content.putString(s);
-        clipboard.setContent(content);
+public class MainApp extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("tree.fxml")));
+        primaryStage.setTitle("Справочник ТНВЭД");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
 }
