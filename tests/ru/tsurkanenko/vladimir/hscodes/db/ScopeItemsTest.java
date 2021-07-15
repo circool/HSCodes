@@ -85,14 +85,6 @@ public class ScopeItemsTest {
         assertThat(test[test.length - 1].getPrim(), is("товары для FIFA"));
     }
 
-    @Test
-    public void HSElementIsHavePrim(){
-        Item[] test;
-        test = new Scope("files/TNVED1.TXT").get();
-        //assertThat(test[21].isHavePrim(), is(true));
-        //assertThat(test[20].isHavePrim(), is(false));
-
-    }
 
     @Test
     public void getNestingLevelTest(){
