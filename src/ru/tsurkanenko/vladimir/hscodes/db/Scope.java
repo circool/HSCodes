@@ -110,6 +110,8 @@ public class Scope {
             }
         } else {
             // для элементов
+            //FIXME последний элемент справочника 9999999999 FIFA2018 повторяется 10 раз
+
             startInd++;
             while (items[startInd].getNestingLevel() > parentNestingLevel){
                 if(items[startInd].getNestingLevel() - parentNestingLevel == 1)
