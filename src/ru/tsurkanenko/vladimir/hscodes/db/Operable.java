@@ -22,29 +22,23 @@
  *  SOFTWARE.
  */
 
-package ru.tsurkanenko.vladimir.hscodes.mvc;
+package ru.tsurkanenko.vladimir.hscodes.db;
 
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Используется для копирования в буфер обмена
+ * Интерфейс контрактирующий свойства элементов справочника
  * @version 0.6
- * @since 0.5.7
+ * @since 0.6
  * @author Vladimir Tsurkanenko
  */
-interface ClipBoard {
-    /**
-     * Помещает в буфер обмена полученный в качестве параметра текст
-     * @param s Текст, который следует поместить в буфер обмена
-     */
-    static void put(@Nullable String s){
-        if (s == null) return;
 
-        Clipboard clipboard = Clipboard.getSystemClipboard();
-        ClipboardContent content = new ClipboardContent();
-        content.putString(s);
-        clipboard.setContent(content);
-    }
+public interface Operable extends Comparable<Item>{
+    String getCode();
+    String getNaim();
+    String toString();
+    String getPrim();
+    int getNestingLevel();
+    int compareTo(@NotNull Item o);
 }
+
