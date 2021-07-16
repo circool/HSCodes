@@ -88,7 +88,7 @@ public class Scope {
         } else {
             // для элементов
             startInd++;
-            while (items[startInd].getNestingLevel() > parentNestingLevel){
+            while (items[startInd].getNestingLevel() > parentNestingLevel && items[startInd].getCode().substring(0,4).equals(parentCode.substring(0,4))){
                 if(items[startInd].getNestingLevel() - parentNestingLevel == 1)
                     result.add(items[startInd]);
                 startInd++;
