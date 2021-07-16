@@ -104,17 +104,12 @@ public class Scope {
         if(parentNestingLevel==0){
             // для групп
             while(lastInd >= startInd && items[startInd].getCode().startsWith(parentCode)) {
-                if(items[startInd].getNestingLevel() - parentNestingLevel <= 1)
+                if(items[startInd].getNestingLevel() - parentNestingLevel <= 1 && !items[startInd].equals(parent))
                     result.add(items[startInd]);
                 startInd++;
             }
         } else {
             // для элементов
-            //FIXME последний элемент справочника 9999999999 FIFA2018 повторяется 10 раз
-            // такие ошибки возникают когда из массива с товарными позициями извлекают
-            // товарную позицию с нулевым уровнем вложенности - при возврате массива в нем
-            // оказывается и запрашиваемый элемент (зачастую как единственный в массиве)
-
             startInd++;
             while (items[startInd].getNestingLevel() > parentNestingLevel){
                 if(items[startInd].getNestingLevel() - parentNestingLevel == 1)
