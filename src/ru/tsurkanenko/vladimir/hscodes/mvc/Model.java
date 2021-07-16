@@ -1,33 +1,10 @@
-/*
- * MIT License
- *
- * Copyright (c) 2021 Vladimir Tsurkanenko
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- */
-
 package ru.tsurkanenko.vladimir.hscodes.mvc;
 
 import javafx.scene.control.TreeItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.tsurkanenko.vladimir.hscodes.db.Item;
+import ru.tsurkanenko.vladimir.hscodes.db.Operable;
 import ru.tsurkanenko.vladimir.hscodes.db.Scope;
 
 import java.util.HashMap;
@@ -46,7 +23,7 @@ class Model {
 
 
     /**
-     * Хранение автивного элемента дерева
+     * Хранение активного элемента дерева
      */
     private TreeItem<String> activeTreeItem;
     private final Map<String, String> section_notes;
@@ -59,12 +36,12 @@ class Model {
         activeTreeItem = null;
         // Создать Map для хранения примечаний к разделам
         section_notes = new HashMap<>();
-        for (Item s:new Scope("files/TNVED1.TXT").get())
+        for (Operable s:new Scope("files/TNVED1.TXT").get())
             section_notes.put(s.toString(), s.getPrim());
 
         // Создать Map для хранения примечаний к группам
         group_notes = new HashMap<>();
-        for (Item g:new Scope("files/TNVED2.TXT").get())
+        for (Operable g:new Scope("files/TNVED2.TXT").get())
             group_notes.put(g.toString().substring(2), g.getPrim());
 
         // Создать дерево для представления
@@ -80,7 +57,7 @@ class Model {
         //System.out.println("Start getTreeIterable");
         TreeItem<String> result = new TreeItem<>();
         result.setValue("Справочник ТН ВЭД");
-        // Разделы XX
+
         Scope sections = new Scope("files/TNVED1.TXT");
         Scope groups = new Scope("files/TNVED2.TXT");
         Scope positions = new Scope("files/TNVED3.TXT");
@@ -88,13 +65,14 @@ class Model {
         Scope items = new Scope("files/TNVED4.TXT");
         items.add("files/TNVED4.ADD.TXT");
 
-        for (Item currSection : sections.get()) {
+        // Разделы XX
+        for (Operable currSection : sections.get()) {
             result.getChildren().add(new TreeItem<>(currSection.toString()));
             int i0 = result
                     .getChildren().size() - 1;
 
             // Товарные группы ХХ ХХ
-            for (Item currGroup : groups.getChildren(currSection)) {
+            for (Operable currGroup : groups.getChildren(currSection)) {
                 result.getChildren().get(i0).getChildren().add(new TreeItem<>(currGroup.toString().substring(2)));
                 int i1 = result
                         .getChildren().get(i0)
@@ -102,7 +80,7 @@ class Model {
 
                 // Товарные позиции ХХХХ
                 // так как у группы лишние две цифры в коде, подменяем ее на безымянный обьект, в котором код укорочен
-                for (Item currPosition : positions.getChildren(new Item(currGroup.getCode().substring(2),currGroup.getNaim(),null))) {
+                for (Operable currPosition : positions.getChildren(new Item(currGroup.getCode().substring(2),currGroup.getNaim(),null))) {
                     result
                             .getChildren().get(i0)
                             .getChildren().get(i1)
@@ -113,7 +91,7 @@ class Model {
                             .getChildren().size() - 1;
 
                     // Товарные подсубпозиции 1-го уровня вложенности
-                    for (Item l1 : items.getChildren(currPosition)) {
+                    for (Operable l1 : items.getChildren(currPosition)) {
                         result
                                 .getChildren().get(i0)
                                 .getChildren().get(i1)
@@ -127,7 +105,7 @@ class Model {
                                 .getChildren()
                                 .size() - 1;
                         // Товарные подсубпозиции 2-го уровня вложенности
-                        for (Item l2 : items.getChildren(l1)) {
+                        for (Operable l2 : items.getChildren(l1)) {
                             result
                                     .getChildren().get(i0)
                                     .getChildren().get(i1)
@@ -143,7 +121,7 @@ class Model {
                                     .getChildren()
                                     .size() - 1;
                             // Товарные подсубпозиции 3-го уровня вложенности
-                            for (Item l3 : items.getChildren(l2)) {
+                            for (Operable l3 : items.getChildren(l2)) {
                                 result
                                         .getChildren().get(i0)
                                         .getChildren().get(i1)
@@ -161,7 +139,7 @@ class Model {
                                         .getChildren()
                                         .size() - 1;
                                 // Товарные подсубпозиции 4-го уровня вложенности
-                                for (Item l4 : items.getChildren(l3)) {
+                                for (Operable l4 : items.getChildren(l3)) {
                                     result
                                             .getChildren().get(i0)
                                             .getChildren().get(i1)
@@ -181,7 +159,7 @@ class Model {
                                             .getChildren()
                                             .size() - 1;
                                     // Товарные подсубпозиции 5-го уровня вложенности
-                                    for (Item l5 : items.getChildren(l4)) {
+                                    for (Operable l5 : items.getChildren(l4)) {
                                         result
                                                 .getChildren().get(i0)
                                                 .getChildren().get(i1)
@@ -203,7 +181,7 @@ class Model {
                                                 .getChildren()
                                                 .size() - 1;
                                         // Товарные подсубпозиции 6-го уровня вложенности
-                                        for (Item l6 : items.getChildren(l5)) {
+                                        for (Operable l6 : items.getChildren(l5)) {
                                             result
                                                     .getChildren().get(i0)
                                                     .getChildren().get(i1)
@@ -227,7 +205,7 @@ class Model {
                                                     .getChildren()
                                                     .size() - 1;
                                             // Товарные подсубпозиции 7-го уровня вложенности
-                                            for (Item l7 : items.getChildren(l6)) {
+                                            for (Operable l7 : items.getChildren(l6)) {
                                                 result
                                                         .getChildren().get(i0)
                                                         .getChildren().get(i1)
@@ -253,7 +231,7 @@ class Model {
                                                         .getChildren()
                                                         .size() - 1;
                                                 // Товарные подсубпозиции 8-го уровня вложенности
-                                                for (Item l8 : items.getChildren(l7)) {
+                                                for (Operable l8 : items.getChildren(l7)) {
                                                     result
                                                             .getChildren().get(i0)
                                                             .getChildren().get(i1)
@@ -281,7 +259,7 @@ class Model {
                                                             .getChildren()
                                                             .size() - 1;
                                                     // Товарные подсубпозиции 9-го уровня вложенности
-                                                    for (Item l9 : items.getChildren(l8)) {
+                                                    for (Operable l9 : items.getChildren(l8)) {
                                                         result
                                                                 .getChildren().get(i0)
                                                                 .getChildren().get(i1)
@@ -311,7 +289,7 @@ class Model {
                                                                 .getChildren()
                                                                 .size() - 1;
                                                         // Товарные подсубпозиции 10-го уровня вложенности
-                                                        for (Item l10 : items.getChildren(l9)) {
+                                                        for (Operable l10 : items.getChildren(l9)) {
                                                             result
                                                                     .getChildren().get(i0)
                                                                     .getChildren().get(i1)
@@ -327,10 +305,10 @@ class Model {
                                                                     .getChildren().get(i11)
                                                                     .getChildren()
                                                                     .add(new TreeItem<>(l10.toString()));
-                                                            }
                                                         }
                                                     }
                                                 }
+                                            }
                                         }
                                     }
                                 }
@@ -442,7 +420,7 @@ class Model {
     public String getGroupNote(@NotNull TreeItem<String> treeItem) {
         //TreeItem<String> parent = getParentGroup(treeItem);
         //if(parent != null)
-            return group_notes.get(Objects.requireNonNull(getParentGroup(treeItem)).getValue());
+        return group_notes.get(Objects.requireNonNull(getParentGroup(treeItem)).getValue());
         //return "";
     }
 
