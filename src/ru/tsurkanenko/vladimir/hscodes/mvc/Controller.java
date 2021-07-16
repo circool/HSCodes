@@ -139,7 +139,7 @@ public class Controller extends ViewTree implements Initializable {
     @FXML
     void menuAboutOnAction(){
         aboutWindow = new InfoWindow("О программе", "HS Code",
-                "Программа предназначена для отображения справочника ТНВЭД в древовихной форме");
+                "Программа предназначена для отображения справочника ТНВЭД в древовидной форме");
     }
 
     @FXML
