@@ -79,7 +79,7 @@ class Model {
                         .getChildren().size() - 1;
 
                 // Товарные позиции ХХХХ
-                // так как у группы лишние две цифры в коде, подменяем ее на безымянный обьект, в котором код укорочен
+                // так как у группы лишние две цифры в коде, подменяем ее на безымянный объект, в котором код укорочен
                 for (Operable currPosition : positions.getChildren(new Item(currGroup.getCode().substring(2),currGroup.getNaim(),null))) {
                     result
                             .getChildren().get(i0)
@@ -407,7 +407,7 @@ class Model {
      *
      * @param treeItem элемент, для которого нужно найти группу
      * @return группа, являющаяся для элемента родительской
-     * или сам элемент, если для него нельзя получить группу (например, если он сам группа), или null, если элеменр - раздел
+     * или сам элемент, если для него нельзя получить группу (например, если он сам группа), или null, если элемент - раздел
      */
     @NotNull TreeItem<String> getParentGroup(@NotNull TreeItem<String> treeItem){
         int nestingLevel = getNestingLevel(treeItem);
