@@ -2,15 +2,30 @@
 
 package ru.tsurkanenko.vladimir.hscodes.db;
 
+import javafx.scene.control.TreeItem;
+import org.jetbrains.annotations.TestOnly;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import ru.tsurkanenko.vladimir.hscodes.mvc.ModelTest;
+
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 @SuppressWarnings("deprecation")
 public class ScopeTest {
+    Scope section,group,subgroup,position;
 
+    @Before
+    public void setUp() {
+        section = new Scope("files/TNVED1.TXT");
+        group = new Scope("files/TNVED2.TXT");
+        subgroup = new Scope("files/TNVED3.TXT");
+        subgroup.add("files/TNVED3.ADD.TXT");
+        position = new Scope("files/TNVED4.TXT");
+        position.add("files/TNVED4.ADD.TXT");
+    }
 
     @Test
     public void ItemToString() {
@@ -25,7 +40,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void HSElementGetNaim() {
+    public void ElementGetNaim() {
         Operable[] test;
         test = new Scope("files/TNVED1.TXT").get();
         assertThat(test[test.length - 1].getNaim(), is("FIFA2018"));
@@ -35,7 +50,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void HSElementGetCode() {
+    public void ElementGetCode() {
         Operable[] test;
         test = new Scope("files/TNVED1.TXT").get();
         assertThat(test[test.length - 1].getCode(), is("22"));
@@ -45,7 +60,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void HSElementGetNestingLevel() {
+    public void ElementGetNestingLevel() {
         Operable[] test;
         test = new Scope("files/TNVED1.TXT").get();
         assertThat(test[test.length - 1].getNestingLevel(), is(0));
@@ -56,7 +71,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void HSElementGetPrim() {
+    public void ElementGetPrim() {
         Operable[] test;
         test = new Scope("files/TNVED1.TXT").get();
         assertThat(test[test.length - 1].getPrim(), is("товары для FIFA"));
@@ -115,4 +130,43 @@ public class ScopeTest {
         }
     }
 
+    @Test
+    public void checkScopeGroupsIntegrity(){
+        int total = 0;
+        for (Operable parent:section.get()
+             ) {
+            total += group.getChildren(parent).length;
+        }
+        assertThat(group.get().length, is(total));
+    }
+
+    @Test
+    public void checkScopeSubGroupsIntegrity(){
+        int total = 0;
+        for (Operable parent:group.get()
+        ) {
+            total += subgroup.getChildren(new Item(parent.getCode().substring(2), "null","null")).length;
+        }
+        assertThat(subgroup.get().length, is(total));
+    }
+
+    @Test
+    public void checkTreeIntegrity(){
+        ModelTest mt = new ModelTest();
+        TreeItem<String> tree = mt.getTree();
+        int total = countTreeCapacity(tree, 0);
+        System.out.println("Всего в дерево попало " + total + " элементов из " + (section.get().length + group.get().length + subgroup.get().length + position.get().length));
+        int missing = section.get().length + group.get().length + subgroup.get().length + position.get().length - total;
+        System.out.println("Потеряно " + missing);
+    }
+    @TestOnly
+    public int countTreeCapacity(TreeItem<String> tree, int cnt){
+        int counter = cnt;
+        for (TreeItem<String> a :tree.getChildren()
+             ) {
+            counter++;
+            counter = countTreeCapacity(a,counter);
+        }
+        return counter;
+    }
 }
