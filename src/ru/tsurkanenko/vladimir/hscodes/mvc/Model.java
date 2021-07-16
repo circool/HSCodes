@@ -431,9 +431,9 @@ class Model {
      * @return группа, являющаяся для элемента родительской
      * или сам элемент, если для него нельзя получить группу (например, если он сам группа), или null, если элеменр - раздел
      */
-    @Nullable TreeItem<String> getParentGroup(@NotNull TreeItem<String> treeItem){
+    @NotNull TreeItem<String> getParentGroup(@NotNull TreeItem<String> treeItem){
         int nestingLevel = getNestingLevel(treeItem);
-        if(nestingLevel < 2) return null;
+        if(nestingLevel < 2) return treeItem;
         for(int i = 2; i < nestingLevel; i++)
             treeItem = treeItem.getParent();
         return treeItem;
